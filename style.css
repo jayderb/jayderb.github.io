@@ -1022,3 +1022,745 @@ footer {
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Add to Cart feedback */
+.add-to-cart {
+    transition: color 0.3s ease;
+    overflow: visible;
+    padding: 10px 20px;
+}
+
+.add-to-cart.added {
+    color: #2a7a2a;
+    pointer-events: none;
+}
+
+/* Newsletter validation */
+.newsletter-form input.input-error {
+    border-color: #c0392b;
+    color: #c0392b;
+}
+
+.newsletter-form input.input-error::placeholder {
+    color: #c0392b;
+}
+
+.newsletter-success {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.newsletter-success span {
+    font-size: 1.5rem;
+    color: #F5F0E8;
+}
+
+.newsletter-success p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================================
+   COLLECTIONS PAGE
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. COLLECTION HERO
+   ------------------------------------------------------------ */
+
+.collections-hero {
+
+    height: 90vh;
+
+    width: min(1400px, 95%);
+
+    margin: 40px auto;
+
+    border-radius: 32px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background-image:
+    url("images/banner3.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+
+.collections-hero::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.15)
+    );
+
+}
+
+
+.collections-overlay {
+
+    position:relative;
+
+    z-index:2;
+
+    height:100%;
+
+    width:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding-left:8%;
+
+    color:white;
+
+}
+
+
+.page-tag {
+
+    font-size:.75rem;
+
+    letter-spacing:.45em;
+
+    text-transform:uppercase;
+
+    color:#d8b38a;
+
+    margin-bottom:30px;
+
+}
+
+
+.collections-overlay h1 {
+
+    font-size:clamp(3.5rem,7vw,6rem);
+
+    line-height:1;
+
+    font-weight:500;
+
+    margin-bottom:35px;
+
+}
+
+
+.collections-overlay p {
+
+    max-width:480px;
+
+    line-height:1.8;
+
+    font-size:1.1rem;
+
+    color:#e5e5e5;
+
+}
+
+
+
+/* ------------------------------------------------------------
+   2. COLLECTION INTRODUCTION
+   ------------------------------------------------------------ */
+
+
+.collections-intro {
+
+    padding:160px 8%;
+
+    text-align:center;
+
+}
+
+
+.intro-content {
+
+    max-width:850px;
+
+    margin:auto;
+
+}
+
+
+.intro-content h2 {
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    line-height:1.1;
+
+    margin-bottom:35px;
+
+}
+
+
+.intro-content p {
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:var(--text-muted);
+
+    line-height:2;
+
+    font-size:1.1rem;
+
+}
+
+
+
+/* ------------------------------------------------------------
+   3. COLLECTION CHAPTER CARDS
+   ------------------------------------------------------------ */
+
+
+.collection-categories {
+
+    padding:100px 8%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:40px;
+
+}
+
+
+
+.category-card {
+
+    height:80vh;
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:flex-end;
+
+}
+
+
+
+.category-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.7)
+    );
+
+}
+
+
+
+.everyday {
+
+    background-image:
+    url("images/everyday..jpg");
+
+}
+
+
+
+.tailored {
+
+    background-image:
+    url("images/tailored.jpg");
+
+}
+
+
+
+.essentials {
+
+    background-image:
+    url("images/essentials.jpg");
+
+}
+
+
+
+.category-content {
+
+    position:relative;
+
+    z-index:2;
+
+    padding:70px;
+
+    color:white;
+
+}
+
+
+
+.category-content span {
+
+    font-size:.8rem;
+
+    letter-spacing:.4em;
+
+    color:#d5b18c;
+
+}
+
+
+
+.category-content h3 {
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    margin:20px 0;
+
+    font-weight:500;
+
+}
+
+
+
+.category-content p {
+
+    max-width:400px;
+
+    line-height:1.8;
+
+    color:#ddd;
+
+}
+
+
+
+/* ------------------------------------------------------------
+   4. FEATURED LOOK
+   ------------------------------------------------------------ */
+
+
+.featured-look {
+
+    padding:160px 8%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+
+}
+
+
+
+.look-image {
+
+    height:700px;
+
+    border-radius:32px;
+
+    background-image:
+    url("images/everyday2.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+
+
+.look-content h2 {
+
+    font-size:clamp(3rem,5vw,4.5rem);
+
+    line-height:1.1;
+
+    margin:30px 0;
+
+}
+
+
+
+.look-content p {
+
+    color:var(--text-muted);
+
+    line-height:1.9;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.look-content ul {
+
+    list-style:none;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.look-content li {
+
+    padding:15px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+/* ------------------------------------------------------------
+   5. PRODUCT GRID
+   ------------------------------------------------------------ */
+
+
+.products {
+
+    padding:120px 8%;
+
+}
+
+
+
+.section-heading {
+
+    margin-bottom:70px;
+
+}
+
+
+
+.section-heading h2 {
+
+    font-size:clamp(3rem,5vw,4rem);
+
+}
+
+
+
+.product-grid {
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap: 24px;
+
+}
+
+
+
+.product-card {
+
+    cursor:pointer;
+    overflow: hidden;
+    border-radius: 28px;
+
+}
+
+
+
+/* Shared styles — one place to rule them all */
+.product-image1,
+.product-image2,
+.product-image3,
+.product-image4 {
+    height: 520px;
+    border-radius: 28px;
+    background: color #ece8e1;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+}
+
+/* Individual images — only what's unique */
+.product-image1 { background-image: url("images/cotton.jpg"); }
+.product-image2 { background-image: url("images/tailoredpants.png"); }
+.product-image3 { background-image: url("images/heavyweighttee.png"); }
+.product-image4 { background-image: url("images/polot.png"); }
+
+
+
+.product-card:hover .product-image1,
+.product-card:hover .product-image2,
+.product-card:hover .product-image3,
+.product-card:hover .product-image4 {
+    transform: scale(1.03);
+}
+
+
+
+.product-info {
+
+    padding-top:20px;
+
+}
+
+
+
+.product-info h3 {
+
+    font-size:1rem;
+
+    font-weight:500;
+
+}
+
+
+
+.product-info p {
+
+    color:#777;
+
+    margin-top:8px;
+
+}
+
+
+
+/* ------------------------------------------------------------
+   6. CRAFT SECTION
+   ------------------------------------------------------------ */
+
+
+.craft {
+
+    padding:180px 8%;
+
+    background:#111;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+
+
+.craft-content {
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+
+
+.craft h2 {
+
+    font-size:clamp(3rem,6vw,5rem);
+
+    line-height:1;
+
+    margin:30px 0;
+
+}
+
+
+
+.craft p {
+
+    color:#ccc;
+
+    line-height:2;
+
+}
+
+
+
+/* ------------------------------------------------------------
+   7. JOURNAL
+   ------------------------------------------------------------ */
+
+
+.journal-preview {
+    padding: var(--section-pad);
+}
+
+.journal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+
+.journal-heading h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-top: 12px;
+    line-height: 1.1;
+}
+
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.journal-card {
+    border-radius: 28px;
+    overflow: hidden;
+    background: #f0ebe3;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform var(--transition);
+}
+
+.journal-card:hover {
+    transform: translateY(-6px);
+}
+
+.journal-image {
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    background-color: #ddd;
+    transition: transform 0.6s ease;
+}
+
+.journal-card:hover .journal-image {
+    transform: scale(1.04);
+}
+
+.journal-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.journal-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+}
+
+.journal-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111;
+}
+
+.journal-content p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    flex: 1;
+}
+
+.journal-content .text-btn {
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+
+/* ------------------------------------------------------------
+   8. NEWSLETTER
+   ------------------------------------------------------------ */
+
+
+.newsletter {
+
+    padding:150px 8%;
+
+    text-align:center;
+
+}
+
+
+
+.newsletter-content {
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+
+
+.newsletter h2 {
+
+    font-size:4rem;
+
+    margin:30px 0;
+
+}
+
+
+
+.newsletter form {
+
+    display:flex;
+
+    margin-top:50px;
+
+}
+
+
+
+.newsletter input {
+
+    flex:1;
+
+    padding:18px;
+
+    border:1px solid #ccc;
+
+}
+
+
+
+.newsletter button {
+
+    padding:18px 40px;
+
+    background:#111;
+
+    color:white;
+
+    border:none;
+
+}

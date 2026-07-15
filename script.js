@@ -1,5 +1,11 @@
-// Navbar scroll behaviour
-const navbar = document.querySelector('.navbar');
+/* ============================================================
+   KRINT TUFWALE — script.js
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. NAVBAR — sticky scroll behaviour
+   ------------------------------------------------------------ */
 const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
@@ -9,14 +15,18 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
-// Scroll reveal
+
+
+/* ------------------------------------------------------------
+   2. SCROLL REVEAL — fade + slide up on scroll
+   ------------------------------------------------------------ */
 const revealElements = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target); // animate once
+            revealObserver.unobserve(entry.target); // animate once only
         }
     });
 }, {
@@ -25,7 +35,10 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// Campaign parallax
+
+/* ------------------------------------------------------------
+   3. CAMPAIGN BANNER — parallax background
+   ------------------------------------------------------------ */
 const campaign = document.querySelector('.campaign');
 
 window.addEventListener('scroll', () => {
@@ -41,7 +54,10 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Card tilt effect
+
+/* ------------------------------------------------------------
+   4. COLLECTION CARDS — 3D tilt on mouse move
+   ------------------------------------------------------------ */
 const tiltCards = document.querySelectorAll('.collection-card');
 
 tiltCards.forEach(card => {
@@ -63,3 +79,72 @@ tiltCards.forEach(card => {
         card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)`;
     });
 });
+
+
+/* ------------------------------------------------------------
+   5. ADD TO CART — click feedback
+   ------------------------------------------------------------ */
+const cartButtons = document.querySelectorAll('.add-to-cart');
+
+cartButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (btn.classList.contains('added')) return; // prevent double click
+
+        const original = btn.textContent;
+
+        btn.textContent = '✓ ADDED';
+        btn.classList.add('added');
+
+        setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('added');
+        }, 2000);
+    });
+});
+
+
+/* ------------------------------------------------------------
+   6. NEWSLETTER FORM — validation + success state
+   ------------------------------------------------------------ */
+const newsletterForm = document.querySelector('.newsletter-form');
+
+if (newsletterForm) {
+    const emailInput = newsletterForm.querySelector('input[type="email"]');
+    const subscribeBtn = newsletterForm.querySelector('button');
+
+    subscribeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+
+        // Clear previous error state
+        emailInput.classList.remove('input-error');
+
+        if (!email) {
+            emailInput.classList.add('input-error');
+            emailInput.placeholder = 'Please enter your email';
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            emailInput.classList.add('input-error');
+            emailInput.placeholder = 'Please enter a valid email';
+            emailInput.value = '';
+            return;
+        }
+
+        // Success — replace form with confirmation
+        newsletterForm.innerHTML = `
+            <div class="newsletter-success">
+                <span>✓</span>
+                <p>You're on the list. Welcome to Krint Tufwale.</p>
+            </div>
+        `;
+    });
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
