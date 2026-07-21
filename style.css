@@ -338,7 +338,7 @@ nav a:hover::after {
     border-radius: 32px;
     overflow: hidden;
     position: relative;
-    background-image: url("images/ben-iwara-bCkybtGkSe0-unsplash.jpg");
+    background-image: url("images/banner3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -1762,5 +1762,904 @@ footer {
     color:white;
 
     border:none;
+
+}
+
+/* ==========================================================
+   JOURNAL PAGE
+========================================================== */
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.journal-hero{
+
+    width:min(1400px,95%);
+    height:90vh;
+
+    margin:40px auto;
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:url("images/victoria-strukovskaya-BjyPGQoYw7s-unsplash.jpg") center/cover no-repeat;
+}
+
+.journal-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.15)
+    );
+}
+
+.journal-overlay{
+
+    position:relative;
+
+    z-index:2;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding-left:8%;
+
+    color:#fff;
+
+    max-width:650px;
+}
+
+.journal-overlay h1{
+
+    font-size:clamp(3.8rem,7vw,6rem);
+
+    line-height:1;
+
+    margin:25px 0;
+}
+
+.journal-overlay p{
+
+    font-size:1.1rem;
+
+    line-height:1.9;
+
+    color:#ececec;
+}
+
+
+
+/* ==========================================================
+   FEATURED ARTICLE
+========================================================== */
+
+.featured-article{
+
+    padding:160px 8%;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.featured-image img{
+
+    width:100%;
+
+    height:720px;
+
+    object-fit:cover;
+
+    border-radius:28px;
+}
+
+.article-meta{
+
+    display:block;
+
+    letter-spacing:.3em;
+
+    font-size:.75rem;
+
+    color:var(--accent);
+
+    margin-bottom:25px;
+}
+
+.featured-content h2{
+
+    font-size:clamp(3rem,5vw,4.5rem);
+
+    line-height:1.05;
+
+    margin-bottom:30px;
+}
+
+.featured-content p{
+
+    color:var(--text-muted);
+
+    line-height:2;
+
+    margin-bottom:35px;
+}
+
+
+
+/* ==========================================================
+   STORIES
+========================================================== */
+
+.latest-stories{
+
+    padding:100px 8%;
+}
+
+.stories-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
+    margin-top:70px;
+}
+
+.story-card{
+
+    transition:.4s ease;
+}
+
+.story-card:hover{
+
+    transform:translateY(-10px);
+}
+
+.story-card img{
+
+    width:100%;
+
+    height:420px;
+
+    object-fit:cover;
+
+    border-radius:24px;
+
+    margin-bottom:25px;
+
+    transition:.6s ease;
+}
+
+.story-card:hover img{
+
+    transform:scale(1.03);
+}
+
+.story-card span{
+
+    font-size:.75rem;
+
+    letter-spacing:.25em;
+
+    color:var(--accent);
+}
+
+.story-card h3{
+
+    margin:18px 0;
+
+    font-size:1.8rem;
+
+    line-height:1.25;
+}
+
+.story-card p{
+
+    color:var(--text-muted);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+.story-card a{
+
+    text-decoration:none;
+
+    color:#111;
+
+    font-weight:500;
+}
+
+
+
+/* ==========================================================
+   CATEGORIES
+========================================================== */
+
+.journal-categories{
+
+    padding:120px 8%;
+
+    text-align:center;
+}
+
+.category-pills{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:50px;
+}
+
+.category-pills a{
+
+    padding:14px 30px;
+
+    border:1px solid var(--border);
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    color:#111;
+
+    transition:.35s ease;
+}
+
+.category-pills a:hover{
+
+    background:#111;
+
+    color:#fff;
+}
+
+
+
+/* ==========================================================
+   PHOTO ESSAY
+========================================================== */
+
+.photo-essay{
+
+    padding:120px 8%;
+}
+
+.essay-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-top:70px;
+}
+
+.essay-grid figure{
+
+    margin:0;
+}
+
+.essay-grid img{
+
+    width:100%;
+
+    height:500px;
+
+    object-fit:cover;
+
+    border-radius:24px;
+
+    transition:.5s ease;
+}
+
+.essay-grid img:hover{
+
+    transform:scale(1.03);
+}
+
+.essay-grid figcaption{
+
+    margin-top:18px;
+
+    font-size:.9rem;
+
+    color:var(--text-muted);
+
+    text-align:center;
+}
+
+
+
+/* ==========================================================
+   NEWSLETTER
+========================================================== */
+
+.journal-newsletter{
+
+    padding:170px 8%;
+
+    background:#f8f5f0;
+
+    text-align:center;
+}
+
+.newsletter-content{
+
+    max-width:700px;
+
+    margin:auto;
+}
+
+.newsletter-content h2{
+
+    font-size:clamp(3rem,5vw,4.5rem);
+
+    margin:25px 0;
+}
+
+.newsletter-content p{
+
+    color:var(--text-muted);
+
+    line-height:2;
+
+    margin-bottom:50px;
+}
+
+.newsletter-content form{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+}
+
+.newsletter-content input{
+
+    flex:1;
+
+    padding:18px 22px;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    font-size:1rem;
+
+    outline:none;
+
+    border-radius:6px;
+}
+
+.newsletter-content button{
+
+    padding:18px 40px;
+
+    border:none;
+
+    background:#111;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.35s ease;
+
+    border-radius:6px;
+}
+
+.newsletter-content button:hover{
+
+    background:var(--accent);
+}
+
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1024px){
+
+    .featured-article{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+    }
+
+    .stories-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .essay-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .journal-overlay{
+
+        max-width:100%;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .journal-overlay{
+
+        padding:0 8%;
+
+        justify-content:flex-end;
+
+        padding-bottom:80px;
+    }
+
+    .journal-overlay h1{
+
+        font-size:3rem;
+    }
+
+    .stories-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .essay-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .newsletter-content form{
+
+        flex-direction:column;
+    }
+
+    .category-pills{
+
+        justify-content:flex-start;
+    }
+
+}
+
+/* =====================================================
+   OUR STORY PAGE
+===================================================== */
+
+
+/* Opening */
+
+.story-opening{
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:100px 8%;
+
+}
+
+
+.opening-content{
+
+    max-width:900px;
+
+}
+
+
+.opening-content span{
+
+    letter-spacing:.5em;
+
+    font-size:.75rem;
+
+    color:var(--accent);
+
+}
+
+
+
+.opening-content h1{
+
+    font-size:clamp(3.5rem,7vw,6rem);
+
+    line-height:1;
+
+    margin:40px 0;
+
+    font-weight:500;
+
+}
+
+
+.opening-content p{
+
+    color:var(--text-muted);
+
+    font-size:1.2rem;
+
+    line-height:2;
+
+}
+
+
+
+
+
+/* Full image */
+
+
+.story-image-full{
+
+    width:min(1300px,90%);
+
+    margin:auto;
+
+}
+
+
+.story-image-full img{
+
+    width:100%;
+
+    height:800px;
+
+    object-fit:cover;
+
+    border-radius:32px;
+
+}
+
+
+
+
+
+/* Timeline */
+
+
+.timeline{
+
+    position:relative;
+
+    padding:180px 15%;
+
+}
+
+
+
+.timeline-line{
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    width:1px;
+
+    height:100%;
+
+    background:#d8d1c7;
+
+}
+
+
+
+.timeline-item{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    margin-bottom:150px;
+
+}
+
+
+
+.year{
+
+    font-size:6rem;
+
+    color:rgba(168,116,67,.15);
+
+    font-weight:600;
+
+}
+
+
+
+.timeline-content{
+
+    padding-left:60px;
+
+}
+
+
+
+.timeline-content h2{
+
+    font-size:3rem;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.timeline-content p{
+
+    color:var(--text-muted);
+
+    line-height:2;
+
+}
+
+
+
+
+
+/* Statement */
+
+
+.story-statement{
+
+    padding:180px 8%;
+
+    background:#111;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+
+
+.story-statement h2{
+
+    font-size:clamp(3rem,7vw,6rem);
+
+    line-height:1.05;
+
+    font-weight:400;
+
+}
+
+
+
+
+
+/* Values */
+
+
+.values{
+
+    padding:140px 8%;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
+}
+
+
+
+.value-card{
+
+    padding:50px;
+
+    border-top:1px solid var(--border);
+
+}
+
+
+
+.value-card span{
+
+    color:var(--accent);
+
+    letter-spacing:.3em;
+
+}
+
+
+
+.value-card h3{
+
+    font-size:2.5rem;
+
+    margin:30px 0;
+
+}
+
+
+
+.value-card p{
+
+    color:var(--text-muted);
+
+}
+
+
+
+
+
+/* Zambia */
+
+
+.zambia-story{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    gap:80px;
+
+    padding:160px 8%;
+
+}
+
+
+
+.zambia-image img{
+
+    width:100%;
+
+    height:650px;
+
+    object-fit:cover;
+
+    border-radius:32px;
+
+}
+
+
+
+.zambia-text h2{
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    line-height:1.1;
+
+    margin:30px 0;
+
+}
+
+
+
+.zambia-text p{
+
+    color:var(--text-muted);
+
+    line-height:2;
+
+}
+
+
+
+
+
+/* Manifesto */
+
+
+.manifesto{
+
+    padding:200px 8%;
+
+    text-align:center;
+
+}
+
+
+
+.manifesto h2{
+
+    font-size:clamp(4rem,8vw,7rem);
+
+    line-height:1;
+
+}
+
+
+
+.manifesto p{
+
+    margin-top:50px;
+
+    letter-spacing:.4em;
+
+}
+
+
+
+
+
+/* Responsive */
+
+
+@media(max-width:900px){
+
+
+.timeline-line{
+
+    left:20px;
+
+}
+
+
+.timeline-item{
+
+    grid-template-columns:1fr;
+
+    padding-left:50px;
+
+}
+
+
+.timeline-content{
+
+    padding-left:0;
+
+}
+
+
+
+.values{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.zambia-story{
+
+    grid-template-columns:1fr;
+
+}
+
+
 
 }
