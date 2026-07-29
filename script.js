@@ -106,6 +106,7 @@ cartButtons.forEach(btn => {
 
 
 /* ------------------------------------------------------------
+<<<<<<< HEAD
    6. NEWSLETTER FORMS — validation + success state
    ------------------------------------------------------------
    Covers every newsletter block on the site: the footer's
@@ -131,6 +132,17 @@ function initNewsletterForm(container) {
     const eventTarget = isForm ? container : subscribeBtn;
 
     eventTarget.addEventListener(eventName, (e) => {
+=======
+   6. NEWSLETTER FORM — validation + success state
+   ------------------------------------------------------------ */
+const newsletterForm = document.querySelector('.newsletter-form');
+
+if (newsletterForm) {
+    const emailInput = newsletterForm.querySelector('input[type="email"]');
+    const subscribeBtn = newsletterForm.querySelector('button');
+
+    subscribeBtn.addEventListener('click', (e) => {
+>>>>>>> 8f32f7ab27004bf2e4a850012c132ae75454cdaa
         e.preventDefault();
 
         const email = emailInput.value.trim();
@@ -152,7 +164,11 @@ function initNewsletterForm(container) {
         }
 
         // Success — replace form with confirmation
+<<<<<<< HEAD
         container.innerHTML = `
+=======
+        newsletterForm.innerHTML = `
+>>>>>>> 8f32f7ab27004bf2e4a850012c132ae75454cdaa
             <div class="newsletter-success">
                 <span>✓</span>
                 <p>You're on the list. Welcome to Krint Tufwale.</p>
@@ -163,6 +179,7 @@ function initNewsletterForm(container) {
 
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+<<<<<<< HEAD
 }
 
 const form = document.querySelector('.contact-form');
@@ -205,3 +222,6 @@ if (form && statusDiv) {
     });
 }
 
+=======
+}
+>>>>>>> 8f32f7ab27004bf2e4a850012c132ae75454cdaa
