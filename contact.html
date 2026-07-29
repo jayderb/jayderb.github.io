@@ -183,44 +183,19 @@ Let's start yours.
 <div class="contact-form reveal">
 
 <form>
-
-<input
-type="text"
-placeholder="Your Name"
-required>
-
-<input
-type="email"
-placeholder="Email Address"
-required>
-
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Email Address" required>
 <label for="enquiry-type">Enquiry Type</label>
-
-<select id="enquiry-type">
-
+<select id="enquiry-type" name="subject">
 <option>General Enquiry</option>
-
 <option>Customer Support</option>
-
 <option>Collaborations</option>
-
 <option>Wholesale</option>
-
 <option>Press</option>
-
 </select>
-
-<textarea
-rows="8"
-placeholder="Your Message">
-</textarea>
-
-<button type="submit">
-
-Send Message
-
-</button>
-
+<textarea rows="8" name="message" placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+<p id="form-status"></p>
 </form>
 
 </div>

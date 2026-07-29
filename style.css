@@ -1291,7 +1291,7 @@ footer {
 .everyday {
 
     background-image:
-    url("images/everyday..jpg");
+    url("images/everyday.jpg");
 
 }
 
@@ -1505,11 +1505,7 @@ footer {
 .product-image4 {
     height: 520px;
     border-radius: 28px;
-<<<<<<< HEAD
     background-color: #ece8e1;
-=======
-    background: color #ece8e1;
->>>>>>> 8f32f7ab27004bf2e4a850012c132ae75454cdaa
     background-size: cover;
     background-position: center;
     transition: transform 0.6s ease;
@@ -2666,7 +2662,6 @@ footer {
 
 
 
-<<<<<<< HEAD
 }
 
 /* ================================
@@ -2961,6 +2956,4 @@ padding-top:130px;
 
 }
 
-=======
->>>>>>> 8f32f7ab27004bf2e4a850012c132ae75454cdaa
 }
