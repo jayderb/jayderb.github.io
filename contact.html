@@ -3,97 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Krint Tufwale</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
-
-    <title>Journal | Krint Tufwale</title>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-<body>
 
-<!-- ==========================
-     NAVIGATION
-========================== -->
+<body>
 
 <header>
 
-    <section class="navbar">
+<section class="navbar">
 
-        <div class="brand">
+<div class="brand">
 
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Krint Tufwale">
-                </a>
-            </div>
+<div class="logo">
+<a href="index.html">
+<img src="images/logo.png" alt="Krint Tufwale home">
+</a>
+</div>
 
-            <div class="brand-name">
-                <span>Krint Tufwale</span>
-                <small>Tufwale Nokusansamuka</small>
-            </div>
+<div class="brand-name">
+<span>Krint Tufwale</span>
+<small>Tufwale Nokusansamuka</small>
+</div>
 
-        </div>
+</div>
 
-        <nav>
+<nav>
 
-            <ul>
+<ul>
 
-                <li><a href="index.html">Home</a></li>
+<li><a href="index.html">Home</a></li>
 
-                <li><a href="collections.html">Collections</a></li>
+<li><a href="collections.html">Collections</a></li>
 
-                <li><a href="journal.html" class="active">Journal</a></li>
+<li><a href="journal.html">Journal</a></li>
 
-                <li><a href="our-story.html">Our Story</a></li>
+<li><a href="our-story.html">Our Story</a></li>
 
-                <li><a href="contact.html">Contact</a></li>
+<li><a href="contact.html" class="active">Contact</a></li>
 
-            </ul>
+</ul>
 
-        </nav>
+</nav>
 
-        <div class="icons">
+<div class="icons">
 
-            <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+<a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></a>
 
-            <a href="#" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a>
+<a href="#" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i></a>
 
-            <a href="#" aria-label="User account"><i class="fa-solid fa-user"></i></a>
+<a href="#" aria-label="User account"><i class="fa-solid fa-user" aria-hidden="true"></i></a>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 </header>
 
 <main>
 
-<form class="contact-form">
-  <label>
-    Name:
-    <input type="text" name="name" required />
-  </label>
-  <label>
-    Email:
-    <input type="email" name="email" required />
-  </label>
-  <label>
-    Subject:
-    <input type="text" name="subject" />
-  </label>
-  <label>
-    Message:
-    <textarea name="message" required></textarea>
-  </label>
-  <button type="submit">Send</button>
+<!-- CONTACT INTRO -->
+
+<section class="contact-hero reveal">
+
+<span class="section-tag">
+CONTACT
+</span>
+
+<h1>
+
+Let's Begin
+A Conversation.
+
+</h1>
+
+<p>
+
+Whether you're discovering our collections,
+interested in collaborating or simply saying hello,
+we'd love to hear from you.
+
+</p>
+
+</section>
+
+<!-- CONTACT DETAILS -->
+
+<section class="contact-info">
+
+<div class="info-card reveal">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h3>Studio</h3>
+
+<p>
+Lusaka, Zambia
+</p>
+
+</div>
+
+<div class="info-card reveal">
+
+<i class="fa-solid fa-envelope"></i>
+
+<h3>Email</h3>
+
+<p>
+hello@krinttufwale.com
+</p>
+
+</div>
+
+<div class="info-card reveal">
+
+<i class="fa-solid fa-phone"></i>
+
+<h3>Phone</h3>
+
+<p>
++260 970 000 000
+</p>
+
+</div>
+
+<div class="info-card reveal">
+
+<i class="fa-brands fa-instagram"></i>
+
+<h3>Instagram</h3>
+
+<p>
+@krinttufwale
+</p>
+
+</div>
+
+</section>
+
+<!-- IMAGE -->
+
+<section class="contact-image reveal">
+
+<img src="images/contact-banner.jpg" alt="Studio">
+
+</section>
+
+<!-- CONTACT FORM -->
+
+<section class="contact-section">
+
+<div class="contact-text reveal">
+
+<span class="section-tag">
+
+GET IN TOUCH
+
+</span>
+
+<h2>
+
+Tell us your story.
+
+</h2>
+
+<p>
+
+Every conversation begins somewhere.
+Let's start yours.
+
+</p>
+
+</div>
+
+<div class="contact-form reveal">
+
+<form>
+
+<input
+type="text"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+placeholder="Email Address"
+required>
+
+<label for="enquiry-type">Enquiry Type</label>
+
+<select id="enquiry-type">
+
+<option>General Enquiry</option>
+
+<option>Customer Support</option>
+
+<option>Collaborations</option>
+
+<option>Wholesale</option>
+
+<option>Press</option>
+
+</select>
+
+<textarea
+rows="8"
+placeholder="Your Message">
+</textarea>
+
+<button type="submit">
+
+Send Message
+
+</button>
+
 </form>
 
-<div id="form-status"></div>
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="faq">
+
+<div class="section-heading reveal">
+
+<span class="section-tag">
+
+FAQ
+
+</span>
+
+<h2>
+
+Frequently Asked
+Questions
+
+</h2>
+
+</div>
+
+<div class="faq-list">
+
+<div class="faq-item reveal">
+
+<h3>Do you ship internationally?</h3>
+
+<p>Yes. Worldwide shipping is available.</p>
+
+</div>
+
+<div class="faq-item reveal">
+
+<h3>Can I return an item?</h3>
+
+<p>Returns are accepted within 14 days.</p>
+
+</div>
+
+<div class="faq-item reveal">
+
+<h3>Do you offer collaborations?</h3>
+
+<p>Absolutely. We'd love to hear your ideas.</p>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
-    <footer>
+<footer>
   <div class="footer-top">
     
     <!-- Brand Column -->
@@ -110,7 +296,7 @@
     <div class="footer-col">
       <h4>Explore</h4>
       <ul>
-        <li><a href="">New</a></li>
+        <li><a href="">Home</a></li>
         <li><a href="">Collections</a></li>
         <li><a href="">Journal</a></li>
         <li><a href="">Our Story</a></li>
@@ -162,7 +348,9 @@
     <p>© 2026 Krint Tufwale. All rights reserved.</p>
     <p>Designed by <a href="">The Architect</a></p>
   </div>
-  <script src="./script.js"></script>
 </footer>
+<script src="script.js"></script>
+
 </body>
+
 </html>
