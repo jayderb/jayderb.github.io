@@ -106,15 +106,31 @@ cartButtons.forEach(btn => {
 
 
 /* ------------------------------------------------------------
-   6. NEWSLETTER FORM — validation + success state
+   6. NEWSLETTER FORMS — validation + success state
+   ------------------------------------------------------------
+   Covers every newsletter block on the site: the footer's
+   .newsletter-form (a plain <div>, no <form> tag) as well as
+   the in-page <form> sections (.newsletter, .journal-newsletter,
+   .newsletter-content). Each container is wired up the same way,
+   regardless of whether it's a <form> or a <div>.
    ------------------------------------------------------------ */
-const newsletterForm = document.querySelector('.newsletter-form');
+const newsletterContainers = document.querySelectorAll(
+    '.newsletter-form, .newsletter form, .journal-newsletter form, .newsletter-content form'
+);
 
-if (newsletterForm) {
-    const emailInput = newsletterForm.querySelector('input[type="email"]');
-    const subscribeBtn = newsletterForm.querySelector('button');
+newsletterContainers.forEach(initNewsletterForm);
 
-    subscribeBtn.addEventListener('click', (e) => {
+function initNewsletterForm(container) {
+    const emailInput = container.querySelector('input[type="email"]');
+    const subscribeBtn = container.querySelector('button');
+
+    if (!emailInput || !subscribeBtn) return;
+
+    const isForm = container.tagName === 'FORM';
+    const eventName = isForm ? 'submit' : 'click';
+    const eventTarget = isForm ? container : subscribeBtn;
+
+    eventTarget.addEventListener(eventName, (e) => {
         e.preventDefault();
 
         const email = emailInput.value.trim();
@@ -136,7 +152,7 @@ if (newsletterForm) {
         }
 
         // Success — replace form with confirmation
-        newsletterForm.innerHTML = `
+        container.innerHTML = `
             <div class="newsletter-success">
                 <span>✓</span>
                 <p>You're on the list. Welcome to Krint Tufwale.</p>
@@ -148,3 +164,44 @@ if (newsletterForm) {
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+const form = document.querySelector('.contact-form');
+const statusDiv = document.getElementById('form-status');
+
+if (form && statusDiv) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            name: form.querySelector('[name="name"]').value.trim(),
+            email: form.querySelector('[name="email"]').value.trim(),
+            subject: form.querySelector('[name="subject"]').value.trim(),
+            message: form.querySelector('[name="message"]').value.trim(),
+        };
+
+        try {
+            const res = await fetch('https://q9bqt8rn-4000.uks1.devtunnels.ms/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                statusDiv.textContent = `Error: ${data.error || 'Submission failed'}`;
+                statusDiv.style.color = 'red';
+                return;
+            }
+
+            statusDiv.textContent = 'Message sent successfully!';
+            statusDiv.style.color = 'green';
+            form.reset();
+        } catch (err) {
+            statusDiv.textContent = 'Network error. Please try again.';
+            statusDiv.style.color = 'red';
+            console.error(err);
+        }
+    });
+}
+
