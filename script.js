@@ -10,6 +10,17 @@ window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 80);
 });
 
+/* 0. MOBILE NAV — hamburger toggle */
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('header nav');
+
+if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('nav-open');
+        menuToggle.classList.toggle('active');
+    });
+}
+
 /* 2. SCROLL REVEAL */
 const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {

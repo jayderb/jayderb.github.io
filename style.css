@@ -2957,3 +2957,175 @@ padding-top:130px;
 }
 
 }
+
+/* ============================================================
+   14. GLOBAL RESPONSIVE — shared across every page
+   ============================================================ */
+
+/* --- Hamburger button --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    width: 26px;
+    height: 2px;
+    background: #1e1e1e;
+    display: block;
+    transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+    .menu-toggle { display: flex; }
+
+    .navbar { position: relative; flex-wrap: wrap; }
+
+    header nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        z-index: 1050;
+    }
+
+    header nav.nav-open {
+        max-height: 400px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 8%;
+    }
+
+    header nav ul li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .icons { order: 2; }
+}
+
+/* --- Footer grid (every page) --- */
+@media (max-width: 1024px) {
+    .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 6% 50px;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+        padding: 0 8% 40px;
+        gap: 36px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 20px 8%;
+    }
+}
+
+/* --- Hero (index.html) --- */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        gap: 36px;
+        margin: 30px auto;
+    }
+    .hero-image { width: 100%; height: 380px; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero h2 { font-size: 2rem; }
+}
+
+/* --- Campaign banner (index.html) --- */
+@media (max-width: 1024px) {
+    .campaign { height: auto; padding: 60px 6%; }
+    .campaign-overlay { width: 100%; padding: 2rem; }
+}
+
+/* --- Collection grid (index.html) --- */
+@media (max-width: 1024px) {
+    .collection-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .everyday, .tailored, .essentials {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .collection-card { height: 320px; }
+}
+
+/* --- Story section (index.html) --- */
+@media (max-width: 1024px) {
+    .story-container { grid-template-columns: 1fr; gap: 40px; }
+    .story-image img { height: 400px; }
+    .story-content { border-left: none; padding-left: 0; }
+}
+
+/* --- Latest arrivals (index.html) --- */
+@media (max-width: 1024px) {
+    .latest-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-raised { margin-top: 0; }
+}
+@media (max-width: 640px) {
+    .latest-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Collections page hero/categories/products --- */
+@media (max-width: 1024px) {
+    .collections-overlay { width: 80%; padding-left: 6%; }
+    .category-card { height: 55vh; }
+    .category-content { padding: 40px; }
+    .featured-look { grid-template-columns: 1fr; gap: 40px; }
+    .look-image { height: 400px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .collections-hero, .campaign { border-radius: 20px; }
+}
+
+/* --- Journal/collection preview grids (index + collections) --- */
+@media (max-width: 1024px) {
+    .journal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .journal-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Newsletter forms (index/collections inline forms) --- */
+@media (max-width: 640px) {
+    .newsletter form,
+    .newsletter-content form {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .newsletter h2 { font-size: 2.4rem; }
+}
+
+/* --- Section padding, generally --- */
+@media (max-width: 640px) {
+    :root { --section-pad: 60px 6%; }
+}
