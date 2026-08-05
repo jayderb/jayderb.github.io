@@ -21,6 +21,7 @@ if (menuToggle && mobileNav) {
     });
 }
 
+
 /* 2. SCROLL REVEAL */
 const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
@@ -33,17 +34,55 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealElements.forEach(el => revealObserver.observe(el));
 
-/* 3. CAMPAIGN BANNER — parallax */
+// Section 3: CAMPAIGN BANNER — Optimized Parallax
 const campaign = document.querySelector('.campaign');
-window.addEventListener('scroll', () => {
-    if (!campaign) return;
-    const rect = campaign.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isVisible) {
+
+if (campaign) {
+    let ticking = false;
+
+    // 1. Separate calculation logic
+    const updateParallax = () => {
         const scrolled = window.scrollY - campaign.offsetTop;
         campaign.style.backgroundPositionY = `calc(50% + ${scrolled * 0.3}px)`;
-    }
-});
+        ticking = false;
+    };
+
+    // 2. Frame-throttled scroll handler
+    const onScroll = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    };
+
+    // 3. IntersectionObserver toggles the listener on/off
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Attach scroll listener ONLY when banner enters viewport
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll(); // Run once immediately upon entry
+            } else {
+                // Remove scroll listener completely when banner leaves viewport
+                window.removeEventListener('scroll', onScroll);
+            }
+        });
+    }, {
+        threshold: 0 // Fires as soon as 1px enters or leaves the screen
+    });
+
+    observer.observe(campaign);
+}
+
+const campaignBg = document.querySelector('.campaign-bg');
+
+const updateParallax = () => {
+    const scrolled = window.scrollY - campaign.offsetTop;
+    // Hardware accelerated translation along the Y-axis
+    campaignBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
+    ticking = false;
+};
+
 
 /* 4. COLLECTION CARDS — 3D tilt */
 document.querySelectorAll('.collection-card').forEach(card => {
