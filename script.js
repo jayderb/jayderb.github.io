@@ -41,7 +41,7 @@ window.addEventListener('scroll', () => {
     const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
     if (isVisible) {
         const scrolled = window.scrollY - campaign.offsetTop;
-        campaign.style.backgroundPositionY = `calc(center + ${scrolled * 0.3}px)`;
+        campaign.style.backgroundPositionY = `calc(50% + ${scrolled * 0.3}px)`;
     }
 });
 

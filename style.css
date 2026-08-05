@@ -1113,7 +1113,6 @@ footer {
 
 }
 
-
 .collections-overlay {
 
     position:relative;
@@ -3111,7 +3110,7 @@ padding-top:130px;
 @media (max-width: 1024px) {
     .journal-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 640px) {
+@media (max-width: 900px) {
     .journal-grid { grid-template-columns: 1fr; }
 }
 
