@@ -10,6 +10,14 @@
           "img[fetchpriority]"
         ]
       }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter"
+        ]
+      }
     ]
   }
 }

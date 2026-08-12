@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="products.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <title>Shop | Krint Tufwale</title>
+</head>
+
+<body>
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header>
+
+    <section class="navbar">
+
+        <div class="brand">
+
+            <div class="logo">
+                <a href="index.html">
+                    <img
+                        src="images/logo.png"
+                        alt="Krint Tufwale"
+                    >
+                </a>
+            </div>
+
+            <div class="brand-name">
+
+                <span>Krint Tufwale</span>
+
+                <small>
+                    Tufwale Nokusansamuka
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html" class="active">
+                        New
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collections.html">
+                        Collections
+                    </a>
+                </li>
+
+                <li>
+                    <a href="journal.html">
+                        Journal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="our-story.html">
+                        Our Story
+                    </a>
+                </li>
+
+                <li><a href="contact.html">Contact</a></li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="icons">
+
+            <a href="#" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+
+            <a href="#" aria-label="Shopping bag">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+
+            <a href="#" aria-label="Account">
+                <i class="fa-solid fa-user"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+
+<!-- =========================================
+     SHOP HERO
+========================================= -->
+
+<section class="shop-hero">
+
+    <div class="shop-hero-content reveal">
+
+        <span class="page-tag">
+            THE SHOP
+        </span>
+
+        <h1>
+            Pieces for
+            <br>
+            everyday living.
+        </h1>
+
+        <p>
+            Explore the collection of thoughtfully designed
+            garments made to move with you.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     SHOP INTRO / CONTROLS
+========================================= -->
+
+<section class="products-toolbar">
+
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="product-categories">
+
+        <button
+            class="filter-btn active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="shirts"
+        >
+            Shirts
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="trousers"
+        >
+            Trousers
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="outerwear"
+        >
+            Outerwear
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="knitwear"
+        >
+            Knitwear
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="accessories"
+        >
+            Accessories
+        </button>
+
+    </div>
+
+
+
+    <!-- PRODUCT COUNT -->
+
+    <div class="product-count">
+
+        <span id="productCount">
+            8 Pieces
+        </span>
+
+    </div>
+
+
+
+    <!-- SORT -->
+
+    <div class="product-sort">
+
+        <label for="sortProducts">
+            Sort
+        </label>
+
+        <select id="sortProducts">
+
+            <option value="featured">
+                Featured
+            </option>
+
+            <option value="newest">
+                Newest
+            </option>
+
+            <option value="price-low">
+                Price: Low to High
+            </option>
+
+            <option value="price-high">
+                Price: High to Low
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     PRODUCTS
+========================================= -->
+
+<!-- =====================================================
+     THE PIECES
+===================================================== -->
+
+<section class="shop-pieces">
+
+    <div class="shop-pieces-header reveal">
+
+        <div>
+
+            <span class="section-tag">
+                THE PIECES
+            </span>
+
+            <h2>
+                A wardrobe,
+                <br>
+                thoughtfully considered.
+            </h2>
+
+        </div>
+
+        <a
+            href="products.html"
+            class="pieces-view-all"
+        >
+            View All Pieces
+            <span>→</span>
+        </a>
+
+    </div>
+
+
+    <!-- ================================================
+         PRODUCT GRID
+    ================================================= -->
+
+    <div class="shop-pieces-grid">
+
+
+        <!-- PIECE 01 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/shirt.jpg"
+                    alt="Krint Tufwale shirt"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Everyday Cotton Shirt
+                    </h3>
+
+                    <p>
+                        Everyday
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 850
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 02 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/trousers.jpg"
+                    alt="Krint Tufwale trousers"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Relaxed Pleated Trouser
+                    </h3>
+
+                    <p>
+                        Tailored
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 1,150
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 03 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/overshirt.jpg"
+                    alt="Krint Tufwale overshirt"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Textured Overshirt
+                    </h3>
+
+                    <p>
+                        Everyday
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 1,250
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 04 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/polo.jpg"
+                    alt="Krint Tufwale polo"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Fine Knit Polo
+                    </h3>
+
+                    <p>
+                        Essentials
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 850
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 05 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/jacket.jpg"
+                    alt="Krint Tufwale jacket"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Structured Jacket
+                    </h3>
+
+                    <p>
+                        Tailored
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 1,850
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 06 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/shirt.jpg"
+                    alt="Krint Tufwale shirt"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Short Sleeve Shirt
+                    </h3>
+
+                    <p>
+                        Everyday
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 780
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 07 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/trouser-2.jpg"
+                    alt="Krint Tufwale trousers"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Straight Leg Trouser
+                    </h3>
+
+                    <p>
+                        Tailored
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 980
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECE 08 -->
+
+        <article class="shop-piece reveal">
+
+            <a href="product.html" class="shop-piece-image">
+
+                <img
+                    src="images/products/knit.jpg"
+                    alt="Krint Tufwale knitwear"
+                >
+
+                <span class="piece-action">
+                    View Piece
+                    <span>→</span>
+                </span>
+
+            </a>
+
+            <div class="shop-piece-info">
+
+                <div>
+
+                    <h3>
+                        Lightweight Knit
+                    </h3>
+
+                    <p>
+                        Essentials
+                    </p>
+
+                </div>
+
+                <span>
+                    ZMW 920
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PIECES 09–24 -->
+
+        <!--
+            Repeat the same structure for pieces 09–24.
+            Only change:
+            image
+            product name
+            category
+            price
+        -->
+
+    </div>
+
+
+    <div class="shop-pieces-footer reveal">
+
+        <a
+            href="products.html"
+            class="shop-all-btn"
+        >
+            Explore All 24 Pieces
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     EDITORIAL BREAK
+========================================= -->
+
+<section class="shop-editorial reveal">
+
+    <div class="shop-editorial-content">
+
+        <span class="section-tag">
+            THE KRINT TUFWale EDIT
+        </span>
+
+        <h2>
+            Dress simply.
+            <br>
+            Live fully.
+        </h2>
+
+        <p>
+            A considered wardrobe doesn't need more.
+            It needs the right pieces.
+        </p>
+
+        <a href="collections.html" class="text-btn">
+            Explore Collections
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     NEWSLETTER
+========================================= -->
+
+<section class="newsletter">
+
+    <div class="newsletter-content reveal">
+
+        <span class="section-tag">
+            STAY CONNECTED
+        </span>
+
+        <h2>
+            Join Our Journal.
+        </h2>
+
+        <p>
+            New collections, stories and occasional
+            notes from Krint Tufwale.
+        </p>
+
+        <form class="newsletter-form">
+
+            <input
+                type="email"
+                placeholder="Your email address"
+                aria-label="Email address"
+                required
+            >
+
+            <button type="submit">
+                Subscribe
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-top">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="Krint Tufwale"
+                >
+
+                <span>
+                    Krint Tufwale
+                </span>
+
+            </div>
+
+            <p class="footer-tagline">
+                Tufwale Nokusansamuka
+            </p>
+
+            <p class="footer-blurb">
+                Contemporary essentials inspired by the pace,
+                warmth and confidence of everyday life.
+                Designed in Zambia.
+            </p>
+
+        </div>
+
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-col">
+
+            <h4>
+                Explore
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        New
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        Shop
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collections.html">
+                        Collections
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Journal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Our Story
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- HELP -->
+
+        <div class="footer-col">
+
+            <h4>
+                Help
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        Shipping & Delivery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Returns & Exchanges
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Size Guide
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        FAQs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-col">
+
+            <h4>
+                Contact
+            </h4>
+
+            <ul class="footer-contact">
+
+                <li>
+                    Lusaka, Zambia
+                </li>
+
+                <li>
+                    <a href="mailto:hello@krinttufwale.com">
+                        hello@krinttufwale.com
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tel:+260000000000">
+                        +260 970 000 000
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="footer-socials">
+
+                <a href="#">
+                    IG
+                </a>
+
+                <a href="#">
+                    FB
+                </a>
+
+                <a href="#">
+                    TT
+                </a>
+
+                <a href="#">
+                    X
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NEWSLETTER -->
+
+        <div class="footer-newsletter">
+
+            <h4>
+                Stay Connected
+            </h4>
+
+            <p>
+                Get early access to new drops,
+                journal entries and exclusive offers.
+            </p>
+
+            <form class="newsletter-form">
+
+                <input
+                    type="email"
+                    placeholder="Your email address"
+                    required
+                >
+
+                <button type="submit">
+                    Subscribe
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Krint Tufwale.
+            All rights reserved.
+        </p>
+
+        <p>
+            Designed by
+            <a href="#">
+                The Architect
+            </a>
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>

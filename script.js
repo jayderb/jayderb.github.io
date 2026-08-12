@@ -201,3 +201,146 @@ if (contactForm && statusDiv) {
         }
     });
 }
+
+/* =========================================================
+   PRODUCTS PAGE
+========================================================= */
+
+
+/* =========================================================
+   PRODUCT FILTERING
+========================================================= */
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const productCards = document.querySelectorAll(".product-card");
+const productCount = document.getElementById("productCount");
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const filter = button.dataset.filter;
+
+
+        /* Remove active state */
+
+        filterButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+
+        /* Activate selected filter */
+
+        button.classList.add("active");
+
+
+        let visibleProducts = 0;
+
+
+        productCards.forEach(card => {
+
+            const category = card.dataset.category;
+
+
+            if (
+                filter === "all" ||
+                category === filter
+            ) {
+
+                card.style.display = "";
+
+                visibleProducts++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+        /* Update count */
+
+        productCount.textContent =
+            `${visibleProducts} ${visibleProducts === 1 ? "Piece" : "Pieces"}`;
+
+    });
+
+});
+
+
+
+/* =========================================================
+   PRODUCT SORTING
+========================================================= */
+
+const sortSelect =
+    document.getElementById("sortProducts");
+
+const productsGrid =
+    document.querySelector(".products-grid");
+
+
+sortSelect.addEventListener("change", () => {
+
+    const products =
+        Array.from(
+            productsGrid.querySelectorAll(".product-card")
+        );
+
+
+    const sortValue =
+        sortSelect.value;
+
+
+    products.sort((a, b) => {
+
+        const priceA =
+            Number(a.dataset.price);
+
+        const priceB =
+            Number(b.dataset.price);
+
+
+        const orderA =
+            Number(a.dataset.order);
+
+        const orderB =
+            Number(b.dataset.order);
+
+
+        if (sortValue === "price-low") {
+
+            return priceA - priceB;
+
+        }
+
+
+        if (sortValue === "price-high") {
+
+            return priceB - priceA;
+
+        }
+
+
+        if (sortValue === "newest") {
+
+            return orderB - orderA;
+
+        }
+
+
+        return orderA - orderB;
+
+    });
+
+
+    products.forEach(product => {
+
+        productsGrid.appendChild(product);
+
+    });
+
+});
