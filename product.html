@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
 
-    <title>Pieces | Krint Tufwale</title>
+    <title>Piece | Krint Tufwale</title>
 
 </head>
 
@@ -65,10 +65,10 @@
                 <li>
                     <a href="index.html">
                         Home
-                    </a>
+                     </a>
                 </li>
 
-                <li><a href="shop.html">New</a></li>
+                <li><a href="shop.html" class="active">New</a></li>
 
                 <li>
                     <a href="collections.html">
@@ -77,22 +77,19 @@
                 </li>
 
                 <li>
-                    <a
-                        href="products.html"
-                        class="active"
-                    >
+                    <a href="shop.html">
                         Shop
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="journal.html">
                         Journal
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="our-story.html">
                         Our Story
                     </a>
                 </li>
@@ -112,13 +109,13 @@
             </a>
 
 
-            <a
-                href="#"
+             <a
+                href="cart.html"
                 aria-label="Shopping bag"
             >
                 <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count"></span>
             </a>
-
 
             <a
                 href="#"
@@ -136,644 +133,178 @@
 
 
 <!-- =====================================================
-     PRODUCTS MAIN
+     PRODUCT DETAIL
+     Filled in by script.js from products.js, based on
+     the ?id= parameter in the URL — e.g.
+     product.html?id=cotton-overshirt
 ===================================================== -->
 
 <main>
 
 
-<!-- =====================================================
-     PRODUCTS INTRO
-===================================================== -->
+<section class="product-detail-section">
 
-<section class="products-intro">
+    <!-- =====================================================
+     BREADCRUMB
+    ===================================================== -->
 
-    <div class="products-intro-content reveal">
+<nav class="product-breadcrumb" aria-label="Breadcrumb">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <span>/</span>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <span>/</span>
+
+        <span id="breadcrumbName">
+            Piece
+        </span>
+
+    </nav>
+
+
+        <!-- PRODUCT -->
+
+    <div
+        class="product-detail"
+        id="productDetail"
+        hidden
+    >
+
+        <div class="product-detail-image">
+
+            <img
+                id="productImage"
+                src=""
+                alt=""
+            >
+        </div>
+
+              <div class="product-detail-info">
+
+            <span
+                class="product-detail-tag"
+                id="productCategory"
+            >
+            </span>
+ <h1 id="productName">
+            </h1>
+
+
+            <p
+                class="product-detail-fit"
+                id="productFit"
+            >
+            </p>
+                <span
+                class="product-detail-price"
+                id="productPrice"
+            >
+            </span>
+            
+            <div class="product-detail-purchase">
+
+                 <!-- QUANTITY SELECTOR -->
+               <div class="qty-selector" aria-label="Quantity">
+
+                    <button
+                        type="button"
+                        class="qty-btn"
+                        data-step="-1"
+                        aria-label="Decrease quantity"
+                    >
+                        −
+                    </button>
+
+
+                    <input
+                        type="number"
+                        id="productQty"
+                        value="1"
+                        min="1"
+                        max="10"
+                        aria-label="Quantity">
+
+ <button
+                        type="button"
+                        class="qty-btn"
+                        data-step="1"
+                        aria-label="Increase quantity"
+                    >
+                    +
+                    </button>
+                    </div>
+
+
+
+                <!-- ADD TO CART -->
+
+                <button
+                    type="button"
+                    class="add-to-cart detail-add-btn"
+                    id="detailAddToCart"
+                    data-product-id=""
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+
+            <p class="product-detail-note">
+                Designed in Zambia.
+                Checkout with mobile money is coming soon —
+                for now, orders are placed by email.
+            </p>
+
+                    </div>
+
+    </div>
+
+
+    <!-- NOT FOUND — shown when ?id= is missing or unknown -->
+
+    <div
+        class="product-not-found"
+        id="productNotFound"
+        hidden
+    >
 
         <span class="section-tag">
-            THE WARDROBE
+            404
         </span>
 
 
-        <h1>
-            Pieces made
+        <h2>
+            This piece
             <br>
-            for living.
-        </h1>
+            could not be found.
+        </h2>
 
 
         <p>
-            Explore the garments and essentials that make up
-            the Krint Tufwale wardrobe.
+            It may have sold out or moved.
+            The full wardrobe lives in the shop.
         </p>
 
-    </div>
 
-</section>
-
-
-
-<!-- =====================================================
-     SHOP TOOLBAR
-===================================================== -->
-
-<section class="products-toolbar">
-
-
-    <!-- CATEGORY FILTER -->
-
-    <div class="product-categories">
-
-        <button
-            class="filter-btn active"
-            data-filter="all"
+        <a
+            href="shop.html"
+            class="text-btn"
         >
-            All
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="shirts"
-        >
-            Shirts
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="trousers"
-        >
-            Trousers
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="outerwear"
-        >
-            Outerwear
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="knitwear"
-        >
-            Knitwear
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="accessories"
-        >
-            Accessories
-        </button>
+            Back to the Shop
+            <span>→</span>
+        </a>
 
     </div>
 
-
-
-    <!-- PRODUCT COUNT -->
-
-    <div class="product-count">
-
-        <span id="productCount">
-            8 Pieces
-        </span>
-
-    </div>
-
-
-
-    <!-- SORT -->
-
-    <div class="product-sort">
-
-        <label for="sortProducts">
-            Sort
-        </label>
-
-        <select id="sortProducts">
-
-            <option value="featured">
-                Featured
-            </option>
-
-            <option value="newest">
-                Newest
-            </option>
-
-            <option value="price-low">
-                Price: Low to High
-            </option>
-
-            <option value="price-high">
-                Price: High to Low
-            </option>
-
-        </select>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PRODUCT GRID
-===================================================== -->
-
-<section class="products-grid-section">
-
-    <div class="products-grid">
-
-
-
-        <!-- =============================================
-             PRODUCT 01
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="shirts"
-            data-price="1250"
-            data-order="1"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/overshirt.jpg"
-                        alt="Cotton Overshirt"
-                    >
-
-
-                    <span class="product-badge">
-                        New
-                    </span>
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Cotton Overshirt
-                    </h2>
-
-                    <p>
-                        Relaxed Fit
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 1,250
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 02
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="trousers"
-            data-price="980"
-            data-order="2"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/trousers.jpg"
-                        alt="Straight Leg Trouser"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Straight Leg Trouser
-                    </h2>
-
-                    <p>
-                        Tailored Fit
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 980
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 03
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="shirts"
-            data-price="1100"
-            data-order="3"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/shirt.jpg"
-                        alt="Classic Cotton Shirt"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Classic Cotton Shirt
-                    </h2>
-
-                    <p>
-                        Regular Fit
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 1,100
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 04
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="knitwear"
-            data-price="850"
-            data-order="4"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/knit.jpg"
-                        alt="Fine Knit Polo"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Fine Knit Polo
-                    </h2>
-
-                    <p>
-                        Soft Knit
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 850
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 05
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="outerwear"
-            data-price="1850"
-            data-order="5"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/jacket.png"
-                        alt="Structured Jacket"
-                    >
-
-
-                    <span class="product-badge">
-                        Featured
-                    </span>
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Structured Jacket
-                    </h2>
-
-                    <p>
-                        Relaxed Tailoring
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 1,850
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 06
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="shirts"
-            data-price="650"
-            data-order="6"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/polo.jpg"
-                        alt="Everyday Polo"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Everyday Polo
-                    </h2>
-
-                    <p>
-                        Classic Fit
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 650
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 07
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="accessories"
-            data-price="480"
-            data-order="7"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/belt.jpg"
-                        alt="Leather Belt"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Leather Belt
-                    </h2>
-
-                    <p>
-                        Full Grain Leather
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 480
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- =============================================
-             PRODUCT 08
-        ============================================== -->
-
-        <article
-            class="product-card reveal"
-            data-category="trousers"
-            data-price="1150"
-            data-order="8"
-        >
-
-            <a
-                href="product.html"
-                class="product-link"
-            >
-
-                <div class="product-image">
-
-                    <img
-                        src="images/products/trouser-2.jpg"
-                        alt="Relaxed Pleated Trouser"
-                    >
-
-
-                    <span class="quick-view">
-                        View Piece
-                        <span>→</span>
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-details">
-
-                <div>
-
-                    <h2>
-                        Relaxed Pleated Trouser
-                    </h2>
-
-                    <p>
-                        Wide Leg
-                    </p>
-
-                </div>
-
-
-                <span class="product-price">
-                    ZMW 1,150
-                </span>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
 
 
 
@@ -922,7 +453,7 @@
                 </li>
 
                 <li>
-                    <a href="products.html">
+                    <a href="shop.html">
                         Shop
                     </a>
                 </li>
@@ -1089,8 +620,14 @@
 </footer>
 
 
-<script src="script.js"></script>
+<!-- =====================================================
+     JAVASCRIPT
+     (order matters: catalog → cart → site script)
+===================================================== -->
+
 <script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

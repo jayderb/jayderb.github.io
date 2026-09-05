@@ -99,11 +99,349 @@ document.querySelectorAll('.collection-card').forEach(card => {
     });
 });
 
-/* 5. ADD TO CART — click feedback */
+/* =========================================================
+   4b. PAGE RENDERING — shop grid, product detail, cart page
+   These run before the Add to Cart bindings below, so
+   buttons created here are picked up by section 5.
+   ========================================================= */
+
+/* SHOP GRID (shop.html) — rendered from products.js so the
+   catalog file stays the single source of truth */
+const shopGrid = document.getElementById("shopGrid");
+
+if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
+
+    shopGrid.innerHTML = KT_PRODUCTS
+        .slice() // keep the canonical array untouched
+        .sort((a, b) => a.order - b.order)
+        .map(product => `
+            <article
+                class="product-card"
+                data-category="${product.category}"
+                data-price="${product.price}"
+                data-order="${product.order}"
+                data-product-id="${product.id}"
+            >
+
+                <a
+                    href="product.html?id=${product.id}"
+                    class="product-link"
+                >
+
+                    <div class="product-image">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            loading="lazy"
+                        >
+
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+
+                        <span class="quick-view">
+                            View Piece
+                            <span>→</span>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <div class="product-details">
+
+                    <div>
+
+                        <h2>
+                            ${product.name}
+                        </h2>
+
+                        <p>
+                            ${product.fit}
+                        </p>
+
+                    </div>
+
+
+                    <div class="product-details-side">
+
+                        <span class="product-price">
+                            ${formatZMW(product.price)}
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="add-to-cart"
+                            data-product-id="${product.id}"
+                            aria-label="Add ${product.name} to cart"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+        `)
+        .join("");
+}
+
+
+/* PRODUCT DETAIL (product.html) — reads ?id= and renders
+   that piece from products.js */
+const productDetail = document.getElementById("productDetail");
+
+if (productDetail && typeof KT_PRODUCTS !== "undefined") {
+
+    const productId =
+        new URLSearchParams(window.location.search).get("id");
+
+    const product = getProductById(productId);
+    const notFound = document.getElementById("productNotFound");
+
+    if (product) {
+
+        document.title = `${product.name} | Krint Tufwale`;
+
+        document.getElementById("breadcrumbName").textContent =
+            product.name;
+
+        const productImage = document.getElementById("productImage");
+        productImage.src = product.image;
+        productImage.alt = product.name;
+
+        document.getElementById("productCategory").textContent =
+            product.category;
+
+        document.getElementById("productName").textContent =
+            product.name;
+
+        document.getElementById("productFit").textContent =
+            product.fit;
+
+        document.getElementById("productPrice").textContent =
+            formatZMW(product.price);
+
+        document.getElementById("detailAddToCart").dataset.productId =
+            product.id;
+
+        productDetail.hidden = false;
+
+    } else if (notFound) {
+
+        notFound.hidden = false;
+    }
+
+
+    /* Quantity selector — the − / + buttons step the input
+       between 1 and 10 */
+    const qtyInput = document.getElementById("productQty");
+
+    document.querySelectorAll(".qty-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (!qtyInput) return;
+
+            const step = Number(btn.dataset.step);
+            const current = parseInt(qtyInput.value, 10) || 1;
+            const next = Math.min(10, Math.max(1, current + step));
+
+            qtyInput.value = next;
+        });
+    });
+
+    if (qtyInput) {
+        qtyInput.addEventListener("change", () => {
+            const current = parseInt(qtyInput.value, 10) || 1;
+            qtyInput.value = Math.min(10, Math.max(1, current));
+        });
+    }
+}
+
+
+/* CART PAGE (cart.html) — renders the bag's line items and
+   subtotal from cart.js */
+const cartItemsEl = document.getElementById("cartItems");
+
+function renderCartPage() {
+
+    if (!cartItemsEl || typeof Cart === "undefined") return;
+
+    const lines = Cart.getCartLines();
+    const summary = document.getElementById("cartSummary");
+    const emptyState = document.getElementById("cartEmpty");
+
+    if (lines.length === 0) {
+
+        cartItemsEl.innerHTML = "";
+        if (summary) summary.hidden = true;
+        if (emptyState) emptyState.hidden = false;
+        return;
+    }
+
+    if (summary) summary.hidden = false;
+    if (emptyState) emptyState.hidden = true;
+
+    cartItemsEl.innerHTML = lines.map(({ product, qty, lineTotal }) => `
+
+        <article class="cart-line" data-id="${product.id}">
+
+            <a
+                class="cart-line-image"
+                href="product.html?id=${product.id}"
+            >
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+            </a>
+
+
+            <div class="cart-line-info">
+
+                <h3>
+                    <a href="product.html?id=${product.id}">
+                        ${product.name}
+                    </a>
+                </h3>
+
+                <p>
+                    ${product.fit} — ${formatZMW(product.price)}
+                </p>
+
+
+                <div class="qty-selector cart-qty">
+
+                    <button
+                        type="button"
+                        class="qty-btn"
+                        data-cart-action="decrease"
+                        data-id="${product.id}"
+                        aria-label="Decrease quantity"
+                    >
+                        −
+                    </button>
+
+
+                    <input
+                        type="number"
+                        value="${qty}"
+                        min="1"
+                        max="10"
+                        data-id="${product.id}"
+                        aria-label="Quantity for ${product.name}"
+                    >
+
+
+                    <button
+                        type="button"
+                        class="qty-btn"
+                        data-cart-action="increase"
+                        data-id="${product.id}"
+                        aria-label="Increase quantity"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="cart-line-side">
+
+                <span class="cart-line-total">
+                    ${formatZMW(lineTotal)}
+                </span>
+
+
+                <button
+                    type="button"
+                    class="cart-remove"
+                    data-cart-action="remove"
+                    data-id="${product.id}"
+                >
+                    Remove
+                </button>
+
+            </div>
+
+        </article>
+    `).join("");
+
+    const subtotal = document.getElementById("cartSubtotal");
+
+    if (subtotal) {
+        subtotal.textContent = formatZMW(Cart.getCartTotal());
+    }
+}
+
+if (cartItemsEl && typeof Cart !== "undefined") {
+
+    renderCartPage();
+
+    // One delegated listener covers every stepper and remove
+    // button, including buttons in later re-renders
+    cartItemsEl.addEventListener("click", (e) => {
+
+        const actionBtn = e.target.closest("[data-cart-action]");
+        if (!actionBtn) return;
+
+        const id = actionBtn.dataset.id;
+        const action = actionBtn.dataset.cartAction;
+        const line = Cart.getCart().find((entry) => entry.id === id);
+
+        if (action === "remove") {
+
+            Cart.removeFromCart(id);
+
+        } else if (action === "increase") {
+
+            Cart.updateQuantity(id, (line ? line.qty : 0) + 1);
+
+        } else if (action === "decrease") {
+
+            Cart.updateQuantity(id, (line ? line.qty : 1) - 1);
+        }
+
+        renderCartPage();
+    });
+
+    // Typing a quantity straight into the input
+    cartItemsEl.addEventListener("change", (e) => {
+
+        if (!e.target.matches("input[type='number']")) return;
+
+        const qty = parseInt(e.target.value, 10) || 1;
+        Cart.updateQuantity(e.target.dataset.id, Math.min(10, Math.max(1, qty)));
+
+        renderCartPage();
+    });
+}
+
+
+/* 5. ADD TO CART — adds to the real cart (see cart.js).
+   Every button declares its product with data-product-id.
+   On product.html the quantity comes from the #productQty
+   selector; catalog cards always add 1. */
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
+
+        const productId = btn.dataset.productId;
+
+        if (!productId || typeof Cart === 'undefined') return;
         if (btn.classList.contains('added')) return;
+
+        const qtyInput = document.getElementById('productQty');
+        const qty = qtyInput && btn.id === 'detailAddToCart'
+            ? parseInt(qtyInput.value, 10) || 1
+            : 1;
+
+        Cart.addToCart(productId, qty);
+
+        // Visual feedback
         const original = btn.textContent;
         btn.textContent = '✓ ADDED';
         btn.classList.add('added');

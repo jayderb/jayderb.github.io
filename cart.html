@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="products.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <title>Your Bag | Krint Tufwale</title>
+</head>
+
+<body>
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header>
+
+    <section class="navbar">
+
+        <div class="brand">
+
+            <div class="logo">
+                <a href="index.html">
+                    <img
+                        src="images/logo.png"
+                        alt="Krint Tufwale"
+                    >
+                </a>
+            </div>
+
+            <div class="brand-name">
+
+                <span>Krint Tufwale</span>
+
+                <small>
+                    Tufwale Nokusansamuka
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        New
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collections.html">
+                        Collections
+                    </a>
+                </li>
+
+                <li>
+                    <a href="journal.html">
+                        Journal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="our-story.html">
+                        Our Story
+                    </a>
+                </li>
+
+                <li><a href="contact.html">Contact</a></li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="icons">
+
+            <a href="#" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+
+            <a href="cart.html" aria-label="Shopping bag">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count"></span>
+            </a>
+
+            <a href="#" aria-label="Account">
+                <i class="fa-solid fa-user"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+
+<!-- =========================================
+     BAG HEADER
+========================================= -->
+
+<section class="cart-hero">
+
+    <div class="cart-hero-content reveal">
+
+        <span class="page-tag">
+            YOUR BAG
+        </span>
+
+        <h1>
+            Everything you've
+            <br>
+            chosen, so far.
+        </h1>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CART LINES + SUMMARY
+     Lines are rendered by script.js from cart.js
+========================================= -->
+
+<section class="cart-section">
+
+    <div class="cart-layout">
+
+
+        <!-- LINE ITEMS -->
+
+        <div
+            class="cart-lines"
+            id="cartItems"
+        >
+
+
+            <noscript>
+
+                <p class="cart-empty-message">
+
+                    Please enable JavaScript to view your bag,
+                    or email
+                    <a href="mailto:hello@krinttufwale.com">hello@krinttufwale.com</a>
+                    to order directly.
+
+                </p>
+
+            </noscript>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <aside
+            class="cart-summary"
+            id="cartSummary"
+            hidden
+        >
+
+            <h3>
+                Summary
+            </h3>
+
+
+            <div class="cart-summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span id="cartSubtotal">
+                    ZMW 0
+                </span>
+
+            </div>
+
+
+            <p class="cart-summary-note">
+                Delivery is arranged by email or phone
+                once you place your order.
+            </p>
+
+
+            <button
+                type="button"
+                class="checkout-btn"
+                disabled
+            >
+                Checkout
+            </button>
+
+
+            <p class="cart-checkout-note">
+                MTN / Airtel mobile money checkout
+                is coming soon.
+            </p>
+
+
+            <a
+                href="shop.html"
+                class="text-btn"
+            >
+                Continue Shopping
+                <span>→</span>
+            </a>
+
+        </aside>
+
+    </div>
+
+
+
+    <!-- EMPTY BAG -->
+
+    <div
+        class="cart-empty"
+        id="cartEmpty"
+        hidden
+    >
+
+        <span class="section-tag">
+            YOUR BAG
+        </span>
+
+
+        <h2>
+            Your bag
+            <br>
+            is empty.
+        </h2>
+
+
+        <p>
+            Every wardrobe starts with a single,
+            considered piece.
+        </p>
+
+
+        <a
+            href="shop.html"
+            class="text-btn"
+        >
+            Explore the Shop
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-top">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="Krint Tufwale"
+                >
+
+                <span>
+                    Krint Tufwale
+                </span>
+
+            </div>
+
+            <p class="footer-tagline">
+                Tufwale Nokusansamuka
+            </p>
+
+            <p class="footer-blurb">
+                Contemporary essentials inspired by the pace,
+                warmth and confidence of everyday life.
+                Designed in Zambia.
+            </p>
+
+        </div>
+
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-col">
+
+            <h4>
+                Explore
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        New
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        Shop
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collections.html">
+                        Collections
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Journal
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Our Story
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- HELP -->
+
+        <div class="footer-col">
+
+            <h4>
+                Help
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        Shipping & Delivery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Returns & Exchanges
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Size Guide
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        FAQs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-col">
+
+            <h4>
+                Contact
+            </h4>
+
+            <ul class="footer-contact">
+
+                <li>
+                    Lusaka, Zambia
+                </li>
+
+                <li>
+                    <a href="mailto:hello@krinttufwale.com">
+                        hello@krinttufwale.com
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tel:+260000000000">
+                        +260 970 000 000
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="footer-socials">
+
+                <a href="#">
+                    IG
+                </a>
+
+                <a href="#">
+                    FB
+                </a>
+
+                <a href="#">
+                    TT
+                </a>
+
+                <a href="#">
+                    X
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NEWSLETTER -->
+
+        <div class="footer-newsletter">
+
+            <h4>
+                Stay Connected
+            </h4>
+
+            <p>
+                Get early access to new drops,
+                journal entries and exclusive offers.
+            </p>
+
+            <form class="newsletter-form">
+
+                <input
+                    type="email"
+                    placeholder="Your email address"
+                    required
+                >
+
+                <button type="submit">
+                    Subscribe
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Krint Tufwale.
+            All rights reserved.
+        </p>
+
+        <p>
+            Designed by
+            <a href="#">
+                The Architect
+            </a>
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+     (order matters: catalog → cart → site script)
+========================================= -->
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

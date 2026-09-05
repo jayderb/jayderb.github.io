@@ -1,7 +1,8 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "krint-tufwale-backend",
   "version": "1.0.0",
-  "description": "Backend API for Krint Tufwale — handles contact form submissions (email + storage).",
+  "description": "Backend API for Krint Tufwale — handles contact form submissions (email + storage) and orders.",
   "main": "src/index.js",
   "type": "commonjs",
   "scripts": {

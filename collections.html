@@ -72,14 +72,12 @@
             <span></span>
         </button>
 
-        <div class="icons">
-
-            <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <div class="icons"> <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
 
             <a href="#" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="cart.html" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count"></span></a>
 
             <a href="#" aria-label="User account"><i class="fa-solid fa-user"></i></a>
-
         </div>
 
     </section>
@@ -298,7 +296,7 @@
 
         <article class="product-card">
 
-            <div class="product-image1"></div>
+            <div class="product-image1">
 
             <div class="product-info">
 
@@ -307,10 +305,12 @@
                 <p>ZMW 1,250</p>
 
             </div>
+            </div>
              <div class="purchase">
                 <button type="button" class="add-to-cart">
                     Add to Cart
                 </button>
+                <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a>
             </div>
 
         </article>
@@ -332,6 +332,7 @@
             <button type="button" class="add-to-cart">
                 Add to Cart
             </button></div>
+            <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a></div>
 
         </article>
 
@@ -347,11 +348,12 @@
 
                 <p>ZMW 420</p>
 
-            </div>
+             </div>
              <div class="purchase">
             <button type="button" class="add-to-cart">
                 Add to Cart
             </button></div>
+            <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a></div>
 
         </article>
 
@@ -365,6 +367,7 @@
             </div>
             <div class="purchase">
                 <button type="button" class="add-to-cart">Add to Cart</button>
+                <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a>
             </div>
         </article>
 
@@ -563,18 +566,10 @@
       <h4>Stay Connected</h4>
       <p>Get early access to new drops, journal entries and exclusive offers.</p>
       <div class="newsletter-form">
-        <input type="email" placeholder="Your email address">
-        <button type="submit">Subscribe</button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 Krint Tufwale. All rights reserved.</p>
-    <p>Designed by <a href="">The Architect</a></p>
+       <p>Designed by <a href="">The Architect</a></p>
   </div>
 </footer>
+<script src="cart.js"></script>
 <script src="./script.js"></script>
 </body>
 </html>
