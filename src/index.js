@@ -4,10 +4,10 @@ const express = require('express');
 const cors = require('cors');
 
 const contactRoute = require('./routes/contact');
+const ordersRoute = require('./routes/orders');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
     .split(',')
     .map((origin) => origin.trim())
@@ -32,7 +32,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api', contactRoute);
-
+app.use('/api', ordersRoute);
 // Fallback error handler (e.g. CORS rejection, JSON parse errors)
 app.use((err, req, res, next) => {
     console.error(err);

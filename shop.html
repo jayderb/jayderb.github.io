@@ -92,16 +92,15 @@
 
         <div class="icons">
 
-            <a href="#" aria-label="Search">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
             </a>
 
-            <a href="#" aria-label="Shopping bag">
+            <a href="cart.html" aria-label="Shopping bag">
                 <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count"></span>
             </a>
 
-            <a href="#" aria-label="Account">
-                <i class="fa-solid fa-user"></i>
+            <a href="#" aria-label="Account">                <i class="fa-solid fa-user"></i>
             </a>
 
         </div>
@@ -147,8 +146,8 @@
 
 
 
-<!-- =========================================
-     SHOP INTRO / CONTROLS
+!-- =========================================
+     SHOP TOOLBAR — FILTER, COUNT, SORT
 ========================================= -->
 
 <section class="products-toolbar">
@@ -256,408 +255,35 @@
 
 
 <!-- =========================================
-     PRODUCTS
+     PRODUCT GRID — rendered by script.js
+     from products.js (the canonical catalog)
 ========================================= -->
 
-<!-- =====================================================
-     THE PIECES
-===================================================== -->
+<section class="products-grid-section">
 
-<section class="shop-pieces">
+    <div
+        class="products-grid"
+        id="shopGrid"
+    >
 
-    <div class="shop-pieces-header reveal">
 
-        <div>
+        <!-- Cards are rendered here from products.js.
+             Each card links to product.html?id=<product id>
+             and carries its own Add to Cart button. -->
 
-            <span class="section-tag">
-                THE PIECES
-            </span>
 
-            <h2>
-                A wardrobe,
-                <br>
-                thoughtfully considered.
-            </h2>
+        <noscript>
 
-        </div>
+            <p class="grid-fallback">
 
-        <a
-            href="product.html"
-            class="pieces-view-all"
-        >
-            View All Pieces
-            <span>→</span>
-        </a>
+                Please enable JavaScript to browse the shop,
+                or email
+                <a href="mailto:hello@krinttufwale.com">hello@krinttufwale.com</a>
+                to order directly.
 
-    </div>
+            </p>
 
-
-    <!-- ================================================
-         PRODUCT GRID
-    ================================================= -->
-
-    <div class="shop-pieces-grid">
-
-
-        <!-- PIECE 01 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html?id=everyday-cotton-shirt" class="shop-piece-image">
-
-                <img
-                    src="images/products/shirt.jpg"
-                    alt="Krint Tufwale shirt"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Everyday Cotton Shirt
-                    </h3>
-
-                    <p>
-                        Everyday
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 850
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 02 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html?id=relaxed-pleated-trouser" class="shop-piece-image">
-
-                <img
-                    src="images/products/trousers.jpg"
-                    alt="Krint Tufwale trousers"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Relaxed Pleated Trouser
-                    </h3>
-
-                    <p>
-                        Tailored
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 1,150
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 03 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/overshirt.jpg"
-                    alt="Krint Tufwale overshirt"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Textured Overshirt
-                    </h3>
-
-                    <p>
-                        Everyday
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 1,250
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 04 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/polo.jpg"
-                    alt="Krint Tufwale polo"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Fine Knit Polo
-                    </h3>
-
-                    <p>
-                        Essentials
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 850
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 05 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/jacket.jpg"
-                    alt="Krint Tufwale jacket"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Structured Jacket
-                    </h3>
-
-                    <p>
-                        Tailored
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 1,850
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 06 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/shirt.jpg"
-                    alt="Krint Tufwale shirt"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Short Sleeve Shirt
-                    </h3>
-
-                    <p>
-                        Everyday
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 780
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 07 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/trouser-2.jpg"
-                    alt="Krint Tufwale trousers"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Straight Leg Trouser
-                    </h3>
-
-                    <p>
-                        Tailored
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 980
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECE 08 -->
-
-        <article class="shop-piece reveal">
-
-            <a href="product.html" class="shop-piece-image">
-
-                <img
-                    src="images/products/knit.jpg"
-                    alt="Krint Tufwale knitwear"
-                >
-
-                <span class="piece-action">
-                    View Piece
-                    <span>→</span>
-                </span>
-
-            </a>
-
-            <div class="shop-piece-info">
-
-                <div>
-
-                    <h3>
-                        Lightweight Knit
-                    </h3>
-
-                    <p>
-                        Essentials
-                    </p>
-
-                </div>
-
-                <span>
-                    ZMW 920
-                </span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PIECES 09–24 -->
-
-        <!--
-            Repeat the same structure for pieces 09–24.
-            Only change:
-            image
-            product name
-            category
-            price
-        -->
-
-    </div>
-
-
-    <div class="shop-pieces-footer reveal">
-
-        <a
-            href="product.html"
-            class="shop-all-btn"
-        >
-            Explore All 24 Pieces
-            <span>→</span>
-        </a>
+        </noscript>
 
     </div>
 
@@ -671,10 +297,10 @@
 
 <section class="shop-editorial reveal">
 
-    <div class="shop-editorial-content">
+     <div class="shop-editorial-content">
 
         <span class="section-tag">
-            THE KRINT TUFWale EDIT
+            THE KRINT TUFWALE EDIT
         </span>
 
         <h2>
@@ -960,10 +586,10 @@
     </div>
 
 
+
     <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
-
         <p>
             © 2026 Krint Tufwale.
             All rights reserved.
@@ -983,8 +609,11 @@
 
 <!-- =========================================
      JAVASCRIPT
+     (order matters: catalog → cart → site script)
 ========================================= -->
 
+<script src="products.js"></script>
+<script src="cart.js"></script>
 <script src="script.js"></script>
 
 </body>

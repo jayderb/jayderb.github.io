@@ -547,6 +547,7 @@ if (contactForm && statusDiv) {
 
 /* =========================================================
    PRODUCT FILTERING
+   Bound on pages that have the filter toolbar (shop.html).
 ========================================================= */
 
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -601,8 +602,11 @@ filterButtons.forEach(button => {
 
         /* Update count */
 
-        productCount.textContent =
-            `${visibleProducts} ${visibleProducts === 1 ? "Piece" : "Pieces"}`;
+         if (productCount) {
+
+            productCount.textContent =
+                `${visibleProducts} ${visibleProducts === 1 ? "Piece" : "Pieces"}`;
+        }
 
     });
 
@@ -612,73 +616,78 @@ filterButtons.forEach(button => {
 
 /* =========================================================
    PRODUCT SORTING
+   Only bound on pages that actually have the toolbar
+   (shop.html) — guarded so other pages don't error.
 ========================================================= */
 
 const sortSelect =
-    document.getElementById("sortProducts");
-
+    document.querySelector("#sortProducts");
 const productsGrid =
     document.querySelector(".products-grid");
 
 
-sortSelect.addEventListener("change", () => {
+if (sortSelect && productsGrid) {
 
-    const products =
-        Array.from(
-            productsGrid.querySelectorAll(".product-card")
-        );
+    sortSelect.addEventListener("change", () => {
 
-
-    const sortValue =
-        sortSelect.value;
+        const products =
+            Array.from(
+                productsGrid.querySelectorAll(".product-card")
+            );
 
 
-    products.sort((a, b) => {
-
-        const priceA =
-            Number(a.dataset.price);
-
-        const priceB =
-            Number(b.dataset.price);
+        const sortValue =
+            sortSelect.value;
 
 
-        const orderA =
-            Number(a.dataset.order);
+        products.sort((a, b) => {
 
-        const orderB =
-            Number(b.dataset.order);
+            const priceA =
+                Number(a.dataset.price);
 
-
-        if (sortValue === "price-low") {
-
-            return priceA - priceB;
-
-        }
+            const priceB =
+                Number(b.dataset.price);
 
 
-        if (sortValue === "price-high") {
+            const orderA =
+                Number(a.dataset.order);
 
-            return priceB - priceA;
-
-        }
-
-
-        if (sortValue === "newest") {
-
-            return orderB - orderA;
-
-        }
+            const orderB =
+                Number(b.dataset.order);
 
 
-        return orderA - orderB;
+            if (sortValue === "price-low") {
+
+                return priceA - priceB;
+
+            }
+
+
+            if (sortValue === "price-high") {
+
+                return priceB - priceA;
+
+            }
+
+
+            if (sortValue === "newest") {
+
+                return orderB - orderA;
+
+            }
+
+
+            return orderA - orderB;
+
+        });
+
+
+        products.forEach(product => {
+
+            productsGrid.appendChild(product);
+
+        });
 
     });
 
-
-    products.forEach(product => {
-
-        productsGrid.appendChild(product);
-
-    });
-
-});
+}

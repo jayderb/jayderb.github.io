@@ -4315,3 +4315,531 @@ padding-top:130px;
     }
 
 }
+
+/* ============================================================
+   15. CART BADGE — .cart-count in the navbar bag icon
+   (rendered by cart.js on every page)
+   ============================================================ */
+
+.icons a {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+
+    display: none;
+
+    min-width: 17px;
+    height: 17px;
+    padding: 0 5px;
+
+    border-radius: 999px;
+    background: #111111;
+    color: #F7F3EC;
+
+    font-size: 10px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.cart-count.has-items {
+    display: block;
+}
+
+
+/* ============================================================
+   16. CART PAGE (cart.html)
+   ============================================================ */
+
+.cart-hero {
+    padding: 180px 8% 70px;
+
+    background: #F8F5F0;
+}
+
+.cart-hero-content .page-tag {
+    display: block;
+
+    margin-bottom: 24px;
+
+    font-size: 12px;
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    color: #77736d;
+}
+
+.cart-hero-content h1 {
+    margin: 0;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: clamp(48px, 6vw, 84px);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.04em;
+
+    color: #111111;
+}
+
+
+.cart-section {
+    padding: 70px 8% 160px;
+
+    background: #F8F5F0;
+}
+
+
+.cart-layout {
+    display: grid;
+
+    grid-template-columns: 1.6fr 1fr;
+
+    gap: 70px;
+
+    align-items: start;
+}
+
+
+/* ------------------------------------------------------------
+   Line items
+   ------------------------------------------------------------ */
+
+.cart-lines {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.cart-line {
+    display: grid;
+
+    grid-template-columns: 110px 1fr auto;
+
+    gap: 28px;
+
+    align-items: center;
+
+    padding: 30px 0;
+
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.cart-lines .cart-line:first-child {
+    border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+
+.cart-line-image {
+    display: block;
+
+    width: 110px;
+
+    aspect-ratio: 0.78;
+
+    overflow: hidden;
+
+    background: #e8e3dc;
+}
+
+.cart-line-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.cart-line-info h3 {
+    margin: 0;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    color: #171717;
+}
+
+.cart-line-info h3 a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+.cart-line-info h3 a:hover {
+    text-decoration: underline;
+}
+
+.cart-line-info p {
+    margin: 8px 0 0;
+
+    font-size: 12px;
+
+    color: #77736d;
+}
+
+
+.cart-line-side {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 12px;
+}
+
+.cart-line-total {
+    font-size: 14px;
+
+    color: #222222;
+
+    white-space: nowrap;
+}
+
+.cart-remove {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #77736d;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.cart-remove:hover {
+    color: #111111;
+}
+
+
+/* ------------------------------------------------------------
+   Quantity stepper (cart page + product detail page)
+   ------------------------------------------------------------ */
+
+.qty-selector {
+    display: inline-flex;
+
+    align-items: stretch;
+
+    border: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.qty-btn {
+    width: 38px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 15px;
+
+    color: #111111;
+
+    cursor: pointer;
+
+    transition: background 0.3s ease;
+}
+
+.qty-btn:hover {
+    background: rgba(17, 17, 17, 0.06);
+}
+
+.qty-selector input {
+    width: 44px;
+
+    border: none;
+
+    border-left: 1px solid rgba(17, 17, 17, 0.12);
+    border-right: 1px solid rgba(17, 17, 17, 0.12);
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    color: #111111;
+
+    text-align: center;
+
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.qty-selector input::-webkit-outer-spin-button,
+.qty-selector input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+    margin: 0;
+}
+
+.qty-selector input:focus {
+    outline: none;
+}
+
+.cart-qty {
+    margin-top: 16px;
+}
+
+.cart-qty .qty-btn {
+    width: 34px;
+
+    font-size: 13px;
+}
+
+.cart-qty .qty-selector input {
+    width: 38px;
+}
+
+
+/* ------------------------------------------------------------
+   Summary
+   ------------------------------------------------------------ */
+
+.cart-summary {
+    position: sticky;
+
+    top: 110px;
+
+    padding: 36px;
+
+    background: #171717;
+
+    color: #ffffff;
+}
+
+.cart-summary h3 {
+    margin: 0 0 24px;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 26px;
+
+    font-weight: 400;
+}
+
+.cart-summary-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    padding: 16px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+    font-size: 13px;
+}
+
+.cart-summary-row span:last-child {
+    font-size: 15px;
+}
+
+.cart-summary-note {
+    margin: 14px 0 26px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.checkout-btn {
+    display: block;
+
+    width: 100%;
+
+    padding: 18px;
+
+    border: 1px solid #F7F3EC;
+
+    background: #F7F3EC;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: #111111;
+
+    cursor: pointer;
+
+    transition: background 0.35s ease, color 0.35s ease;
+}
+
+.checkout-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+.cart-checkout-note {
+    margin: 14px 0 26px;
+
+    font-size: 12px;
+
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.cart-summary .text-btn {
+    color: #ffffff;
+
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ------------------------------------------------------------
+   Empty bag + fallbacks
+   ------------------------------------------------------------ */
+
+.cart-empty {
+    max-width: 640px;
+
+    margin: 0 auto;
+
+    padding: 80px 0 40px;
+
+    text-align: center;
+}
+
+.cart-empty .section-tag {
+    display: block;
+
+    margin-bottom: 24px;
+
+    font-size: 12px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    color: #77736d;
+}
+
+.cart-empty h2 {
+    margin: 0;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: clamp(44px, 5vw, 68px);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.04em;
+
+    color: #111111;
+}
+
+.cart-empty p {
+    max-width: 380px;
+
+    margin: 24px auto 36px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #68645f;
+}
+
+.cart-empty-message {
+    padding: 50px 0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #68645f;
+}
+
+.cart-empty-message a {
+    color: inherit;
+}
+
+
+/* ------------------------------------------------------------
+   Cart page — responsive
+   ------------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .cart-summary {
+        position: static;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .cart-hero {
+        padding: 130px 6% 55px;
+    }
+
+    .cart-section {
+        padding: 50px 4% 100px;
+    }
+
+    .cart-line {
+        grid-template-columns: 84px 1fr;
+
+        gap: 18px;
+    }
+
+    .cart-line-image {
+        width: 84px;
+    }
+
+    .cart-line-side {
+        grid-column: 2;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-top: 4px;
+    }
+
+    .cart-summary {
+        padding: 28px 22px;
+    }
+
+}
