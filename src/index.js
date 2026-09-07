@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const contactRoute = require('./routes/contact');
 const ordersRoute = require('./routes/orders');
+const authRoute = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,8 +21,10 @@ app.use(
             if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
                 return callback(null, true);
             }
-            return callback(new Error('Not allowed by CORS'));
-        },
+            const err = new Error('Origin not allowed.');
+            err.status = 403;
+            return callback(err);
+         },
     })
 );
 
@@ -31,6 +34,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+app.use('/api', authRoute);
 app.use('/api', contactRoute);
 app.use('/api', ordersRoute);
 // Fallback error handler (e.g. CORS rejection, JSON parse errors)

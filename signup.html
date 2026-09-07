@@ -12,10 +12,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <title>Shop | Krint Tufwale</title>
+    <title>Create Account | Krint Tufwale</title>
 </head>
 
-<body>
+<body class="auth-page">
 
 <!-- =========================================
      NAVIGATION
@@ -60,7 +60,7 @@
                 </li>
 
                 <li>
-                    <a href="shop.html" class="active">
+                    <a href="shop.html">
                         New
                     </a>
                 </li>
@@ -92,7 +92,8 @@
 
         <div class="icons">
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="#" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
             </a>
 
             <a href="cart.html" aria-label="Shopping bag">
@@ -100,7 +101,8 @@
                 <span class="cart-count"></span>
             </a>
 
-            <a href="login.html" aria-label="Account">                <i class="fa-solid fa-user"></i>
+            <a href="login.html" aria-label="Account" class="active">
+                <i class="fa-solid fa-user"></i>
             </a>
 
         </div>
@@ -116,250 +118,185 @@
 
 <main>
 
+<section class="auth-section">
 
-<!-- =========================================
-     SHOP HERO
-========================================= -->
-
-<section class="shop-hero">
-
-    <div class="shop-hero-content reveal">
-
-        <span class="page-tag">
-            THE SHOP
-        </span>
-
-        <h1>
-            Pieces for
-            <br>
-            everyday living.
-        </h1>
-
-        <p>
-            Explore the collection of thoughtfully designed
-            garments made to move with you.
-        </p>
-
-    </div>
-
-</section>
+    <div class="auth-layout">
 
 
+        <!-- BRAND SIDE -->
 
-<!-- =========================================
-     SHOP TOOLBAR — FILTER, COUNT, SORT
-========================================= -->
+        <div class="auth-intro reveal">
 
-<section class="products-toolbar">
-
-
-    <!-- CATEGORY FILTER -->
-
-    <div class="product-categories">
-
-        <button
-            class="filter-btn active"
-            data-filter="all"
-        >
-            All
-        </button>
+            <span class="section-tag">
+                YOUR ACCOUNT
+            </span>
 
 
-        <button
-            class="filter-btn"
-            data-filter="shirts"
-        >
-            Shirts
-        </button>
+            <h1>
+                Join the
+                <br>
+                wardrobe.
+            </h1>
 
 
-        <button
-            class="filter-btn"
-            data-filter="trousers"
-        >
-            Trousers
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="outerwear"
-        >
-            Outerwear
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="knitwear"
-        >
-            Knitwear
-        </button>
-
-
-        <button
-            class="filter-btn"
-            data-filter="accessories"
-        >
-            Accessories
-        </button>
-
-    </div>
-
-
-
-    <!-- PRODUCT COUNT -->
-
-    <div class="product-count">
-
-        <span id="productCount">
-            8 Pieces
-        </span>
-
-    </div>
-
-
-
-    <!-- SORT -->
-
-    <div class="product-sort">
-
-        <label for="sortProducts">
-            Sort
-        </label>
-
-        <select id="sortProducts">
-
-            <option value="featured">
-                Featured
-            </option>
-
-            <option value="newest">
-                Newest
-            </option>
-
-            <option value="price-low">
-                Price: Low to High
-            </option>
-
-            <option value="price-high">
-                Price: High to Low
-            </option>
-
-        </select>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================
-     PRODUCT GRID — rendered by script.js
-     from products.js (the canonical catalog)
-========================================= -->
-
-<section class="products-grid-section">
-
-    <div
-        class="products-grid"
-        id="shopGrid"
-    >
-
-
-        <!-- Cards are rendered here from products.js.
-             Each card links to product.html?id=<product id>
-             and carries its own Add to Cart button. -->
-
-
-        <noscript>
-
-            <p class="grid-fallback">
-
-                Please enable JavaScript to browse the shop,
-                or email
-                <a href="mailto:hello@krinttufwale.com">hello@krinttufwale.com</a>
-                to order directly.
-
+            <p>
+                Create an account to add pieces to your bag and
+                place your order. Your password is hashed with
+                bcrypt — we can't read it, and neither can
+                anyone else.
             </p>
 
-        </noscript>
-
-    </div>
-
-</section>
+        </div>
 
 
 
-<!-- =========================================
-     EDITORIAL BREAK
-========================================= -->
+        <!-- FORM SIDE -->
 
-<section class="shop-editorial reveal">
+        <div class="auth-card reveal">
 
-     <div class="shop-editorial-content">
 
-        <span class="section-tag">
-            THE KRINT TUFWALE EDIT
-        </span>
-
-        <h2>
-            Dress simply.
-            <br>
-            Live fully.
-        </h2>
-
-        <p>
-            A considered wardrobe doesn't need more.
-            It needs the right pieces.
-        </p>
-
-        <a href="collections.html" class="text-btn">
-            Explore Collections
-            <span>→</span>
-        </a>
-
-    </div>
-
-</section>
+            <h2 class="auth-card-title">
+                Create Account
+            </h2>
 
 
 
-<!-- =========================================
-     NEWSLETTER
-========================================= -->
-
-<section class="newsletter">
-
-    <div class="newsletter-content reveal">
-
-        <span class="section-tag">
-            STAY CONNECTED
-        </span>
-
-        <h2>
-            Join Our Journal.
-        </h2>
-
-        <p>
-            New collections, stories and occasional
-            notes from Krint Tufwale.
-        </p>
-
-        <form class="newsletter-form">
-
-            <input
-                type="email"
-                placeholder="Your email address"
-                aria-label="Email address"
-                required
+            <form
+                id="signupForm"
+                novalidate
             >
 
-            <button type="submit">
-                Subscribe
-            </button>
+                <!-- Status line — same pattern as the contact
+                     form's #form-status (colored by auth.js) -->
 
-        </form>
+                <p
+                    class="form-status"
+                    role="alert"
+                    hidden
+                >
+                </p>
+
+
+                <div class="auth-field">
+
+                    <label for="regName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="regName"
+                        name="name"
+                        autocomplete="name"
+                        minlength="2"
+                        maxlength="80"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="regEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="regEmail"
+                        name="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="regPhone">
+                        Phone
+                        <small>
+                            (optional — for order delivery)
+                        </small>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="regPhone"
+                        name="phone"
+                        autocomplete="tel"
+                        placeholder="+260 97 000 0000"
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="regPassword">
+                        Password
+                        <small>
+                            (8+ characters)
+                        </small>
+                    </label>
+
+                    <input
+                        type="password"
+                        id="regPassword"
+                        name="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="regConfirm">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="regConfirm"
+                        name="confirm"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+
+            <p class="auth-hint">
+                Already have an account?
+                <a
+                    href="login.html"
+                    class="auth-hint-link"
+                    id="loginLink"
+                >
+                    Sign in
+                </a>
+            </p>
+
+        </div>
 
     </div>
 
@@ -590,6 +527,7 @@
     <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
+
         <p>
             © 2026 Krint Tufwale.
             All rights reserved.
@@ -609,7 +547,6 @@
 
 <!-- =========================================
      JAVASCRIPT
-     (order matters: catalog → cart → site script)
 ========================================= -->
 
 <script src="products.js"></script>
