@@ -2,8 +2,6 @@
    KRINT TUFWALE — script.js
    ============================================================ */
 
-const API_BASE = 'https://q9bqt8rn-4000.uks1.devtunnels.ms/api'; // ← swap for your deployed backend URL
-
 /* 1. NAVBAR — sticky scroll behaviour */
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
@@ -34,20 +32,24 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealElements.forEach(el => revealObserver.observe(el));
 
-// Section 3: CAMPAIGN BANNER — Optimized Parallax
+/* =========================================================
+   3. CAMPAIGN BANNER — Optimized Parallax
+   ========================================================= */
+
 const campaign = document.querySelector('.campaign');
 
 if (campaign) {
     let ticking = false;
 
-    // 1. Separate calculation logic
     const updateParallax = () => {
         const scrolled = window.scrollY - campaign.offsetTop;
-        campaign.style.backgroundPositionY = `calc(50% + ${scrolled * 0.3}px)`;
+
+        campaign.style.backgroundPositionY =
+            `calc(50% + ${scrolled * 0.3}px)`;
+
         ticking = false;
     };
 
-    // 2. Frame-throttled scroll handler
     const onScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(updateParallax);
@@ -55,50 +57,29 @@ if (campaign) {
         }
     };
 
-    // 3. IntersectionObserver toggles the listener on/off
-    const observer = new IntersectionObserver((entries) => {
+    const campaignObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+
             if (entry.isIntersecting) {
-                // Attach scroll listener ONLY when banner enters viewport
-                window.addEventListener('scroll', onScroll, { passive: true });
-                onScroll(); // Run once immediately upon entry
+                window.addEventListener(
+                    'scroll',
+                    onScroll,
+                    { passive: true }
+                );
+
+                onScroll();
+
             } else {
-                // Remove scroll listener completely when banner leaves viewport
                 window.removeEventListener('scroll', onScroll);
             }
+
         });
     }, {
-        threshold: 0 // Fires as soon as 1px enters or leaves the screen
+        threshold: 0
     });
 
-    observer.observe(campaign);
+    campaignObserver.observe(campaign);
 }
-
-const campaignBg = document.querySelector('.campaign-bg');
-
-const updateParallax = () => {
-    const scrolled = window.scrollY - campaign.offsetTop;
-    // Hardware accelerated translation along the Y-axis
-    campaignBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
-    ticking = false;
-};
-
-
-/* 4. COLLECTION CARDS — 3D tilt */
-document.querySelectorAll('.collection-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / rect.height) * 8;
-        const rotateY = (x / rect.width) * 8;
-        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)`;
-    });
-});
-
 /* =========================================================
    4b. PAGE RENDERING — shop grid, product detail, cart page
    These run before the Add to Cart bindings below, so
@@ -691,3 +672,36 @@ if (sortSelect && productsGrid) {
     });
 
 }
+
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const productId = btn.dataset.productId;
+
+        if (!productId || typeof Cart === 'undefined') return;
+        if (btn.classList.contains('added')) return;
+
+        // Require an account before anything goes in the cart
+        if (typeof KTAuth === 'undefined' || !KTAuth.isLoggedIn()) {
+            window.location.href = `login.html?next=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+            return;
+        }
+
+        const qtyInput = document.getElementById('productQty');
+        const qty = qtyInput && btn.id === 'detailAddToCart'
+            ? parseInt(qtyInput.value, 10) || 1
+            : 1;
+
+        Cart.addToCart(productId, qty);
+
+        // Visual feedback
+        const original = btn.textContent;
+        btn.textContent = '✓ ADDED';
+        btn.classList.add('added');
+        setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('added');
+        }, 2000);
+    });
+});

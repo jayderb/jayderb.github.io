@@ -21,13 +21,6 @@
      KTAuth.ready           (promise → user or null)
    ============================================================ */
 
-/* API base: same-origin /api by default (serve.dev.js proxies it
-   to the Node backend in development).
-   Deploying the static site to GitHub Pages with the API hosted
-   separately (Render/Railway)? Swap in your backend URL:
-   e.g. 'https://your-backend.example.com/api' */
-const API_BASE = '/api';
-
 const KTAuth = (() => {
 
     const TOKEN_KEY = 'kt_token';
