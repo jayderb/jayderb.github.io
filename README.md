@@ -103,19 +103,23 @@ Inspired by the rhythm of modern African life, every collection is designed for 
 - [x] Footer
 - [x] Responsive Mobile Layout
 - [x] JavaScript Interactions
+- [x] Navigation & responsive mobile layout
+- [x] Hero, Campaign Banner, Collections, Our Story, Journal, Contact
+- [x] Shop catalogue with filtering & sorting
+- [x] Product detail pages
+- [x] Shopping cart (account-gated)
+- [x] User authentication (signup/login, JWT)
+- [x] Orders backend with server-side price validation
+- [ ] Payment integration (Flutterwave — mobile money + cards)
+- [ ] Deployed to production
 
 ---
 
 ## Future Improvements
 
-- Shopping cart
-- Product filtering
-- Product detail pages
-- User authentication
+- Flutterwave payment integration
 - Wishlist
-- Payment integration
 - CMS integration
 - Dark mode
 - Performance optimization
-
 ---

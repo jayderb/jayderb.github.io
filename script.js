@@ -494,6 +494,7 @@ if (contactForm && statusDiv) {
             email: contactForm.querySelector('[name="email"]').value.trim(),
             subject: contactForm.querySelector('[name="subject"]').value.trim(),
             message: contactForm.querySelector('[name="message"]').value.trim(),
+            _honey: contactForm.querySelector('[name="_honey"]').value,
         };
 
         try {
