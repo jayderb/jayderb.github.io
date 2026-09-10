@@ -11,6 +11,7 @@
    Exposed API (used by script.js and the cart page):
      Cart.addToCart(id, qty)
      Cart.removeFromCart(id)
+     Cart.clear()
      Cart.updateQuantity(id, qty)
      Cart.getCart()
      Cart.getCartCount()
@@ -88,6 +89,12 @@ const Cart = (() => {
         renderCartBadge();
     }
 
+    /* Empty the bag entirely (used after an order is placed) */
+    function clear() {
+        write([]);
+        renderCartBadge();
+    }
+
     /* Setting a quantity of 0 or less removes the line */
     function updateQuantity(id, qty) {
         const cart = read();
@@ -162,6 +169,7 @@ const Cart = (() => {
     return {
         addToCart,
         removeFromCart,
+        clear,
         updateQuantity,
         getCart,
         getCartCount,

@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Review your bag at Krint Tufwale before checkout.">
+    <meta name="description" content="Order confirmation — Krint Tufwale. We'll be in touch to arrange payment and delivery.">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="products.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
-    
-    <title>Your Bag | Krint Tufwale</title>
+    <title>Order Confirmed | Krint Tufwale</title>
 </head>
-
 <body>
-
 <!-- =========================================
      NAVIGATION
 ========================================= -->
-
 <header>
-
     <section class="navbar">
-
         <div class="brand">
-
             <div class="logo">
                 <a href="index.html">
                     <img
@@ -34,564 +25,388 @@
                     >
                 </a>
             </div>
-
             <div class="brand-name">
-
                 <span>Krint Tufwale</span>
-
                 <small>
                     Tufwale Nokusansamuka
                 </small>
-
             </div>
-
         </div>
-
-
         <nav>
-
             <ul>
-
                 <li>
                     <a href="index.html">
                         Home
                     </a>
                 </li>
-
                 <li>
                     <a href="shop.html">
                         New
                     </a>
                 </li>
-
                 <li>
                     <a href="collections.html">
                         Collections
                     </a>
                 </li>
-
                 <li>
                     <a href="journal.html">
                         Journal
                     </a>
                 </li>
-
                 <li>
                     <a href="our-story.html">
                         Our Story
                     </a>
                 </li>
-
                 <li><a href="contact.html">Contact</a></li>
-
             </ul>
-
         </nav>
-
-
         <div class="icons">
-
             <a href="#" aria-label="Search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
-
             <a href="cart.html" aria-label="Shopping bag">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="cart-count"></span>
             </a>
-
-            <a href="#" aria-label="Account">
+            <a href="login.html" aria-label="Account">
                 <i class="fa-solid fa-user"></i>
             </a>
-
         </div>
-
     </section>
-
 </header>
-
-
 <!-- =========================================
      MAIN
 ========================================= -->
-
 <main>
-
-
-<!-- =========================================
-     BAG HEADER
-========================================= -->
-
-<section class="cart-hero">
-
-    <div class="cart-hero-content reveal">
-
-        <span class="page-tag">
-            YOUR BAG
-        </span>
-
-        <h1>
-            Everything you've
-            <br>
-            chosen, so far.
-        </h1>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================
-     CART LINES + SUMMARY
-     Lines are rendered by script.js from cart.js
-========================================= -->
-
-<section class="cart-section">
-
-    <div class="cart-layout">
-
-
-        <!-- LINE ITEMS -->
-
-        <div
-            class="cart-lines"
-            id="cartItems"
-        >
-
-
-            <noscript>
-
-                <p class="cart-empty-message">
-
-                    Please enable JavaScript to view your bag,
-                    or email
-                    <a href="mailto:hello@krinttufwale.com">hello@krinttufwale.com</a>
-                    to order directly.
-
-                </p>
-
-            </noscript>
-
-        </div>
-
-
-
-        <!-- SUMMARY -->
-
-        <aside
-            class="cart-summary"
-            id="cartSummary"
-            hidden
-        >
-
-            <h3>
-                Summary
-            </h3>
-
-
-            <div class="cart-summary-row">
-
-                <span>
-                    Subtotal
-                </span>
-
-                <span id="cartSubtotal">
-                    ZMW 0
-                </span>
-
-            </div>
-
-
-            <p
-                class="cart-ordering-as"
-                id="cartOrderingAs"
-                hidden
-            >
-            </p>
-
-
-
-            <!-- CHECKOUT FORM — demo stage: payment is arranged
-                 personally after the order is placed -->
-
-            <form
-                class="checkout-form"
-                id="checkoutForm"
-                novalidate
-            >
-
-                <p
-                    class="form-status"
-                    role="alert"
-                    hidden
-                >
-                </p>
-
-
-                <div class="checkout-field">
-
-                    <label for="checkoutPhone">
-                        Phone
-                        <small>
-                            (for arranging payment)
-                        </small>
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="checkoutPhone"
-                        name="phone"
-                        autocomplete="tel"
-                        placeholder="+260 97 000 0000"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="checkout-field">
-
-                    <label for="checkoutAddress">
-                        Delivery Address
-                    </label>
-
-                    <textarea
-                        id="checkoutAddress"
-                        name="deliveryAddress"
-                        rows="3"
-                        maxlength="300"
-                        placeholder="House / plot number, area, city"
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="checkout-btn"
-                    id="checkoutBtn"
-                >
-                    Place Order
-                </button>
-
-
-                <p class="cart-checkout-note">
-                    No payment yet — after you place the order
-                    we'll be in touch to arrange MTN / Airtel
-                    mobile money and delivery.
-                </p>
-
-            </form>
-
-
-
-            <a
-                href="shop.html"
-                class="text-btn"
-            >
-                Continue Shopping
-                <span>→</span>
-            </a>
-
-        </aside>
-
-    </div>
-
-
-
-    <!-- EMPTY BAG -->
-
+<section class="confirmation-section">
+    <!-- ORDER DETAILS — filled in by script.js -->
     <div
-        class="cart-empty"
-        id="cartEmpty"
+        class="confirmation-card"
+        id="orderContent"
         hidden
     >
-
         <span class="section-tag">
-            YOUR BAG
+            ORDER RECEIVED
         </span>
-
-
-        <h2>
-            Your bag
-            <br>
-            is empty.
-        </h2>
-
-
-        <p>
-            Every wardrobe starts with a single,
-            considered piece.
+        <h1 class="confirmation-title">
+            Thank you.
+        </h1>
+        <p class="confirmation-lede">
+            Your order is in. We'll be in touch shortly
+            to arrange payment and delivery.
         </p>
-
-
-        <a
-            href="shop.html"
-            class="text-btn"
+        <div class="order-meta">
+            <div class="order-meta-row">
+                <span class="order-meta-label">
+                    Order number
+                </span>
+                <span
+                    class="order-meta-value"
+                    id="orderNumber"
+                >
+                </span>
+            </div>
+            <div class="order-meta-row">
+                <span class="order-meta-label">
+                    Placed
+                </span>
+                <span
+                    class="order-meta-value"
+                    id="orderDate"
+                >
+                </span>
+            </div>
+            <div class="order-meta-row">
+                <span class="order-meta-label">
+                    Deliver to
+                </span>
+                <span
+                    class="order-meta-value"
+                    id="orderDelivery"
+                >
+                </span>
+            </div>
+        </div>
+        <!-- LINE ITEMS (same visual language as the bag) -->
+        <div
+            class="confirmation-lines"
+            id="orderLines"
         >
-            Explore the Shop
-            <span>→</span>
-        </a>
-
+        </div>
+        <div class="order-total-row">
+            <span>
+                Order total
+            </span>
+            <span
+                class="order-total-value"
+                id="orderTotal"
+            >
+            </span>
+        </div>
+        <div class="confirmation-actions">
+            <a
+                href="shop.html"
+                class="confirmation-primary-btn"
+            >
+                Continue Shopping
+            </a>
+            <a
+                href="contact.html"
+                class="confirmation-secondary-btn"
+            >
+                Questions? Contact Us
+            </a>
+        </div>
     </div>
-
+    <!-- NOT SIGNED IN / SESSION EXPIRED -->
+    <div
+        class="confirmation-state"
+        id="orderNeedsAuth"
+        hidden
+    >
+        <span class="section-tag">
+            ONE MORE STEP
+        </span>
+        <h2 class="confirmation-title">
+            Sign in to view
+            <br>
+            your order.
+        </h2>
+        <p class="confirmation-lede">
+            Your order was placed, but we need you signed in
+            to show the details.
+        </p>
+        <a
+            href="login.html"
+            class="confirmation-primary-btn"
+            id="orderSignInLink"
+        >
+            Sign In
+        </a>
+    </div>
+    <!-- ORDER NOT FOUND -->
+    <div
+        class="confirmation-state"
+        id="orderNotFound"
+        hidden
+    >
+        <span class="section-tag">
+            HMM
+        </span>
+        <h2 class="confirmation-title">
+            We couldn't find
+            <br>
+            that order.
+        </h2>
+        <p class="confirmation-lede">
+            Check the link, or get in touch and we'll
+            track it down for you.
+        </p>
+        <a
+            href="contact.html"
+            class="confirmation-primary-btn"
+        >
+            Contact Us
+        </a>
+    </div>
+    <!-- NETWORK / BACKEND ERROR -->
+    <div
+        class="confirmation-state"
+        id="orderError"
+        hidden
+    >
+        <span class="section-tag">
+            ALMOST THERE
+        </span>
+        <h2 class="confirmation-title">
+            We couldn't load
+            <br>
+            your order.
+        </h2>
+        <p class="confirmation-lede">
+            Something went wrong on our side.
+            Please try again in a moment.
+        </p>
+        <button
+            type="button"
+            class="confirmation-primary-btn"
+            id="orderRetryBtn"
+        >
+            Try Again
+        </button>
+    </div>
 </section>
-
 </main>
-
-
-
 <!-- =========================================
      FOOTER
 ========================================= -->
-
 <footer>
-
     <div class="footer-top">
-
-
         <!-- BRAND -->
-
         <div class="footer-brand">
-
             <div class="footer-logo">
-
                 <img
                     src="images/logo.png"
                     alt="Krint Tufwale"
                 >
-
                 <span>
                     Krint Tufwale
                 </span>
-
             </div>
-
             <p class="footer-tagline">
                 Tufwale Nokusansamuka
             </p>
-
             <p class="footer-blurb">
                 Contemporary essentials inspired by the pace,
                 warmth and confidence of everyday life.
                 Designed in Zambia.
             </p>
-
         </div>
-
-
-
         <!-- EXPLORE -->
-
         <div class="footer-col">
-
             <h4>
                 Explore
             </h4>
-
             <ul>
-
                 <li>
                     <a href="index.html">
                         New
                     </a>
                 </li>
-
                 <li>
                     <a href="shop.html">
                         Shop
                     </a>
                 </li>
-
                 <li>
                     <a href="collections.html">
                         Collections
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         Journal
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         Our Story
                     </a>
                 </li>
-
             </ul>
-
         </div>
-
-
-
         <!-- HELP -->
-
         <div class="footer-col">
-
             <h4>
                 Help
             </h4>
-
             <ul>
-
                 <li>
                     <a href="#">
                         Shipping & Delivery
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         Returns & Exchanges
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         Size Guide
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         FAQs
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         Privacy Policy
                     </a>
                 </li>
-
             </ul>
-
         </div>
-
-
-
         <!-- CONTACT -->
-
         <div class="footer-col">
-
             <h4>
                 Contact
             </h4>
-
             <ul class="footer-contact">
-
                 <li>
                     Lusaka, Zambia
                 </li>
-
                 <li>
                     <a href="mailto:hello@krinttufwale.com">
                         hello@krinttufwale.com
                     </a>
                 </li>
-
                 <li>
                     <a href="tel:+260000000000">
                         +260 970 000 000
                     </a>
                 </li>
-
             </ul>
-
-
             <div class="footer-socials">
-
                 <a href="#">
                     IG
                 </a>
-
                 <a href="#">
                     FB
                 </a>
-
                 <a href="#">
                     TT
                 </a>
-
                 <a href="#">
                     X
                 </a>
-
             </div>
-
         </div>
-
-
-
         <!-- NEWSLETTER -->
-
         <div class="footer-newsletter">
-
             <h4>
                 Stay Connected
             </h4>
-
             <p>
                 Get early access to new drops,
                 journal entries and exclusive offers.
             </p>
-
             <form class="newsletter-form">
-
                 <input
                     type="email"
                     placeholder="Your email address"
                     required
                 >
-
                 <button type="submit">
                     Subscribe
                 </button>
-
             </form>
-
         </div>
-
     </div>
-
-
-
     <!-- FOOTER BOTTOM -->
-
     <div class="footer-bottom">
-
         <p>
             © 2026 Krint Tufwale.
             All rights reserved.
         </p>
-
         <p>
             Designed by
             <a href="#">
                 The Architect
             </a>
         </p>
-
     </div>
-
 </footer>
-
-
 <!-- =========================================
      JAVASCRIPT
-     (order matters: catalog → cart → site script)
 ========================================= -->
-
 <script src="config.js"></script>
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="auth.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>

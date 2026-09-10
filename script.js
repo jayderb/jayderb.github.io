@@ -32,6 +32,29 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 revealElements.forEach(el => revealObserver.observe(el));
 
+/* Authentication + the API base live in config.js/auth.js
+   (loaded before this file): JWT in sessionStorage,
+   Authorization: Bearer — see window.KTAuth. Add to Cart is
+   gated on sign-in: signed-out visitors go to login.html
+   (with a ?next= hop back). */
+
+function navigateTo(url) {
+    // Test seam — in the browser this is a plain navigation
+    if (typeof window.__ktTestNavigate === 'function') {
+        window.__ktTestNavigate(url);
+        return;
+    }
+    window.location.href = url;
+}
+
+function currentRelativeUrl() {
+    return location.pathname.split('/').pop() + location.search;
+}
+
+function requireLoginBeforeAction() {
+    navigateTo(`login.html?next=${encodeURIComponent(currentRelativeUrl())}`);
+}
+
 /* =========================================================
    3. CAMPAIGN BANNER — Optimized Parallax
    ========================================================= */
@@ -53,7 +76,6 @@ if (campaign) {
     const onScroll = () => {
         if (!ticking) {
             window.requestAnimationFrame(updateParallax);
-            ticking = true;
         }
     };
 
@@ -402,13 +424,303 @@ if (cartItemsEl && typeof Cart !== "undefined") {
 }
 
 
+/* CHECKOUT (cart.html) — demo stage. Places the order through
+   POST /api/orders (which re-prices everything server-side from
+   products-catalog), clears the bag and hops to the
+   confirmation page. Name/email are NOT asked for: they come
+   from the signed-in account (KTAuth) on the server. */
+const checkoutForm = document.getElementById("checkoutForm");
+
+if (checkoutForm && typeof Cart !== "undefined") {
+
+    const phoneInput = document.getElementById("checkoutPhone");
+    const addressInput = document.getElementById("checkoutAddress");
+    const checkoutStatus = checkoutForm.querySelector(".form-status");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    // Remind the user who is placing the order (name/email come
+    // from the account, so the form only asks for the rest)
+    function renderOrderingAs() {
+        const el = document.getElementById("cartOrderingAs");
+        if (!el) return;
+
+        const currentUser = (typeof KTAuth !== "undefined") ? KTAuth.getUser() : null;
+
+        if (currentUser && currentUser.name) {
+            el.textContent = `Ordering as ${currentUser.name} (${currentUser.email})`;
+            el.hidden = false;
+        } else {
+            el.hidden = true;
+        }
+    }
+    renderOrderingAs();
+    // Re-render when the session check resolves (or the user signs out)
+    document.addEventListener("kt:auth", renderOrderingAs);
+
+    function setCheckoutError(message) {
+        if (!checkoutStatus) return;
+        checkoutStatus.textContent = message;
+        checkoutStatus.style.color = message ? "red" : "";
+        checkoutStatus.hidden = !message;
+    }
+
+    function validateCheckout() {
+        let ok = true;
+
+        const phone = phoneInput.value.trim();
+        const address = addressInput.value.trim();
+
+        phoneInput.classList.remove("input-error");
+        addressInput.classList.remove("input-error");
+
+        // Same loose pattern the backend uses: +260..., 097..., etc.
+        if (!/^[+\d][\d\s\-()]{6,19}$/.test(phone)) {
+            phoneInput.classList.add("input-error");
+            ok = false;
+        }
+
+        if (address.length < 5 || address.length > 300) {
+            addressInput.classList.add("input-error");
+            ok = false;
+        }
+
+        if (!ok) {
+            setCheckoutError(
+                "Please enter a valid phone number and a delivery address (5+ characters)."
+            );
+        }
+        return ok;
+    }
+
+    checkoutForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        setCheckoutError("");
+
+        if (Cart.getCartCount() === 0) {
+            setCheckoutError("Your bag is empty.");
+            return;
+        }
+
+        if (typeof KTAuth === "undefined") {
+            setCheckoutError("Could not reach the sign-in service. Please refresh and try again.");
+            return;
+        }
+
+        // Session check first — expired tokens redirect cleanly
+        const currentUser = await KTAuth.ready;
+
+        if (!currentUser) {
+            requireLoginBeforeAction();
+            return;
+        }
+
+        if (!validateCheckout()) return;
+
+        // { id, qty } pairs only — the server prices the order
+        const items = Cart.getCartLines().map((line) => ({
+            id: line.product.id,
+            qty: line.qty,
+        }));
+
+        const payload = {
+            items,
+            phone: phoneInput.value.trim(),
+            deliveryAddress: addressInput.value.trim(),
+        };
+
+        checkoutBtn.disabled = true;
+
+        try {
+            const res = await KTAuth.authFetch(`${API_BASE}/orders`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+
+            // Session died mid-checkout — sign in, then come back
+            // to the bag to finish the order
+            if (res.status === 401) {
+                requireLoginBeforeAction();
+                return;
+            }
+
+            if (!res.ok) {
+                const detail = data.details
+                    ? Object.values(data.details)[0]
+                    : data.error;
+                setCheckoutError(detail || "Could not place your order. Please try again.");
+                return;
+            }
+
+            // Order placed — empty the bag and confirm
+            Cart.clear();
+            navigateTo(`order-confirmation.html?orderId=${data.orderId}`);
+
+        } catch (err) {
+            setCheckoutError("Network error. Is the backend running? Please try again.");
+        } finally {
+            checkoutBtn.disabled = false;
+        }
+    });
+}
+
+
+/* ORDER CONFIRMATION (order-confirmation.html?orderId=N) —
+   fetches the just-placed order via the authenticated endpoint
+   and renders it. Handles signed-out, not-found and backend
+   error states. */
+const orderContent = document.getElementById("orderContent");
+
+if (orderContent && typeof KTAuth !== "undefined") {
+
+    const stateEls = {
+        content: orderContent,
+        needsAuth: document.getElementById("orderNeedsAuth"),
+        notFound: document.getElementById("orderNotFound"),
+        error: document.getElementById("orderError"),
+    };
+
+    function showOrderState(name) {
+        Object.entries(stateEls).forEach(([key, el]) => {
+            if (el) el.hidden = key !== name;
+        });
+    }
+
+    function formatOrderDate(sqlDate) {
+        try {
+            // sqlite datetime('now') is 'YYYY-MM-DD HH:MM:SS' (UTC)
+            const date = new Date(String(sqlDate).replace(" ", "T") + "Z");
+            if (Number.isNaN(date.getTime())) return "";
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+            });
+        } catch (err) {
+            return "";
+        }
+    }
+
+    async function loadOrder() {
+
+        const orderId = Number(
+            new URLSearchParams(location.search).get("orderId")
+        );
+
+        if (!Number.isInteger(orderId) || orderId < 1) {
+            showOrderState("notFound");
+            return;
+        }
+
+        // Come back here after signing in
+        const signInLink = document.getElementById("orderSignInLink");
+        if (signInLink) {
+            signInLink.href = `login.html?next=${encodeURIComponent(
+                currentRelativeUrl()
+            )}`;
+        }
+
+        try {
+            const res = await KTAuth.authFetch(`${API_BASE}/orders/${orderId}`);
+
+            if (res.status === 401) {
+                showOrderState("needsAuth");
+                return;
+            }
+
+            if (res.status === 404) {
+                showOrderState("notFound");
+                return;
+            }
+
+            if (!res.ok) {
+                showOrderState("error");
+                return;
+            }
+
+            const { order } = await res.json();
+
+            document.getElementById("orderNumber").textContent =
+                `KT-${String(order.id).padStart(4, "0")}`;
+
+            document.getElementById("orderDate").textContent =
+                formatOrderDate(order.created_at);
+
+            document.getElementById("orderDelivery").textContent =
+                [order.delivery_address, order.phone]
+                    .filter(Boolean)
+                    .join(" · ");
+
+            document.getElementById("orderLines").innerHTML = order.items
+                .map(
+                    (item) => `
+                    <article class="cart-line confirmation-line">
+
+                        <div class="cart-line-info">
+
+                            <h3>${item.name}</h3>
+
+                            <p>
+                                Qty ${item.qty} × ${formatZMW(item.unitPriceZmw)}
+                            </p>
+
+                        </div>
+
+
+                        <div class="cart-line-side">
+
+                            <span class="cart-line-total">
+                                ${formatZMW(item.lineTotalZmw)}
+                            </span>
+
+                        </div>
+
+                    </article>
+                `
+                )
+                .join("");
+
+            document.getElementById("orderTotal").textContent =
+                formatZMW(order.total_zmw);
+
+            showOrderState("content");
+
+        } catch (err) {
+            showOrderState("error");
+        }
+    }
+
+    const retryBtn = document.getElementById("orderRetryBtn");
+    if (retryBtn) {
+        retryBtn.addEventListener("click", () => {
+            showOrderState("content"); // acts as a brief loading state
+            loadOrder();
+        });
+    }
+
+    loadOrder();
+}
+
+
 /* 5. ADD TO CART — adds to the real cart (see cart.js).
    Every button declares its product with data-product-id.
    On product.html the quantity comes from the #productQty
    selector; catalog cards always add 1. */
 document.querySelectorAll('.add-to-cart').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
         e.preventDefault();
+
+        // Wait for the session check, then require sign-in
+        const currentUser = (typeof KTAuth !== 'undefined')
+            ? await KTAuth.ready
+            : null;
+
+        if (!currentUser) {
+            requireLoginBeforeAction();
+            return;
+        }
 
         const productId = btn.dataset.productId;
 
