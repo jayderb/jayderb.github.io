@@ -18,7 +18,11 @@ app.use(
     cors({
         origin: (origin, callback) => {
             // Allow requests with no origin (e.g. curl, server-to-server, Postman)
-            if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+            if (process.env.NODE_ENV === 'production' && allowedOrigins.length === 0) {
+    throw new Error('ALLOWED_ORIGINS must be set in production');
+}
+// ...then in the origin check:
+    if (!origin || allowedOrigins.includes(origin)) {
                 return callback(null, true);
             }
             const err = new Error('Origin not allowed.');
