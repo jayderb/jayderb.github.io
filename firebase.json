@@ -1,18 +1,23 @@
 {
   "hosting": {
     "public": ".",
-   "ignore": [
-  "firebase.json",
-  "**/.*",
-  "**/node_modules/**",
-  "**/data/**",
-  "**/src/**",
-  "**/*.env",
-  ".github/**",
-  "package.json",
-  "package-lock.json"
-],
-   "headers": [
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/data/**",
+      "**/src/**",
+      "**/*.env",
+      "**/*.db",
+      "**/*.db-*",
+      "**/*.log",
+      "package.json",
+      "package-lock.json",
+      "skills-lock.json",
+      "serve.dev.js",
+      "README.md"
+    ],
+    "headers": [
       {
         "source": "**",
         "headers": [
