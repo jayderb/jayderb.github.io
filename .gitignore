@@ -28,7 +28,7 @@ npm-debug.log*
 .cache/
 data/
 
-  .firebase/
-  .claude/
-  .agents/
-  skills-lock.json
+.firebase/
+.claude/
+.agents/
+skills-lock.json
