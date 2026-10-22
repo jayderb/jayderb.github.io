@@ -47,6 +47,14 @@ function serveStatic(req, res) {
 
     if (urlPath === '/') urlPath = '/index.html';
 
+    // Never serve dotfiles, the database folder, backend code or dependencies,
+    // even locally. Normalise first so tricks like /a/../.env can't slip past.
+    const normalized = path.posix.normalize(urlPath);
+    if (/(^|\/)\./.test(normalized) || /^\/(data|src|node_modules)(\/|$)/.test(normalized)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    return res.end('Not found');
+    }
+
     const filePath = path.join(ROOT, path.normalize(urlPath));
 
     // Path traversal guard: never serve outside the repo root
@@ -107,7 +115,7 @@ const server = http.createServer((req, res) => {
     return serveStatic(req, res);
 });
 
-server.listen(WEB_PORT, '0.0.0.0', () => {
+server.listen(WEB_PORT, '127.0.0.1', () => {
     console.log(`Krint Tufwale web (static + /api proxy) on http://localhost:${WEB_PORT}`);
     console.log(`  -> API proxied to http://${API_HOST}:${API_PORT} (npm run dev)`);
 });
