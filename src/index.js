@@ -14,23 +14,19 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
     .map((origin) => origin.trim())
     .filter(Boolean);
 
-app.use(
-    cors({
-        origin: (origin, callback) => {
-            // Allow requests with no origin (e.g. curl, server-to-server, Postman)
-            if (process.env.NODE_ENV === 'production' && allowedOrigins.length === 0) {
+if (process.env.NODE_ENV === 'production' && allowedOrigins.length === 0) {
     throw new Error('ALLOWED_ORIGINS must be set in production');
 }
-// ...then in the origin check:
-    if (!origin || allowedOrigins.includes(origin)) {
-                return callback(null, true);
-            }
-            const err = new Error('Origin not allowed.');
-            err.status = 403;
-            return callback(err);
-         },
-    })
-);
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (curl, Postman, server-to-server)
+        if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+        const err = new Error('Origin not allowed.');
+        err.status = 403;
+        return callback(err);
+    },
+}));
 
 app.use(express.json({ limit: '100kb' }));
 
