@@ -1,1 +1,1 @@
-const API_BASE = 'https://q9bqt8rn-4000.uks1.devtunnels.ms/api'; 
+const API_BASE = 'https://jayderb-github-io.onrender.com/api/'; // deployed backend
