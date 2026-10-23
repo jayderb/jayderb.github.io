@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "krint-tufwale-backend",
   "version": "1.0.0",
-  "description": "Krint Tufwale \u2014 static storefront + Node/Express backend (contact, orders, auth).",
+  "description": "Krint Tufwale — static storefront + Node/Express backend (contact, orders, auth).",
   "main": "src/index.js",
   "type": "commonjs",
   "scripts": {
@@ -11,14 +11,16 @@
     "serve": "node src/index.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.0",
     "better-sqlite3": "^11.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.19.2",
     "express-rate-limit": "^7.4.0",
     "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^9.0.3",
-    "bcryptjs": "^3.0.0"
+    "nodemailer": "^10.2.1"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }
