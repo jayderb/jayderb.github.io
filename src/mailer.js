@@ -11,12 +11,11 @@ function escapeHtml(str = '') {
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Gmail App Password, not your regular password
-    },
+    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 10000,
 });
-
 async function sendContactNotification({ name, email, subject, message }) {
     const to = process.env.CONTACT_TO_EMAIL || process.env.EMAIL_USER;
 
