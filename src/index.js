@@ -8,6 +8,8 @@ const ordersRoute = require('./routes/orders');
 const authRoute = require('./routes/auth');
 
 const app = express();
+app.set('trust proxy', 1); // trust X-Forwarded-* headers (for rate limiting, etc.)
+app.disable('x-powered-by'); // don't reveal the backend framework
 const PORT = process.env.PORT || 4000;
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
     .split(',')
