@@ -103,4 +103,46 @@ async function sendOrderNotification(order) {
     });
 }
 
-module.exports = { sendContactNotification, sendOrderNotification };
+async function sendPasswordReset({ to, name, link }) {
+    const firstName = String(name || '').trim().split(/\s+/)[0] || 'there';
+
+    // Local testing aid: with email off and NOT in production, print the link
+    // so the flow can be tried without a mail server. Never logged in production.
+    if (emailDisabled && process.env.NODE_ENV !== 'production') {
+        console.log(`[dev] password reset link for ${to}: ${link}`);
+    }
+
+    const html = `
+        <div style="font-family:Arial,sans-serif;color:#171717;max-width:520px;font-size:14px;line-height:1.7">
+            <h2 style="font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:24px;margin:0 0 12px">
+                Reset your password
+            </h2>
+            <p>Hi ${escapeHtml(firstName)}, someone asked to reset the password for your Krint Tufwale account.</p>
+            <p style="margin:24px 0">
+                <a href="${link}" style="background:#171717;color:#F7F3EC;padding:14px 28px;text-decoration:none;letter-spacing:0.08em">
+                    Choose a new password
+                </a>
+            </p>
+            <p style="color:#555">The link works once and expires in an hour. If you didn't ask for this, ignore this email and your password stays exactly as it is.</p>
+        </div>
+    `;
+
+    const text = [
+        `Hi ${firstName},`,
+        '',
+        'Someone asked to reset the password for your Krint Tufwale account.',
+        `Choose a new password here: ${link}`,
+        '',
+        "The link works once and expires in an hour. If you didn't ask for this, ignore this email and your password stays as it is.",
+    ].join('\n');
+
+    await transporter.sendMail({
+        from: `"Krint Tufwale" <${process.env.EMAIL_USER}>`,
+        to,
+        subject: 'Reset your Krint Tufwale password',
+        html,
+        text,
+    });
+}
+
+module.exports = { sendContactNotification, sendOrderNotification, sendPasswordReset };

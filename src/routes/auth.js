@@ -14,7 +14,16 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const bcrypt = require('bcryptjs');
-const { createUser, getUserByEmail, getUserById } = require('../db/database');
+const crypto = require('crypto');
+const {
+    createUser,
+    getUserByEmail,
+    getUserById,
+    createPasswordReset,
+    getValidPasswordReset,
+    completePasswordReset,
+} = require('../db/database');
+const { sendPasswordReset } = require('../mailer');
 const { signToken } = require('../auth');
 const { requireAuth } = require('../middleware/requireAuth');
 
@@ -167,6 +176,107 @@ router.get('/auth/me', requireAuth, (req, res) => {
     }
 
     return res.json({ user: publicUser(user) });
+});
+
+/* ------------------------------------------------------------
+   Forgot / reset password
+   ------------------------------------------------------------ */
+
+// 5 reset emails per 15 min per IP, so nobody can use this to spam an inbox
+const forgotLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: { error: 'Too many requests. Please try again later.' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+const resetLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    message: { error: 'Too many attempts. Please try again later.' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+const sha256 = (value) => crypto.createHash('sha256').update(value).digest('hex');
+
+// The link's host comes from config, never from the request: a forged
+// Host header must not be able to point a reset link at someone else's site.
+function frontendUrl() {
+    const configured = process.env.FRONTEND_URL
+        || (process.env.ALLOWED_ORIGINS || '').split(',')[0]
+        || 'http://localhost:5500';
+    return configured.trim().replace(/\/$/, '');
+}
+
+const INVALID_LINK = 'This reset link is invalid or has expired. Please request a new one.';
+
+router.post('/auth/forgot-password', forgotLimiter, (req, res) => {
+    const email = (req.body.email || '').trim().toLowerCase();
+
+    if (!email || !EMAIL_REGEX.test(email)) {
+        return res.status(400).json({ error: 'Please enter a valid email address.' });
+    }
+
+    const user = getUserByEmail(email);
+
+    if (user) {
+        const token = crypto.randomBytes(32).toString('hex');
+        createPasswordReset(user.id, sha256(token));
+
+        const link = `${frontendUrl()}/reset-password.html#token=${token}`;
+
+        // Not awaited, so the response is just as fast whether or not the account exists
+        sendPasswordReset({ to: user.email, name: user.name, link })
+            .catch((err) => console.error('Password reset email failed:', err.message));
+    }
+
+    // Same answer either way: never reveal which emails have accounts
+    return res.json({
+        success: true,
+        message: 'If an account exists for that email, we have sent a link to reset the password.',
+    });
+});
+
+router.post('/auth/reset-password', resetLimiter, async (req, res) => {
+    const token = typeof req.body.token === 'string' ? req.body.token.trim() : '';
+    const password = typeof req.body.password === 'string' ? req.body.password : '';
+
+    if (password.length < 8) {
+        return res.status(400).json({
+            error: 'Validation failed',
+            details: { password: 'Password must be at least 8 characters.' },
+        });
+    }
+    if (password.length > 128) {
+        return res.status(400).json({
+            error: 'Validation failed',
+            details: { password: 'Password is too long (max 128 characters).' },
+        });
+    }
+
+    if (!/^[a-f0-9]{64}$/.test(token)) {
+        return res.status(400).json({ error: INVALID_LINK });
+    }
+
+    const reset = getValidPasswordReset(sha256(token));
+
+    if (!reset) {
+        return res.status(400).json({ error: INVALID_LINK });
+    }
+
+    let passwordHash;
+    try {
+        passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
+    } catch (err) {
+        console.error('Password hashing failed:', err);
+        return res.status(500).json({ error: 'Could not reset your password. Please try again.' });
+    }
+
+    completePasswordReset(reset.user_id, passwordHash);
+
+    return res.json({ success: true, message: 'Your password has been reset. You can now sign in.' });
 });
 
 module.exports = router;

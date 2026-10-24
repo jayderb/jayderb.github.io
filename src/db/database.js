@@ -137,6 +137,17 @@ function markEmailed(id) {
 function getAllMessages() {
     return db.prepare(`SELECT * FROM contact_messages ORDER BY created_at DESC`).all();
 }
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS password_resets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        token_hash TEXT NOT NULL UNIQUE,
+        expires_at TEXT NOT NULL,
+        used_at TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    )
+`);
 /* ------------------------------------------------------------
    Users
    ------------------------------------------------------------ */
@@ -218,6 +229,31 @@ function updateOrderStatus(id, status) {
     return true;
 }
 
+// Only the SHA-256 of the emailed token is stored, never the token itself
+function createPasswordReset(userId, tokenHash, minutes = 60) {
+    // Tidy up old rows, and make sure an account only ever has one live link
+    db.prepare(`DELETE FROM password_resets WHERE expires_at < datetime('now', '-1 day')`).run();
+    db.prepare(`UPDATE password_resets SET used_at = datetime('now') WHERE user_id = ? AND used_at IS NULL`).run(userId);
+    db.prepare(`
+        INSERT INTO password_resets (user_id, token_hash, expires_at)
+        VALUES (?, ?, datetime('now', ?))
+    `).run(userId, tokenHash, `+${minutes} minutes`);
+}
+
+function getValidPasswordReset(tokenHash) {
+    return db.prepare(`
+        SELECT id, user_id FROM password_resets
+        WHERE token_hash = ? AND used_at IS NULL AND expires_at > datetime('now')
+    `).get(tokenHash);
+}
+
+// Burn the link first, then change the password: if the second step ever
+// failed, the person just asks for a new link instead of a link staying live.
+function completePasswordReset(userId, passwordHash) {
+    db.prepare(`UPDATE password_resets SET used_at = datetime('now') WHERE user_id = ? AND used_at IS NULL`).run(userId);
+    db.prepare(`UPDATE users SET password_hash = ? WHERE id = ?`).run(passwordHash, userId);
+}
+
 module.exports = {
     db,
     insertMessage,
@@ -231,5 +267,8 @@ module.exports = {
     markOrderNotified,
     getUnnotifiedOrderIds,
     listOrders,
-    updateOrderStatus
+    updateOrderStatus,
+    createPasswordReset,
+    getValidPasswordReset,
+    completePasswordReset
 };
