@@ -79,32 +79,12 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
     const phone = (req.body.phone || '').trim();
     const deliveryAddress = (req.body.deliveryAddress || '').trim();
 
-    const errors = {};
-
-    // Phone + delivery address are required: payment and delivery
-    // are arranged with the customer using these details.
-    if (!phone) {
-        errors.phone = 'Phone number is required.';
-    } else if (!PHONE_REGEX.test(phone)) {
-        errors.phone = 'Please enter a valid phone number.';
-    }
-
-    if (!deliveryAddress) {
-        errors.deliveryAddress = 'Delivery address is required.';
-    } else if (deliveryAddress.length < 5 || deliveryAddress.length > 300) {
-        errors.deliveryAddress = 'Delivery address must be 5–300 characters.';
-    }
-
-    const { errors: itemErrors, items } = validateOrderItems(req.body.items);
+        const { errors: itemErrors, items } = validateOrderItems(req.body.items);
     Object.assign(errors, itemErrors);
 
-    notifySeller(orderId);   // not awaited: the customer shouldn't wait on Gmail
-
-    return res.status(201).json({
-        success: true,
-        orderId,
-        totalZmw,
-    });
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json({ error: 'Validation failed', details: errors });
+    }
 
     // Total is computed HERE, from the catalog — never from the client.
     // Name/email come from the signed-in session, not the request body.
@@ -126,6 +106,8 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
         console.error('Order insert failed:', err);
         return res.status(500).json({ error: 'Could not save your order. Please try again.' });
     }
+
+    notifySeller(orderId);   // not awaited: the customer shouldn't wait on Gmail
 
     return res.status(201).json({
         success: true,
