@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Orders | Krint Tufwale</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+<header class="admin-bar">
+    <div class="admin-brand">
+        <img src="images/logo.png" alt="">
+        <span>Krint Tufwale</span>
+        <small>Orders</small>
+    </div>
+    <div class="admin-bar-actions" id="adminActions" hidden>
+        <button type="button" class="admin-ghost-btn" id="adminRefresh">Refresh</button>
+        <button type="button" class="admin-ghost-btn" id="adminSignOut">Sign out</button>
+    </div>
+</header>
+
+<main class="admin-main">
+
+    <section class="admin-login" id="adminLogin">
+        <h1>Seller sign-in</h1>
+        <p class="form-status" id="adminLoginStatus" role="alert" hidden></p>
+        <form id="adminLoginForm" novalidate>
+            <div class="auth-field">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="auth-submit">Sign in</button>
+        </form>
+    </section>
+
+    <section class="admin-orders" id="adminOrders" hidden>
+        <div class="admin-toolbar">
+            <div class="admin-filters" id="adminFilters"></div>
+            <span class="admin-updated" id="adminUpdated"></span>
+        </div>
+        <p class="form-status" id="adminStatus" role="alert" hidden></p>
+        <div class="admin-list" id="adminList"></div>
+    </section>
+
+</main>
+
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
