@@ -58,8 +58,28 @@ function verifyToken(token) {
     }
 }
 
+const ADMIN_AUDIENCE = 'kt-admin';
+
+function signAdminToken() {
+    return jwt.sign({ sub: 'admin' }, JWT_SECRET, {
+        expiresIn: '8h',
+        audience: ADMIN_AUDIENCE,
+    });
+}
+
+function verifyAdminToken(token) {
+    try {
+        jwt.verify(token, JWT_SECRET, { audience: ADMIN_AUDIENCE, algorithms: ['HS256'] });
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
 module.exports = {
     signToken,
     verifyToken,
+    signAdminToken,
+    verifyAdminToken,
     TOKEN_TTL,
 };

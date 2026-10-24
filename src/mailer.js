@@ -55,7 +55,7 @@ function formatZMW(n) {
 function whatsappLink(phone) {
     let digits = String(phone || '').replace(/\D/g, '');
     if (digits.startsWith('0')) digits = '260' + digits.slice(1);
-    return digits.length >= 11 ? `https://wa.me/${+260761477964}` : null;
+    return digits.length >= 11 ? `https://wa.me/${digits}` : null;
 }
 
 async function sendOrderNotification(order) {
@@ -104,5 +104,3 @@ async function sendOrderNotification(order) {
 }
 
 module.exports = { sendContactNotification, sendOrderNotification };
-
-module.exports = { sendContactNotification };

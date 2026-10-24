@@ -205,6 +205,19 @@ function getOrder(id) {
 
     return { ...order, items: JSON.parse(items_json) };
 }
+
+function listOrders() {
+    const rows = db.prepare(`SELECT * FROM orders ORDER BY id DESC LIMIT 200`).all();
+    return rows.map(({ items_json, ...order }) => ({ ...order, items: JSON.parse(items_json) }));
+}
+
+function updateOrderStatus(id, status) {
+    const exists = db.prepare(`SELECT id FROM orders WHERE id = ?`).get(id);
+    if (!exists) return false;
+    db.prepare(`UPDATE orders SET status = ? WHERE id = ?`).run(status, id);
+    return true;
+}
+
 module.exports = {
     db,
     insertMessage,
