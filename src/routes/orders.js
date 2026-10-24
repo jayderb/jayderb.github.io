@@ -8,7 +8,7 @@
    recalculated server-side. Customer identity comes from the
    session, never from the request body.
    ============================================================ */
-
+const { notifySeller } = require('../notifications');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const { createOrder, getOrder } = require('../db/database');
@@ -99,6 +99,7 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
     Object.assign(errors, itemErrors);
 
     if (Object.keys(errors).length > 0) {
+        notifySeller(orderId);   // not awaited: the customer shouldn't wait on Gmail
         return res.status(400).json({ error: 'Validation failed', details: errors });
     }
 

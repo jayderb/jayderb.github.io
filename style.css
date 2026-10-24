@@ -4670,6 +4670,94 @@ padding-top:130px;
     color: rgba(255, 255, 255, 0.6);
 }
 
+/* Checkout form: sits inside the dark .cart-summary panel */
+
+.cart-ordering-as {
+    margin: 0 0 24px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+.checkout-field {
+    margin-bottom: 20px;
+}
+
+.checkout-field label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.checkout-field label small {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.checkout-field input,
+.checkout-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.04);
+    font-family: inherit;
+    font-size: 14px;
+    color: #F7F3EC;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.checkout-field textarea {
+    min-height: 88px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.checkout-field input::placeholder,
+.checkout-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.checkout-field input:focus,
+.checkout-field textarea:focus {
+    outline: none;
+    border-color: #F7F3EC;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(247, 243, 236, 0.12);
+}
+
+.checkout-field input.input-error,
+.checkout-field textarea.input-error {
+    border-color: #e57368;
+}
+
+.cart-summary .form-status {
+    padding: 12px 14px;
+    border-left: 2px solid #e57368;
+    background: rgba(229, 115, 104, 0.1);
+    color: #f1a59d;
+}
+
+.checkout-btn:hover:not(:disabled) {
+    background: transparent;
+    color: #F7F3EC;
+}
+
+/* The form makes the panel taller than a short screen, and a sticky
+   element taller than the viewport gets its bottom cut off. */
+@media (max-height: 820px) {
+    .cart-summary {
+        position: static;
+    }
+}
+
 .checkout-btn {
     display: block;
 
@@ -4842,6 +4930,199 @@ padding-top:130px;
         padding: 28px 22px;
     }
 
+}
+
+/* ============================================================
+   ORDER CONFIRMATION
+   ============================================================ */
+
+.confirmation-section {
+    display: flex;
+    justify-content: center;
+    padding: 110px 8% 140px;
+}
+
+.confirmation-card,
+.confirmation-state {
+    width: 100%;
+    max-width: 680px;
+}
+
+.confirmation-card {
+    padding: 56px;
+    background: #ffffff;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.confirmation-state {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.confirmation-title {
+    margin: 18px 0 20px;
+    font-family: "Times New Roman", serif;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #111111;
+}
+
+.confirmation-lede {
+    max-width: 480px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text-muted);
+}
+
+.confirmation-state .confirmation-lede {
+    margin: 0 auto 28px;
+}
+
+/* Order number / date / delivery */
+
+.order-meta {
+    margin: 36px 0 8px;
+    border-top: 1px solid var(--border);
+}
+
+.order-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.order-meta-label {
+    flex-shrink: 0;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #77736d;
+}
+
+.order-meta-value {
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: right;
+    color: #171717;
+    overflow-wrap: anywhere;
+}
+
+.order-meta-row:first-child .order-meta-value {
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+}
+
+/* Line items reuse .cart-line, minus the image column */
+
+.confirmation-line {
+    grid-template-columns: 1fr auto;
+    padding: 22px 0;
+}
+
+.confirmation-line:last-child {
+    border-bottom: none;
+}
+
+.order-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid #171717;
+}
+
+.order-total-row span:first-child {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55524d;
+}
+
+.order-total-value {
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    color: #171717;
+}
+
+/* Buttons */
+
+.confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 44px;
+}
+
+.confirmation-primary-btn,
+.confirmation-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px 34px;
+    border: 1px solid #171717;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.35s ease, color 0.35s ease;
+}
+
+.confirmation-primary-btn {
+    background: #171717;
+    color: #F7F3EC;
+}
+
+.confirmation-primary-btn:hover {
+    background: transparent;
+    color: #171717;
+}
+
+.confirmation-secondary-btn {
+    background: transparent;
+    color: #171717;
+}
+
+.confirmation-secondary-btn:hover {
+    background: #171717;
+    color: #F7F3EC;
+}
+
+@media (max-width: 640px) {
+    .confirmation-section {
+        padding: 60px 6% 90px;
+    }
+
+    .confirmation-card {
+        padding: 32px 22px;
+    }
+
+    .order-meta-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .order-meta-value {
+        text-align: left;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+    }
+
+    .confirmation-primary-btn,
+    .confirmation-secondary-btn {
+        width: 100%;
+    }
 }
 /* ============================================================
    17. AUTH — login.html / signup.html + navbar account state

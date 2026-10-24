@@ -83,6 +83,12 @@ try {
 } catch (err) {
     // Column already exists — nothing to do
 }
+for (const sql of [
+    'ALTER TABLE orders ADD COLUMN delivery_address TEXT',
+    'ALTER TABLE orders ADD COLUMN notified INTEGER NOT NULL DEFAULT 0',
+]) {
+    try { db.exec(sql); } catch (err) { /* column already exists */ }
+}
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -160,22 +166,33 @@ function getUserById(id) {
 
 // items is the server-verified snapshot:
 // [{ id, name, qty, unitPriceZmw, lineTotalZmw }]
-function createOrder({ customerName, email, phone, items, totalZmw, userId }) {
+function createOrder({ customerName, email, phone, deliveryAddress, items, totalZmw, userId }) {
     const stmt = db.prepare(`
-        INSERT INTO orders (customer_name, email, phone, items_json, total_zmw, user_id)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO orders (customer_name, email, phone, delivery_address, items_json, total_zmw, user_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
 
     const result = stmt.run(
         customerName,
         email,
         phone || null,
+        deliveryAddress || null,
         JSON.stringify(items),
         totalZmw,
         userId
     );
 
     return result.lastInsertRowid;
+}
+
+function markOrderNotified(id) {
+    db.prepare(`UPDATE orders SET notified = 1 WHERE id = ?`).run(id);
+}
+
+function getUnnotifiedOrderIds() {
+    return db.prepare(`SELECT id FROM orders WHERE notified = 0 ORDER BY id`)
+        .all()
+        .map((row) => row.id);
 }
 
 function getOrder(id) {

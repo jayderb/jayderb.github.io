@@ -458,11 +458,10 @@ if (checkoutForm && typeof Cart !== "undefined") {
     document.addEventListener("kt:auth", renderOrderingAs);
 
     function setCheckoutError(message) {
-        if (!checkoutStatus) return;
-        checkoutStatus.textContent = message;
-        checkoutStatus.style.color = message ? "red" : "";
-        checkoutStatus.hidden = !message;
-    }
+    if (!checkoutStatus) return;
+    checkoutStatus.textContent = message;
+    checkoutStatus.hidden = !message;
+}
 
     function validateCheckout() {
         let ok = true;

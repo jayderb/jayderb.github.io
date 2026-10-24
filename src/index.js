@@ -6,6 +6,7 @@ const cors = require('cors');
 const contactRoute = require('./routes/contact');
 const ordersRoute = require('./routes/orders');
 const authRoute = require('./routes/auth');
+const { retryUnnotifiedOrders } = require('./notifications');
 
 const app = express();
 app.set('trust proxy', 1); // trust X-Forwarded-* headers (for rate limiting, etc.)
@@ -47,4 +48,6 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
     console.log(`Krint Tufwale backend running on port ${PORT}`);
+    retryUnnotifiedOrders();                              // catch anything missed while offline
+    setInterval(retryUnnotifiedOrders, 10 * 60 * 1000);   // and retry every 10 minutes
 });

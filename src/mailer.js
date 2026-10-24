@@ -36,5 +36,62 @@ async function sendContactNotification({ name, email, subject, message }) {
         html,
     });
 }
+function formatZMW(n) {
+    return `ZMW ${Number(n).toLocaleString('en-US')}`;
+}
+
+// 0977123456 or +260 977 123 456 -> https://wa.me/260977123456
+function whatsappLink(phone) {
+    let digits = String(phone || '').replace(/\D/g, '');
+    if (digits.startsWith('0')) digits = '260' + digits.slice(1);
+    return digits.length >= 11 ? `https://wa.me/${+260761477964}` : null;
+}
+
+async function sendOrderNotification(order) {
+    const to = process.env.ORDER_NOTIFY_EMAIL
+        || process.env.CONTACT_TO_EMAIL
+        || process.env.EMAIL_USER;
+    const ref = `KT-${String(order.id).padStart(4, '0')}`;
+    const wa = whatsappLink(order.phone);
+
+    const rows = order.items.map((i) => `
+        <tr>
+            <td style="padding:6px 12px 6px 0">${escapeHtml(i.name)}</td>
+            <td style="padding:6px 12px">${i.qty} × ${formatZMW(i.unitPriceZmw)}</td>
+            <td style="padding:6px 0;text-align:right">${formatZMW(i.lineTotalZmw)}</td>
+        </tr>`).join('');
+
+    const html = `
+        <h2 style="margin:0 0 4px">New order ${ref}</h2>
+        <p style="margin:0 0 20px;color:#666">
+            Payment hasn't been collected yet. Contact the customer to arrange
+            MTN / Airtel mobile money and delivery.
+        </p>
+        <p>
+            <strong>Customer:</strong> ${escapeHtml(order.customer_name)}<br>
+            <strong>Email:</strong> ${escapeHtml(order.email)}<br>
+            <strong>Phone:</strong> ${escapeHtml(order.phone || '—')}${wa ? ` (<a href="${wa}">WhatsApp</a>)` : ''}<br>
+            <strong>Deliver to:</strong> ${escapeHtml(order.delivery_address || '—').replace(/\n/g, '<br>')}
+        </p>
+        <table style="border-collapse:collapse;margin:16px 0">
+            ${rows}
+            <tr>
+                <td colspan="2" style="padding:10px 12px 0 0;border-top:1px solid #ccc"><strong>Total</strong></td>
+                <td style="padding:10px 0 0;border-top:1px solid #ccc;text-align:right"><strong>${formatZMW(order.total_zmw)}</strong></td>
+            </tr>
+        </table>
+        <p style="color:#666">Placed ${escapeHtml(order.created_at)} UTC. Reply to this email to reach the customer directly.</p>
+    `;
+
+    await transporter.sendMail({
+        from: `"Krint Tufwale Orders" <${process.env.EMAIL_USER}>`,
+        to,
+        replyTo: order.email,
+        subject: `New order ${ref} — ${formatZMW(order.total_zmw)}`,
+        html,
+    });
+}
+
+module.exports = { sendContactNotification, sendOrderNotification };
 
 module.exports = { sendContactNotification };
