@@ -79,7 +79,23 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
     const phone = (req.body.phone || '').trim();
     const deliveryAddress = (req.body.deliveryAddress || '').trim();
 
-        const { errors: itemErrors, items } = validateOrderItems(req.body.items);
+    const errors = {};
+
+    // Phone + delivery address are required: payment and delivery
+    // are arranged with the customer using these details.
+    if (!phone) {
+        errors.phone = 'Phone number is required.';
+    } else if (!PHONE_REGEX.test(phone)) {
+        errors.phone = 'Please enter a valid phone number.';
+    }
+
+    if (!deliveryAddress) {
+        errors.deliveryAddress = 'Delivery address is required.';
+    } else if (deliveryAddress.length < 5 || deliveryAddress.length > 300) {
+        errors.deliveryAddress = 'Delivery address must be 5–300 characters.';
+    }
+
+    const { errors: itemErrors, items } = validateOrderItems(req.body.items);
     Object.assign(errors, itemErrors);
 
     if (Object.keys(errors).length > 0) {
