@@ -9,6 +9,7 @@
    ============================================================ */
 
 const { verifyToken } = require('../auth');
+const { getUserById } = require('../db/database');
 
 function requireAuth(req, res, next) {
     const header = req.headers.authorization || '';
@@ -23,7 +24,15 @@ function requireAuth(req, res, next) {
         return res.status(401).json({ error: 'Your session has expired. Please sign in again.' });
     }
 
-    req.user = user;
+    // The database can be reset (free hosting) or an account deleted while a
+    // token is still valid, so confirm this person still exists.
+    const row = getUserById(user.id);
+
+    if (!row || row.email !== user.email) {
+        return res.status(401).json({ error: 'Your session has expired. Please sign in again.' });
+    }
+
+    req.user = { id: row.id, name: row.name, email: row.email };
     next();
 }
 

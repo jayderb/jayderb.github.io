@@ -9,13 +9,24 @@ function escapeHtml(str = '') {
         .replace(/'/g, '&#039;');
 }
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-    connectionTimeout: 8000,
-    greetingTimeout: 8000,
-    socketTimeout: 10000,
-});
+// Free Render instances block SMTP, so email can be switched off with EMAIL_DISABLED=true
+const emailDisabled = process.env.EMAIL_DISABLED === 'true';
+
+const transporter = emailDisabled
+    ? {
+        // Same shape as nodemailer's transporter. Logs the subject only, so no
+        // customer addresses end up in the hosting logs.
+        sendMail: async (message) => {
+            console.log(`[email disabled] skipped: ${message.subject}`);
+        },
+    }
+    : nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
+    });
 async function sendContactNotification({ name, email, subject, message }) {
     const to = process.env.CONTACT_TO_EMAIL || process.env.EMAIL_USER;
 
