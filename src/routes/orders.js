@@ -98,10 +98,13 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
     const { errors: itemErrors, items } = validateOrderItems(req.body.items);
     Object.assign(errors, itemErrors);
 
-    if (Object.keys(errors).length > 0) {
-        notifySeller(orderId);   // not awaited: the customer shouldn't wait on Gmail
-        return res.status(400).json({ error: 'Validation failed', details: errors });
-    }
+    notifySeller(orderId);   // not awaited: the customer shouldn't wait on Gmail
+
+    return res.status(201).json({
+        success: true,
+        orderId,
+        totalZmw,
+    });
 
     // Total is computed HERE, from the catalog — never from the client.
     // Name/email come from the signed-in session, not the request body.

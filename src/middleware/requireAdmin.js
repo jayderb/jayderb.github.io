@@ -1,4 +1,4 @@
-const { verifyAdminToken } = require('../auth');
+const { verifyAdminToken } = require('../../auth');
 
 function requireAdmin(req, res, next) {
     const header = req.headers.authorization || '';

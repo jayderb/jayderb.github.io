@@ -227,5 +227,9 @@ module.exports = {
     getUserByEmail,
     getUserById,
     createOrder,
-    getOrder
+    getOrder,
+    markOrderNotified,
+    getUnnotifiedOrderIds,
+    listOrders,
+    updateOrderStatus
 };

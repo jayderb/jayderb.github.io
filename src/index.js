@@ -7,7 +7,7 @@ const contactRoute = require('./routes/contact');
 const ordersRoute = require('./routes/orders');
 const authRoute = require('./routes/auth');
 const { retryUnnotifiedOrders } = require('./notifications');
-
+const adminRoute = require('./routes/admin');
 const app = express();
 app.set('trust proxy', 1); // trust X-Forwarded-* headers (for rate limiting, etc.)
 app.disable('x-powered-by'); // don't reveal the backend framework
@@ -40,6 +40,7 @@ app.get('/health', (req, res) => {
 app.use('/api', authRoute);
 app.use('/api', contactRoute);
 app.use('/api', ordersRoute);
+app.use('/api', adminRoute);
 // Fallback error handler (e.g. CORS rejection, JSON parse errors)
 app.use((err, req, res, next) => {
     console.error(err);
