@@ -192,6 +192,37 @@ if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
 }
 
 
+/* HOME FEATURED PRODUCTS — uses the canonical catalogue.
+   Cards link to the existing product detail page; no cart or
+   authentication behaviour is changed here. */
+const homeFeaturedGrid = document.getElementById("homeFeaturedGrid");
+
+if (homeFeaturedGrid && typeof KT_PRODUCTS !== "undefined") {
+    const featuredProducts = KT_PRODUCTS
+        .slice()
+        .sort((a, b) => a.order - b.order)
+        .slice(0, 4);
+
+    homeFeaturedGrid.innerHTML = featuredProducts.map(product => `
+        <article class="home-product-card">
+            <a class="home-product-image" href="product.html?id=${product.id}" aria-label="View ${product.name}">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                ${product.badge ? `<span class="home-product-badge">${product.badge}</span>` : ""}
+            </a>
+            <div class="home-product-info">
+                <div>
+                    <h3>${product.name}</h3>
+                    <p>${product.fit}</p>
+                </div>
+                <span>${formatZMW(product.price)}</span>
+            </div>
+            <a class="home-product-link" href="product.html?id=${product.id}">
+                View Piece <span aria-hidden="true">→</span>
+            </a>
+        </article>
+    `).join("");
+}
+
 /* PRODUCT DETAIL (product.html) — reads ?id= and renders
    that piece from products.js */
 const productDetail = document.getElementById("productDetail");
