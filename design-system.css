@@ -1,0 +1,168 @@
+/* ============================================================
+   KRINT TUFWale — DESIGN SYSTEM FOUNDATION
+   Layer 1 / Frontend-only foundation
+
+   IMPORTANT:
+   - Opt-in styles only. Existing page selectors and business
+     logic are intentionally untouched.
+   - This file is safe to introduce before migrating pages.
+   - Link it after style.css when a page is ready to adopt it.
+   - Do not use these styles to replace existing JS hooks,
+     IDs, data attributes, form names or API contracts.
+   ============================================================ */
+
+:root {
+    /* Brand palette — derived from the existing storefront */
+    --kt-color-ink: #1e1e1e;
+    --kt-color-paper: #f7f3ec;
+    --kt-color-surface: #fcfaf6;
+    --kt-color-muted: #6d6962;
+    --kt-color-accent: #a87443;
+    --kt-color-olive: #888a63;
+    --kt-color-border: rgba(30, 30, 30, 0.12);
+    --kt-color-border-strong: rgba(30, 30, 30, 0.22);
+    --kt-color-success: #356b4b;
+    --kt-color-danger: #a33d32;
+
+    /* Typography */
+    --kt-font-body: Arial, Helvetica, sans-serif;
+    --kt-font-editorial: Georgia, "Times New Roman", serif;
+    --kt-text-xs: 0.75rem;
+    --kt-text-sm: 0.875rem;
+    --kt-text-base: 1rem;
+    --kt-text-lg: 1.125rem;
+
+    /* Layout */
+    --kt-content-width: 1200px;
+    --kt-page-gutter: clamp(1.125rem, 5vw, 5rem);
+    --kt-section-space: clamp(3.5rem, 8vw, 7rem);
+    --kt-grid-gap: clamp(1rem, 2.4vw, 2rem);
+
+    /* Shape and motion */
+    --kt-radius-sm: 0.25rem;
+    --kt-radius-md: 0.75rem;
+    --kt-radius-lg: 1.25rem;
+    --kt-radius-pill: 999px;
+    --kt-shadow-soft: 0 12px 36px rgba(30, 30, 30, 0.07);
+    --kt-motion-fast: 160ms ease;
+    --kt-motion-standard: 280ms ease;
+
+    /* Layering */
+    --kt-z-header: 100;
+    --kt-z-overlay: 500;
+    --kt-z-modal: 1000;
+}
+
+/* Opt-in layout primitives */
+.kt-container {
+    width: min(
+        calc(100% - (var(--kt-page-gutter) * 2)),
+        var(--kt-content-width)
+    );
+    margin-inline: auto;
+}
+
+.kt-section {
+    padding-block: var(--kt-section-space);
+}
+
+.kt-eyebrow {
+    display: block;
+    color: var(--kt-color-muted);
+    font-family: var(--kt-font-body);
+    font-size: var(--kt-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.kt-heading {
+    color: var(--kt-color-ink);
+    font-family: var(--kt-font-editorial);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+}
+
+.kt-body-copy {
+    color: var(--kt-color-muted);
+    font-family: var(--kt-font-body);
+    font-size: var(--kt-text-base);
+    line-height: 1.75;
+}
+
+.kt-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--kt-radius-pill);
+    background: var(--kt-color-ink);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--kt-text-sm);
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background-color var(--kt-motion-fast),
+        border-color var(--kt-motion-fast),
+        color var(--kt-motion-fast),
+        transform var(--kt-motion-fast);
+}
+
+.kt-button:hover {
+    background: #353535;
+    transform: translateY(-1px);
+}
+
+.kt-button:disabled,
+.kt-button[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+}
+
+.kt-button--secondary {
+    border-color: var(--kt-color-border-strong);
+    background: transparent;
+    color: var(--kt-color-ink);
+}
+
+.kt-button--secondary:hover {
+    border-color: var(--kt-color-ink);
+    background: rgba(30, 30, 30, 0.04);
+    color: var(--kt-color-ink);
+}
+
+.kt-focusable:focus-visible,
+.kt-button:focus-visible {
+    outline: 3px solid var(--kt-color-accent);
+    outline-offset: 3px;
+}
+
+.kt-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kt-button {
+        transition: none;
+    }
+
+    .kt-button:hover {
+        transform: none;
+    }
+}
