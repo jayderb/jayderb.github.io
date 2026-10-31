@@ -1827,3 +1827,30 @@ footer {
 .detail-add-btn:disabled { opacity:.45; cursor:not-allowed; }
 .cart-variant-details, .admin-line-variants { color:var(--kt-color-muted); font-size:.75rem; }
 .admin-line-variants { display:block; margin-top:4px; }
+
+/* Product editorial panel — restore contrast on the warm sand surface. */
+.products-editorial-content {
+    color: #29251f;
+}
+
+.products-editorial-content .section-tag {
+    color: #8b6748;
+}
+
+.products-editorial-content h2 {
+    color: #29251f;
+}
+
+.products-editorial-content p {
+    color: #51483f;
+}
+
+.products-editorial-content .text-btn {
+    color: #765033;
+    border-color: #9b795b;
+}
+
+.products-editorial-content .text-btn:hover {
+    color: #3b2c20;
+    border-color: #3b2c20;
+}
