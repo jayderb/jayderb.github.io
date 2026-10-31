@@ -8,46 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Krint Tufwale Clothing | The Collection </title>
+    <link rel="stylesheet" href="storefront-redesign.css">
 </head>
 <body>
-    <header>
-        <section class="navbar">
-           <div class="brand">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Krint Tufwale">
-                </a>
-            </div>
-            <div class="brand-name">
-                <span>Krint Tufwale</span>
-                 <small>Tufwale Nokusansamuka</small>
-            </div>
-           </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">New</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="journal.html">Journal</a></li>
-                <li><a href="our-story.html">Our Story</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-
-    <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-        <div class="icons">
-            <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></a>
-
-            <a href="cart.html" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><span class="cart-count"></span></a>
-
-            <a href="#" aria-label="User account"><i class="fa-solid fa-user" aria-hidden="true"></i></a>
-        </div>
-    </section>
-    </header>
+    <div data-kt-header></div>
     
     <main>
         <section class="hero">
@@ -77,6 +41,21 @@ warmth and confidence of your everyday smile.
                 <img src="./images/banner.jpg" fetchpriority="high" width="1200" height="600" alt="A model wearing a polished outfit stands in a relaxed pose in a bright studio with soft natural light. The mood is calm, confident, and contemporary.">
             </div>
     </section>
+
+<section class="latest home-featured" aria-labelledby="homeFeaturedTitle">
+    <div class="latest-header">
+        <div>
+            <p class="latest-label">A CONSIDERED SELECTION</p>
+            <h2 id="homeFeaturedTitle">Selected Pieces</h2>
+        </div>
+        <a href="shop.html" class="latest-shop">View All Pieces <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="home-featured-grid" id="homeFeaturedGrid" aria-live="polite">
+        <p class="grid-fallback">Explore the full collection in the <a href="shop.html">shop</a>.</p>
+    </div>
+</section>
+
       <section class="campaign">
 
     <div class="campaign-overlay reveal">
@@ -309,7 +288,8 @@ warmth and confidence of your everyday smile.
     <p>Designed by <a href="">The Architect</a></p>
   </div>
 </footer>
-<script src="config.js"></script>
+<script src="header.js"></script>
+    <script src="config.js"></script>
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="auth.js"></script>

@@ -15,6 +15,7 @@
 
     <title>Piece | Krint Tufwale</title>
 
+    <link rel="stylesheet" href="storefront-redesign.css">
 </head>
 
 
@@ -25,119 +26,7 @@
      NAVIGATION
 ===================================================== -->
 
-<header>
-
-    <section class="navbar">
-
-        <div class="brand">
-
-            <div class="logo">
-
-                <a href="index.html">
-
-                    <img
-                        src="images/logo.png"
-                        alt="Krint Tufwale"
-                    >
-
-                </a>
-
-            </div>
-
-
-            <div class="brand-name">
-
-                <span>
-                    Krint Tufwale
-                </span>
-
-                <small>
-                    Tufwale Nokusansamuka
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <nav>
-
-            <ul>
-
-                <li>
-                    <a href="index.html">
-                        Home
-                     </a>
-                </li>
-
-                <li><a href="shop.html" class="active">New</a></li>
-
-                <li>
-                    <a href="collections.html">
-                        Collections
-                    </a>
-                </li>
-
-                <li>
-                    <a href="shop.html">
-                        Shop
-                    </a>
-                </li>
-
-                <li>
-                    <a href="journal.html">
-                        Journal
-                    </a>
-                </li>
-
-                <li>
-                    <a href="our-story.html">
-                        Our Story
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-
-
-
-        <div class="icons">
-
-            <a
-                href="#"
-                aria-label="Search"
-            >
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-
-
-             <a
-                href="cart.html"
-                aria-label="Shopping bag"
-            >
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span class="cart-count"></span>
-            </a>
-
-            <a
-                href="#"
-                aria-label="Account"
-            >
-                <i class="fa-solid fa-user"></i>
-            </a>
-
-        </div>
-
-    </section>
-
-</header>
+<div data-kt-header></div>
 
 
 
@@ -217,6 +106,18 @@
             >
             </span>
             
+            <div class="product-variant-options" id="productVariants" aria-live="polite">
+                <fieldset class="variant-group" id="sizeVariantGroup">
+                    <legend>Size <span id="selectedSizeLabel"></span></legend>
+                    <div class="variant-size-options" id="productSizes"></div>
+                </fieldset>
+                <fieldset class="variant-group" id="colorVariantGroup">
+                    <legend>Colour <span id="selectedColorLabel"></span></legend>
+                    <div class="variant-color-options" id="productColors"></div>
+                </fieldset>
+                <p class="variant-selection-hint" id="variantSelectionHint">Choose your size and colour to continue.</p>
+            </div>
+
             <div class="product-detail-purchase">
 
                  <!-- QUANTITY SELECTOR -->
@@ -634,7 +535,8 @@
      (order matters: catalog → cart → site script)
 ===================================================== -->
 
-<script src="config.js"></script>
+<script src="header.js"></script>
+    <script src="config.js"></script>
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="auth.js"></script>

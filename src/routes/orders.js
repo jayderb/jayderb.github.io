@@ -47,6 +47,8 @@ function validateOrderItems(rawItems) {
     for (const raw of rawItems) {
         const product = catalog.getProductById(raw && raw.id);
         const qty = Number(raw && raw.qty);
+        const size = raw && typeof raw.size === "string" ? raw.size : "";
+        const color = raw && typeof raw.color === "string" ? raw.color : "";
 
         if (!product) {
             errors.items = `Unknown product: ${(raw && raw.id) || '(missing id)'}`;
@@ -57,7 +59,16 @@ function validateOrderItems(rawItems) {
             break;
         }
 
-        const existing = items.find((item) => item.id === product.id);
+        if (!product.sizes.includes(size)) {
+            errors.items = `Please choose a valid size for ${product.name}.`;
+            break;
+        }
+        if (!product.colors.includes(color)) {
+            errors.items = `Please choose a valid colour for ${product.name}.`;
+            break;
+        }
+
+        const existing = items.find((item) => item.id === product.id && item.size === size && item.color === color);
         if (existing) {
             existing.qty += qty;
             existing.lineTotalZmw = existing.unitPriceZmw * existing.qty;
@@ -65,6 +76,8 @@ function validateOrderItems(rawItems) {
             items.push({
                 id: product.id,
                 name: product.name,
+                size,
+                color,
                 qty,
                 unitPriceZmw: product.priceZmw,
                 lineTotalZmw: product.priceZmw * qty,

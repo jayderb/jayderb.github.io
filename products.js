@@ -15,6 +15,8 @@
 const KT_PRODUCTS = [
     {
         id: "cotton-overshirt",
+        sizes: ["S","M","L","XL"],
+        colors: ["Cream","Green","Black"],
         name: "Cotton Overshirt",
         category: "shirts",
         price: 1250,
@@ -25,6 +27,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "straight-leg-trouser",
+        sizes: ["S","M","L","XL"],
+        colors: ["Black","Brown","Grey"],
         name: "Straight Leg Trouser",
         category: "trousers",
         price: 980,
@@ -35,6 +39,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "classic-cotton-shirt",
+        sizes: ["S","M","L","XL"],
+        colors: ["Cream","Black","Green"],
         name: "Classic Cotton Shirt",
         category: "shirts",
         price: 1100,
@@ -45,6 +51,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "fine-knit-polo",
+        sizes: ["S","M","L","XL"],
+        colors: ["Black","Cream","Brown"],
         name: "Fine Knit Polo",
         category: "knitwear",
         price: 850,
@@ -55,6 +63,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "structured-jacket",
+        sizes: ["S","M","L","XL"],
+        colors: ["Black","Brown","Grey"],
         name: "Structured Jacket",
         category: "outerwear",
         price: 1850,
@@ -65,6 +75,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "everyday-polo",
+        sizes: ["S","M","L","XL"],
+        colors: ["Black","Cream","Green"],
         name: "Everyday Polo",
         category: "shirts",
         price: 650,
@@ -75,6 +87,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "leather-belt",
+        sizes: ["One Size"],
+        colors: ["Black","Brown"],
         name: "Leather Belt",
         category: "accessories",
         price: 480,
@@ -85,6 +99,8 @@ const KT_PRODUCTS = [
     },
     {
         id: "relaxed-pleated-trouser",
+        sizes: ["S","M","L","XL"],
+        colors: ["Black","Grey","Brown"],
         name: "Relaxed Pleated Trouser",
         category: "trousers",
         price: 1150,

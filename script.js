@@ -179,7 +179,7 @@ if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
                             data-product-id="${product.id}"
                             aria-label="Add ${product.name} to cart"
                         >
-                            Add to Cart
+                            Choose Options
                         </button>
 
                     </div>
@@ -191,6 +191,37 @@ if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
         .join("");
 }
 
+
+/* HOME FEATURED PRODUCTS — uses the canonical catalogue.
+   Cards link to the existing product detail page; no cart or
+   authentication behaviour is changed here. */
+const homeFeaturedGrid = document.getElementById("homeFeaturedGrid");
+
+if (homeFeaturedGrid && typeof KT_PRODUCTS !== "undefined") {
+    const featuredProducts = KT_PRODUCTS
+        .slice()
+        .sort((a, b) => a.order - b.order)
+        .slice(0, 4);
+
+    homeFeaturedGrid.innerHTML = featuredProducts.map(product => `
+        <article class="home-product-card">
+            <a class="home-product-image" href="product.html?id=${product.id}" aria-label="View ${product.name}">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                ${product.badge ? `<span class="home-product-badge">${product.badge}</span>` : ""}
+            </a>
+            <div class="home-product-info">
+                <div>
+                    <h3>${product.name}</h3>
+                    <p>${product.fit}</p>
+                </div>
+                <span>${formatZMW(product.price)}</span>
+            </div>
+            <a class="home-product-link" href="product.html?id=${product.id}">
+                View Piece <span aria-hidden="true">→</span>
+            </a>
+        </article>
+    `).join("");
+}
 
 /* PRODUCT DETAIL (product.html) — reads ?id= and renders
    that piece from products.js */
@@ -227,9 +258,62 @@ if (productDetail && typeof KT_PRODUCTS !== "undefined") {
         document.getElementById("productPrice").textContent =
             formatZMW(product.price);
 
-        document.getElementById("detailAddToCart").dataset.productId =
-            product.id;
+        const sizeOptions = document.getElementById("productSizes");
+        const colorOptions = document.getElementById("productColors");
+        const sizeGroup = document.getElementById("sizeVariantGroup");
+        const colorGroup = document.getElementById("colorVariantGroup");
+        const sizeLabel = document.getElementById("selectedSizeLabel");
+        const colorLabel = document.getElementById("selectedColorLabel");
+        const variantHint = document.getElementById("variantSelectionHint");
+        const detailButton = document.getElementById("detailAddToCart");
+        let selectedSize = null;
+        let selectedColor = null;
 
+        sizeOptions.innerHTML = (product.sizes || []).map((size) =>
+            '<button type="button" class="variant-size-btn" data-size="' + size + '" aria-pressed="false">' + size + '</button>'
+        ).join("");
+
+        const swatches = { Black: "#171717", Cream: "#e8dfcf", Brown: "#79543a", Grey: "#858585", Green: "#536b4d" };
+        colorOptions.innerHTML = (product.colors || []).map((color) =>
+            '<button type="button" class="variant-color-btn" data-color="' + color + '" aria-label="' + color + '" aria-pressed="false" title="' + color + '"><span style="--swatch-color:' + (swatches[color] || "#ccc") + '"></span><small>' + color + '</small></button>'
+        ).join("");
+
+        if (product.sizes && product.sizes.length === 1 && product.sizes[0] === "One Size") {
+            selectedSize = "One Size";
+            sizeLabel.textContent = "— One Size";
+            sizeOptions.querySelector("button").setAttribute("aria-pressed", "true");
+        }
+
+        sizeOptions.addEventListener("click", (event) => {
+            const choice = event.target.closest("[data-size]");
+            if (!choice) return;
+            selectedSize = choice.dataset.size;
+            sizeOptions.querySelectorAll("[data-size]").forEach((button) => button.setAttribute("aria-pressed", String(button === choice)));
+            sizeLabel.textContent = "— " + selectedSize;
+            updateVariantHint();
+        });
+
+        colorOptions.addEventListener("click", (event) => {
+            const choice = event.target.closest("[data-color]");
+            if (!choice) return;
+            selectedColor = choice.dataset.color;
+            colorOptions.querySelectorAll("[data-color]").forEach((button) => button.setAttribute("aria-pressed", String(button === choice)));
+            colorLabel.textContent = "— " + selectedColor;
+            updateVariantHint();
+        });
+
+        function updateVariantHint() {
+            const complete = Boolean(selectedSize && selectedColor);
+            variantHint.textContent = complete ? selectedSize + " · " + selectedColor + " selected." : "Choose your size and colour to continue.";
+            detailButton.disabled = !complete;
+            detailButton.dataset.variantSize = selectedSize || "";
+            detailButton.dataset.variantColor = selectedColor || "";
+        }
+
+        sizeGroup.hidden = !product.sizes || !product.sizes.length;
+        colorGroup.hidden = !product.colors || !product.colors.length;
+        detailButton.dataset.productId = product.id;
+        updateVariantHint();
         productDetail.hidden = false;
 
     } else if (notFound) {
@@ -267,6 +351,12 @@ if (productDetail && typeof KT_PRODUCTS !== "undefined") {
    subtotal from cart.js */
 const cartItemsEl = document.getElementById("cartItems");
 
+function escapeCartText(value) {
+    return String(value || "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+    })[character]);
+}
+
 function renderCartPage() {
 
     if (!cartItemsEl || typeof Cart === "undefined") return;
@@ -286,9 +376,9 @@ function renderCartPage() {
     if (summary) summary.hidden = false;
     if (emptyState) emptyState.hidden = true;
 
-    cartItemsEl.innerHTML = lines.map(({ product, qty, lineTotal }) => `
+    cartItemsEl.innerHTML = lines.map(({ product, size, color, lineKey, qty, lineTotal }) => `
 
-        <article class="cart-line" data-id="${product.id}">
+        <article class="cart-line" data-id="${product.id}" data-line-key="${lineKey}">
 
             <a
                 class="cart-line-image"
@@ -310,7 +400,7 @@ function renderCartPage() {
                 </h3>
 
                 <p>
-                    ${product.fit} — ${formatZMW(product.price)}
+                    ${product.fit} — ${formatZMW(product.price)}<br><span class="cart-variant-details">${size ? "Size: " + escapeCartText(size) : "Size not selected"} · ${color ? "Colour: " + escapeCartText(color) : "Colour not selected"}</span>
                 </p>
 
 
@@ -320,7 +410,7 @@ function renderCartPage() {
                         type="button"
                         class="qty-btn"
                         data-cart-action="decrease"
-                        data-id="${product.id}"
+                        data-line-key="${lineKey}"
                         aria-label="Decrease quantity"
                     >
                         −
@@ -332,7 +422,7 @@ function renderCartPage() {
                         value="${qty}"
                         min="1"
                         max="10"
-                        data-id="${product.id}"
+                        data-line-key="${lineKey}"
                         aria-label="Quantity for ${product.name}"
                     >
 
@@ -341,7 +431,7 @@ function renderCartPage() {
                         type="button"
                         class="qty-btn"
                         data-cart-action="increase"
-                        data-id="${product.id}"
+                        data-line-key="${lineKey}"
                         aria-label="Increase quantity"
                     >
                         +
@@ -363,7 +453,7 @@ function renderCartPage() {
                     type="button"
                     class="cart-remove"
                     data-cart-action="remove"
-                    data-id="${product.id}"
+                    data-line-key="${lineKey}"
                 >
                     Remove
                 </button>
@@ -391,21 +481,21 @@ if (cartItemsEl && typeof Cart !== "undefined") {
         const actionBtn = e.target.closest("[data-cart-action]");
         if (!actionBtn) return;
 
-        const id = actionBtn.dataset.id;
+        const key = actionBtn.dataset.lineKey;
         const action = actionBtn.dataset.cartAction;
-        const line = Cart.getCart().find((entry) => entry.id === id);
+        const line = Cart.getCart().find((entry) => [entry.id, entry.size || "", entry.color || ""].join("::") === key);
 
         if (action === "remove") {
 
-            Cart.removeFromCart(id);
+            Cart.removeFromCart(key);
 
         } else if (action === "increase") {
 
-            Cart.updateQuantity(id, (line ? line.qty : 0) + 1);
+            Cart.updateQuantity(key, (line ? line.qty : 0) + 1);
 
         } else if (action === "decrease") {
 
-            Cart.updateQuantity(id, (line ? line.qty : 1) - 1);
+            Cart.updateQuantity(key, (line ? line.qty : 1) - 1);
         }
 
         renderCartPage();
@@ -417,7 +507,7 @@ if (cartItemsEl && typeof Cart !== "undefined") {
         if (!e.target.matches("input[type='number']")) return;
 
         const qty = parseInt(e.target.value, 10) || 1;
-        Cart.updateQuantity(e.target.dataset.id, Math.min(10, Math.max(1, qty)));
+        Cart.updateQuantity(e.target.dataset.lineKey, Math.min(10, Math.max(1, qty)));
 
         renderCartPage();
     });
@@ -516,10 +606,18 @@ if (checkoutForm && typeof Cart !== "undefined") {
 
         if (!validateCheckout()) return;
 
-        // { id, qty } pairs only — the server prices the order
-        const items = Cart.getCartLines().map((line) => ({
+        const cartLines = Cart.getCartLines();
+        if (cartLines.some((line) => !line.size || !line.color)) {
+            setCheckoutError("Please choose a size and colour for every item. Remove older unconfigured items and add them again from their product page.");
+            return;
+        }
+
+        // The server verifies product, size and colour, then recalculates prices.
+        const items = cartLines.map((line) => ({
             id: line.product.id,
             qty: line.qty,
+            size: line.size,
+            color: line.color,
         }));
 
         const payload = {
@@ -662,7 +760,7 @@ if (orderContent && typeof KTAuth !== "undefined") {
                             <h3>${item.name}</h3>
 
                             <p>
-                                Qty ${item.qty} × ${formatZMW(item.unitPriceZmw)}
+                                ${item.size ? "Size: " + item.size : ""}${item.size && item.color ? " · " : ""}${item.color ? "Colour: " + item.color : ""}<br>Qty ${item.qty} × ${formatZMW(item.unitPriceZmw)}
                             </p>
 
                         </div>
@@ -711,6 +809,16 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', async (e) => {
         e.preventDefault();
 
+        const productId = btn.dataset.productId;
+
+        if (!productId || typeof Cart === 'undefined') return;
+        if (btn.classList.contains('added')) return;
+
+        if (btn.id !== 'detailAddToCart') {
+            window.location.href = 'product.html?id=' + encodeURIComponent(productId);
+            return;
+        }
+
         // Wait for the session check, then require sign-in
         const currentUser = (typeof KTAuth !== 'undefined')
             ? await KTAuth.ready
@@ -721,17 +829,13 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
             return;
         }
 
-        const productId = btn.dataset.productId;
-
-        if (!productId || typeof Cart === 'undefined') return;
-        if (btn.classList.contains('added')) return;
-
         const qtyInput = document.getElementById('productQty');
-        const qty = qtyInput && btn.id === 'detailAddToCart'
-            ? parseInt(qtyInput.value, 10) || 1
-            : 1;
+        const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+        const size = btn.dataset.variantSize;
+        const color = btn.dataset.variantColor;
+        if (!size || !color) return;
 
-        Cart.addToCart(productId, qty);
+        Cart.addToCart(productId, qty, { size, color });
 
         // Visual feedback
         const original = btn.textContent;

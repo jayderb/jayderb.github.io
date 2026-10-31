@@ -20,6 +20,7 @@
     </style>
 
     <title>Collections | Krint Tufwale</title>
+    <link rel="stylesheet" href="storefront-redesign.css">
 </head>
 
 <body>
@@ -28,62 +29,7 @@
      NAVIGATION
 ========================= -->
 
-<header>
-
-    <section class="navbar">
-
-        <div class="brand">
-
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Krint Tufwale">
-                </a>
-            </div>
-
-            <div class="brand-name">
-                <span>Krint Tufwale</span>
-                <small>Tufwale Nokusansamuka</small>
-            </div>
-
-        </div>
-
-        <nav>
-
-            <ul>
-
-                <li><a href="index.html">Home</a></li>
-
-                <li><a href="shop.html">New</a></li>
-
-                <li><a href="collections.html" class="active">Collections</a></li>
-
-                <li><a href="journal.html">Journal</a></li>
-
-                <li><a href="our-story.html">Our Story</a></li>
-
-                <li><a href="contact.html">Contact</a></li>
-
-            </ul>
-
-        </nav>
-
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <div class="icons"> <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
-
-            <a href="#" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i></a>
-            <a href="cart.html" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count"></span></a>
-
-            <a href="#" aria-label="User account"><i class="fa-solid fa-user"></i></a>
-        </div>
-
-    </section>
-
-</header>
+<div data-kt-header></div>
 
 <!-- =========================
      MAIN
@@ -291,84 +237,49 @@
 
     </div>
 
-    <div class="product-grid">
+    <div class="product-grid collection-product-grid">
 
-        <!-- Product 1 -->
-
-        <article class="product-card">
-
-            <div class="product-image1">
-
-            <div class="product-info">
-
+        <article class="product-card collection-product-card">
+            <div class="collection-product-image product-image1" role="img" aria-label="Cotton Overshirt"></div>
+            <div class="product-info collection-product-info">
                 <h3>Cotton Overshirt</h3>
-
                 <p>ZMW 1,250</p>
-
             </div>
+            <div class="purchase collection-product-actions">
+                <a href="shop.html" class="collection-shop-link">Explore in Shop</a>
             </div>
-             <div class="purchase">
-                <button type="button" class="add-to-cart">
-                    Add to Cart
-                </button>
-                <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a>
-            </div>
-
         </article>
 
-        <!-- Product 2 -->
-
-        <article class="product-card">
-
-            <div class="product-image2"></div>
-
-            <div class="product-info">
-
+        <article class="product-card collection-product-card">
+            <div class="collection-product-image product-image2" role="img" aria-label="Tailored Trouser"></div>
+            <div class="product-info collection-product-info">
                 <h3>Tailored Trouser</h3>
-
                 <p>ZMW 980</p>
-
             </div>
-            <div class="purchase">
-            <button type="button" class="add-to-cart">
-                Add to Cart
-            </button></div>
-            <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a></div>
-
+            <div class="purchase collection-product-actions">
+                <a href="shop.html" class="collection-shop-link">Explore in Shop</a>
+            </div>
         </article>
 
-        <!-- Product 3 -->
-
-        <article class="product-card">
-
-            <div class="product-image3"></div>
-
-            <div class="product-info">
-
+        <article class="product-card collection-product-card">
+            <div class="collection-product-image product-image3" role="img" aria-label="Heavyweight Tee"></div>
+            <div class="product-info collection-product-info">
                 <h3>Heavyweight Tee</h3>
-
                 <p>ZMW 420</p>
-
-             </div>
-             <div class="purchase">
-            <button type="button" class="add-to-cart">
-                Add to Cart
-            </button></div>
-            <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a></div>
-
+            </div>
+            <div class="purchase collection-product-actions">
+                <a href="shop.html" class="collection-shop-link">Explore in Shop</a>
+            </div>
         </article>
 
-        <!-- Product 4 -->
-         
-        <article class="product-card">
-            <div class="product-image4"></div>
-            <div class="product-info">
+        <article class="product-card collection-product-card">
+            <div class="collection-product-image product-image4" role="img" aria-label="Classic Polo"></div>
+            <div class="product-info collection-product-info">
                 <h3>Classic Polo</h3>
                 <p>ZMW 650</p>
             </div>
-            <div class="purchase">
-                <button type="button" class="add-to-cart">Add to Cart</button>
-                <a href="shop.html" class="text-btn">View in Shop <span>&rarr;</span></a>
+            <div class="purchase collection-product-actions">
+                <a href="shop.html" class="collection-shop-link">Explore in Shop</a>
             </div>
         </article>
 
@@ -570,7 +481,8 @@
        <p>Designed by <a href="">The Architect</a></p>
   </div>
 </footer>
-<script src="config.js"></script>
+<script src="header.js"></script>
+    <script src="config.js"></script>
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="auth.js"></script>
