@@ -86,6 +86,8 @@ try {
 for (const sql of [
     'ALTER TABLE orders ADD COLUMN delivery_address TEXT',
     'ALTER TABLE orders ADD COLUMN notified INTEGER NOT NULL DEFAULT 0',
+    'ALTER TABLE orders ADD COLUMN delivery_lat REAL',
+    'ALTER TABLE orders ADD COLUMN delivery_lng REAL',
 ]) {
     try { db.exec(sql); } catch (err) { /* column already exists */ }
 }

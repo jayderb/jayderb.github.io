@@ -58,12 +58,24 @@ function whatsappLink(phone) {
     return digits.length >= 11 ? `https://wa.me/${digits}` : null;
 }
 
+// Google Maps URLs need no API key: one opens the pin, one starts directions to it
+function mapsLinks(lat, lng) {
+    const point = `${Number(lat)},${Number(lng)}`;
+    return {
+        view: `https://www.google.com/maps/search/?api=1&query=${point}`,
+        directions: `https://www.google.com/maps/dir/?api=1&destination=${point}`,
+    };
+}
+
 async function sendOrderNotification(order) {
     const to = process.env.ORDER_NOTIFY_EMAIL
         || process.env.CONTACT_TO_EMAIL
         || process.env.EMAIL_USER;
     const ref = `KT-${String(order.id).padStart(4, '0')}`;
     const wa = whatsappLink(order.phone);
+        const pin = (order.delivery_lat != null && order.delivery_lng != null)
+        ? mapsLinks(order.delivery_lat, order.delivery_lng)
+        : null;
 
     const rows = order.items.map((i) => `
         <tr>
@@ -82,8 +94,9 @@ async function sendOrderNotification(order) {
             <strong>Customer:</strong> ${escapeHtml(order.customer_name)}<br>
             <strong>Email:</strong> ${escapeHtml(order.email)}<br>
             <strong>Phone:</strong> ${escapeHtml(order.phone || '—')}${wa ? ` (<a href="${wa}">WhatsApp</a>)` : ''}<br>
-            <strong>Deliver to:</strong> ${escapeHtml(order.delivery_address || '—').replace(/\n/g, '<br>')}
-        </p>
+            <strong>Deliver to:</strong> ${escapeHtml(order.delivery_address || '—').replace(/\n/g, '<br>')}${pin ? `<br>
+            <strong>Map pin:</strong> <a href="${pin.view}">Open in Google Maps</a> · <a href="${pin.directions}">Directions</a>` : ''}
+            </p>
         <table style="border-collapse:collapse;margin:16px 0">
             ${rows}
             <tr>

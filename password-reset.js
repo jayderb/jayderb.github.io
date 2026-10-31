@@ -109,9 +109,13 @@
             markInvalid(confirm, false);
             showStatus(resetForm, '', false);
 
-            if (password.value.length < 8) {
+            const passwordOk = window.KTPassword
+                ? KTPassword.isAcceptable(password.value)
+                : password.value.length >= 10;
+
+            if (!passwordOk) {
                 markInvalid(password, true);
-                showStatus(resetForm, 'Password must be at least 8 characters.', true);
+                showStatus(resetForm, 'Password needs 10+ characters, with a letter and a number.', true);
                 return;
             }
 

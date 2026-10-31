@@ -1946,3 +1946,140 @@ header nav a,
         width: 100%;
     }
 }
+
+
+/* ============================================================
+   LIGHT CHECKOUT — cart summary and delivery controls
+   Overrides the legacy dark checkout treatment in style.css.
+   Presentation only: no checkout behaviour or API changes.
+============================================================ */
+
+.cart-summary {
+    background: var(--kt-color-surface);
+    color: var(--kt-color-ink);
+    border: 1px solid var(--kt-color-border);
+}
+
+.cart-summary h3,
+.cart-summary .cart-summary-row,
+.cart-summary .cart-summary-row span,
+.cart-summary .cart-ordering-as {
+    color: var(--kt-color-ink);
+}
+
+.cart-summary .cart-summary-row {
+    border-color: var(--kt-color-border);
+}
+
+.cart-summary .cart-ordering-as {
+    padding: 12px 14px;
+    border: 1px solid var(--kt-color-border);
+    background: #f6f3ed;
+    color: #55524d;
+}
+
+.cart-summary .checkout-field label,
+.cart-summary .location-label {
+    color: #45413b;
+}
+
+.cart-summary .checkout-field label small,
+.cart-summary .location-label small {
+    color: #77736c;
+}
+
+.cart-summary .checkout-field input,
+.cart-summary .checkout-field textarea {
+    border: 1px solid rgba(32, 32, 30, .22);
+    background: #fff;
+    color: var(--kt-color-ink);
+    color-scheme: light;
+}
+
+.cart-summary .checkout-field input::placeholder,
+.cart-summary .checkout-field textarea::placeholder {
+    color: #8a857d;
+}
+
+.cart-summary .checkout-field input:focus,
+.cart-summary .checkout-field textarea:focus {
+    border-color: var(--kt-color-accent);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(168, 116, 67, .12);
+}
+
+.cart-summary .form-status {
+    border-left-color: #b84b40;
+    background: #fbefed;
+    color: #8e3028;
+}
+
+.cart-summary .location-btn {
+    border-color: rgba(32, 32, 30, .28);
+    background: transparent;
+    color: var(--kt-color-ink);
+}
+
+.cart-summary .location-btn:hover:not(:disabled) {
+    border-color: var(--kt-color-ink);
+    background: var(--kt-color-ink);
+    color: #fff;
+}
+
+.cart-summary .location-map {
+    background: #fff;
+    color: var(--kt-color-ink);
+}
+
+.cart-summary .location-map .location-btn {
+    border-color: var(--kt-color-ink);
+    color: var(--kt-color-ink);
+}
+
+.cart-summary .location-map .location-btn:hover:not(:disabled) {
+    background: var(--kt-color-ink);
+    color: #fff;
+}
+
+.cart-summary .location-hint {
+    color: #625d55;
+}
+
+.cart-summary .location-status {
+    color: #55524d;
+}
+
+.cart-summary .location-status.is-error {
+    color: #a3372e;
+}
+
+.cart-summary .location-status a {
+    color: #704b2d;
+}
+
+.cart-summary .location-privacy,
+.cart-summary .cart-checkout-note {
+    color: #706a61;
+}
+
+.cart-summary .checkout-btn {
+    border: 1px solid var(--kt-color-ink);
+    background: var(--kt-color-ink);
+    color: #fff;
+}
+
+.cart-summary .checkout-btn:hover:not(:disabled) {
+    border-color: var(--kt-color-ink);
+    background: transparent;
+    color: var(--kt-color-ink);
+}
+
+.cart-summary .checkout-btn:disabled {
+    opacity: .48;
+    cursor: not-allowed;
+}
+
+.cart-summary .text-btn {
+    color: var(--kt-color-ink);
+    border-color: var(--kt-color-border);
+}

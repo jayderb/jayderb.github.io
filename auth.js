@@ -338,13 +338,15 @@ const KTAuth = (() => {
             fieldStatus(confirm, true);
             ok = false;
         }
-
-        if (!ok) {
+        const passwordOk = window.KTPassword
+            ? KTPassword.isAcceptable(password.value)
+            : password.value.length >= 10;
+        if (!passwordOk) {
             showFormStatus(
                 form,
                 password.value !== confirm.value
                     ? 'Passwords do not match.'
-                    : 'Please check the highlighted fields (password needs 8+ characters).',
+                    : 'Please check the highlighted fields (password needs 10+ characters, with a letter and a number).',
                 true
             );
         }
