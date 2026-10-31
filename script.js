@@ -351,6 +351,12 @@ if (productDetail && typeof KT_PRODUCTS !== "undefined") {
    subtotal from cart.js */
 const cartItemsEl = document.getElementById("cartItems");
 
+function escapeCartText(value) {
+    return String(value || "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+    })[character]);
+}
+
 function renderCartPage() {
 
     if (!cartItemsEl || typeof Cart === "undefined") return;
@@ -394,7 +400,7 @@ function renderCartPage() {
                 </h3>
 
                 <p>
-                    ${product.fit} — ${formatZMW(product.price)}<br><span class="cart-variant-details">${size ? "Size: " + size : "Size not selected"} · ${color ? "Colour: " + color : "Colour not selected"}</span>
+                    ${product.fit} — ${formatZMW(product.price)}<br><span class="cart-variant-details">${size ? "Size: " + escapeCartText(size) : "Size not selected"} · ${color ? "Colour: " + escapeCartText(color) : "Colour not selected"}</span>
                 </p>
 
 
@@ -803,16 +809,6 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', async (e) => {
         e.preventDefault();
 
-        // Wait for the session check, then require sign-in
-        const currentUser = (typeof KTAuth !== 'undefined')
-            ? await KTAuth.ready
-            : null;
-
-        if (!currentUser) {
-            requireLoginBeforeAction();
-            return;
-        }
-
         const productId = btn.dataset.productId;
 
         if (!productId || typeof Cart === 'undefined') return;
@@ -820,6 +816,16 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
 
         if (btn.id !== 'detailAddToCart') {
             window.location.href = 'product.html?id=' + encodeURIComponent(productId);
+            return;
+        }
+
+        // Wait for the session check, then require sign-in
+        const currentUser = (typeof KTAuth !== 'undefined')
+            ? await KTAuth.ready
+            : null;
+
+        if (!currentUser) {
+            requireLoginBeforeAction();
             return;
         }
 
