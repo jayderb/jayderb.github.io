@@ -41,6 +41,8 @@ const Cart = (() => {
                 .filter((entry) => entry && typeof entry.id === "string")
                 .map((entry) => ({
                     id: entry.id,
+                    size: typeof entry.size === "string" ? entry.size : null,
+                    color: typeof entry.color === "string" ? entry.color : null,
                     qty: Number.isInteger(entry.qty) && entry.qty > 0 ? entry.qty : 1,
                 }));
         } catch (err) {
@@ -62,7 +64,11 @@ const Cart = (() => {
        ACTIONS
     -------------------------------------------------------- */
 
-    function addToCart(id, qty = 1) {
+    function lineKey(entry) {
+        return [entry.id, entry.size || "", entry.color || ""].join("::");
+    }
+
+    function addToCart(id, qty = 1, variants = {}) {
         if (typeof getProductById !== "function" || !getProductById(id)) {
             console.error(`Krint Tufwale: unknown product "${id}" — not added.`);
             return false;
@@ -70,12 +76,15 @@ const Cart = (() => {
 
         const cart = read();
         const amount = Number.isInteger(qty) && qty > 0 ? qty : 1;
-        const existing = cart.find((entry) => entry.id === id);
+        const size = variants.size || null;
+        const color = variants.color || null;
+        const key = lineKey({ id, size, color });
+        const existing = cart.find((entry) => lineKey(entry) === key);
 
         if (existing) {
             existing.qty += amount;
         } else {
-            cart.push({ id, qty: amount });
+            cart.push({ id, size, color, qty: amount });
         }
 
         write(cart);
@@ -83,8 +92,8 @@ const Cart = (() => {
         return true;
     }
 
-    function removeFromCart(id) {
-        const cart = read().filter((entry) => entry.id !== id);
+    function removeFromCart(key) {
+        const cart = read().filter((entry) => lineKey(entry) !== key);
         write(cart);
         renderCartBadge();
     }
@@ -96,13 +105,13 @@ const Cart = (() => {
     }
 
     /* Setting a quantity of 0 or less removes the line */
-    function updateQuantity(id, qty) {
+    function updateQuantity(key, qty) {
         const cart = read();
-        const entry = cart.find((line) => line.id === id);
+        const entry = cart.find((line) => lineKey(line) === key);
         if (!entry) return;
 
         if (!Number.isInteger(qty) || qty <= 0) {
-            removeFromCart(id);
+            removeFromCart(key);
             return;
         }
 
@@ -136,6 +145,9 @@ const Cart = (() => {
                 if (!product) return null;
                 return {
                     product,
+                    size: entry.size,
+                    color: entry.color,
+                    lineKey: lineKey(entry),
                     qty: entry.qty,
                     lineTotal: product.price * entry.qty,
                 };
