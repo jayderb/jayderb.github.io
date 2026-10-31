@@ -114,7 +114,7 @@
         const wa = waLink(o.phone);
         const lines = o.items.map((i) => `
             <li>
-                <span>${esc(i.name)} <em>× ${i.qty}</em></span>
+                <span>${esc(i.name)} <em>× ${i.qty}</em><small class="admin-line-variants">${i.size ? `Size: ${esc(i.size)}` : ""}${i.size && i.color ? " · " : ""}${i.color ? `Colour: ${esc(i.color)}` : ""}</small></span>
                 <span>${formatZMW(i.lineTotalZmw)}</span>
             </li>`).join('');
         const options = statuses.map((s) =>
