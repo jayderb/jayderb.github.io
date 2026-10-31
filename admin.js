@@ -36,6 +36,13 @@
     const ref = (id) => `KT-${String(id).padStart(4, '0')}`;
     const label = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
+    // Google Maps URLs need no API key
+    function mapLinks(o) {
+        if (o.delivery_lat == null || o.delivery_lng == null) return '';
+        const point = `${Number(o.delivery_lat)},${Number(o.delivery_lng)}`;
+        return `<p><a href="https://www.google.com/maps/search/?api=1&query=${point}" target="_blank" rel="noopener">Open map pin</a>`
+            + ` · <a href="https://www.google.com/maps/dir/?api=1&destination=${point}" target="_blank" rel="noopener">Directions</a></p>`;
+    }
     function waLink(phone) {
         let digits = String(phone || '').replace(/\D/g, '');
         if (digits.startsWith('0')) digits = '260' + digits.slice(1);
@@ -136,6 +143,7 @@
                     <p><a href="mailto:${esc(o.email)}">${esc(o.email)}</a></p>
                     <p>${esc(o.phone || '—')}${wa ? ` · <a href="${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}</p>
                     <p class="admin-address">${esc(o.delivery_address || 'No address on file')}</p>
+                    ${mapLinks(o)}
                 </div>
                 <ul class="admin-lines">${lines}</ul>
             </div>

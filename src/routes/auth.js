@@ -10,7 +10,7 @@
    whether an email is registered. Signup MAY reveal that an
    email already has an account (409).
    ============================================================ */
-
+const { checkPasswordRules, isPasswordBreached, BREACHED_MESSAGE } = require('../passwordPolicy');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const bcrypt = require('bcryptjs');
@@ -76,15 +76,8 @@ function validateSignup(body) {
         errors.phone = 'Please enter a valid phone number.';
     }
 
-    if (!password) {
-        errors.password = 'Password is required.';
-    } else if (password.length < 8) {
-        errors.password = 'Password must be at least 8 characters.';
-    } else if (password.length > 128) {
-        errors.password = 'Password is too long (max 128 characters).';
-    }
-
-    return { errors, data: { name, email, phone, password } };
+        const passwordError = checkPasswordRules(password, { name, email });
+    if (passwordError) errors.password = passwordError;
 }
 
 function publicUser(row) {
@@ -96,6 +89,12 @@ router.post('/auth/signup', signupLimiter, async (req, res) => {
 
     if (Object.keys(errors).length > 0) {
         return res.status(400).json({ error: 'Validation failed', details: errors });
+    }
+        if (await isPasswordBreached(data.password)) {
+        return res.status(400).json({
+            error: 'Validation failed',
+            details: { password: BREACHED_MESSAGE },
+        });
     }
 
     let passwordHash;
@@ -243,29 +242,32 @@ router.post('/auth/reset-password', resetLimiter, async (req, res) => {
     const token = typeof req.body.token === 'string' ? req.body.token.trim() : '';
     const password = typeof req.body.password === 'string' ? req.body.password : '';
 
-    if (password.length < 8) {
-        return res.status(400).json({
-            error: 'Validation failed',
-            details: { password: 'Password must be at least 8 characters.' },
-        });
-    }
-    if (password.length > 128) {
-        return res.status(400).json({
-            error: 'Validation failed',
-            details: { password: 'Password is too long (max 128 characters).' },
-        });
-    }
-
     if (!/^[a-f0-9]{64}$/.test(token)) {
         return res.status(400).json({ error: INVALID_LINK });
     }
 
     const reset = getValidPasswordReset(sha256(token));
 
-    if (!reset) {
-        return res.status(400).json({ error: INVALID_LINK });
+    // The same rules as sign-up, including "no name or email inside the password"
+    const account = getUserById(reset.user_id);
+    const passwordError = checkPasswordRules(password, {
+        name: account && account.name,
+        email: account && account.email,
+    });
+
+    if (passwordError) {
+        return res.status(400).json({
+            error: 'Validation failed',
+            details: { password: passwordError },
+        });
     }
 
+    if (await isPasswordBreached(password)) {
+        return res.status(400).json({
+            error: 'Validation failed',
+            details: { password: BREACHED_MESSAGE },
+        });
+    }
     let passwordHash;
     try {
         passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);

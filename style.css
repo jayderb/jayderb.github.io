@@ -6090,3 +6090,161 @@ header .menu-toggle:focus-visible {
     }
 }
 
+/* ============================================================
+   PASSWORD CHECKLIST (sign-up and reset)
+   ============================================================ */
+
+.password-rules {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    line-height: 1.9;
+    color: #77736d;
+}
+
+.password-rules li::before {
+    content: "○";
+    display: inline-block;
+    width: 18px;
+}
+
+.password-rules li.met {
+    color: #2a7a2a;
+}
+
+.password-rules li.met::before {
+    content: "✓";
+}
+
+/* ============================================================
+   DELIVERY PIN (checkout): lives in the dark .cart-summary panel
+   ============================================================ */
+
+.location-label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.location-label small {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.location-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.location-btn {
+    padding: 11px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #F7F3EC;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.location-btn:hover:not(:disabled) {
+    background: #F7F3EC;
+    color: #171717;
+}
+
+.location-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* The map sits on a light card so Google's search box reads clearly */
+.location-map {
+    margin-top: 14px;
+    padding: 12px;
+    background: #ffffff;
+    color: #171717;
+}
+
+.location-search {
+    margin-bottom: 10px;
+    color-scheme: light;
+}
+
+.location-search gmp-place-autocomplete {
+    width: 100%;
+}
+
+.location-map-wrap {
+    position: relative;
+}
+
+.location-map-canvas {
+    width: 100%;
+    height: 260px;
+    background: #e9e5de;
+}
+
+/* Fixed in the centre: the tip of the pin marks the exact middle of the map */
+.location-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    margin: -27px 0 0 -11px;
+    border: 2px solid #ffffff;
+    border-radius: 50% 50% 50% 0;
+    background: #c0622f;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+
+.location-hint {
+    margin: 10px 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #55524d;
+}
+
+.location-map .location-btn {
+    border-color: #171717;
+    color: #171717;
+}
+
+.location-map .location-btn:hover:not(:disabled) {
+    background: #171717;
+    color: #F7F3EC;
+}
+
+.location-status {
+    margin: 12px 0 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.location-status.is-error {
+    color: #f1a59d;
+}
+
+.location-status a {
+    color: #F7F3EC;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.location-privacy {
+    margin: 10px 0 0;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+}

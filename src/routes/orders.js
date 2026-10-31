@@ -108,6 +108,25 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
         errors.deliveryAddress = 'Delivery address must be 5–300 characters.';
     }
 
+        // Optional map pin: both coordinates or neither, and they must be real
+    // coordinates. Rounded to 6 decimals (about 10 cm), which is plenty.
+    let deliveryLat = null;
+    let deliveryLng = null;
+    const { deliveryLat: lat, deliveryLng: lng } = req.body;
+
+    if (lat !== undefined && lat !== null || lng !== undefined && lng !== null) {
+        const valid = typeof lat === 'number' && typeof lng === 'number'
+            && Number.isFinite(lat) && Number.isFinite(lng)
+            && Math.abs(lat) <= 90 && Math.abs(lng) <= 180;
+
+        if (valid) {
+            deliveryLat = Math.round(lat * 1e6) / 1e6;
+            deliveryLng = Math.round(lng * 1e6) / 1e6;
+        } else {
+            errors.deliveryLocation = 'The delivery pin is not valid. Please choose it again.';
+        }
+    }
+
     const { errors: itemErrors, items } = validateOrderItems(req.body.items);
     Object.assign(errors, itemErrors);
 
@@ -123,6 +142,8 @@ router.post('/orders', orderLimiter, requireAuth, (req, res) => {
         email: req.user.email,
         phone,
         deliveryAddress,
+        deliveryLat,
+        deliveryLng,
         items,
         totalZmw,
         userId: req.user.id,

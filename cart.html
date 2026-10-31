@@ -179,6 +179,33 @@
                     ></textarea>
 
                 </div>
+                                <div class="checkout-field">
+
+                    <p class="location-label">
+                        Delivery Location
+                        <small>(optional, helps us find you)</small>
+                    </p>
+
+                    <div class="location-actions">
+                        <button type="button" class="location-btn" id="useMyLocation">Use my current location</button>
+                        <button type="button" class="location-btn" id="chooseOnMap" hidden>Choose on map</button>
+                        <button type="button" class="location-btn" id="clearPin" hidden>Remove pin</button>
+                    </div>
+
+                    <div class="location-map" id="locationMap" hidden>
+                        <div class="location-search" id="locationSearch"></div>
+                        <div class="location-map-wrap">
+                            <div class="location-map-canvas" id="locationMapCanvas"></div>
+                            <span class="location-pin" aria-hidden="true"></span>
+                        </div>
+                        <p class="location-hint">Move the map so the pin sits on your door, then confirm.</p>
+                        <button type="button" class="location-btn" id="confirmPin">Use this spot</button>
+                    </div>
+
+                    <p class="location-status" id="locationStatus" role="status" hidden></p>
+                    <p class="location-privacy">Used only to deliver this order.</p>
+
+                </div>
 
 
                 <button
@@ -505,6 +532,7 @@
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="auth.js"></script>
+<script src="delivery-map.js"></script>
 <script src="script.js"></script>
 
 </body>

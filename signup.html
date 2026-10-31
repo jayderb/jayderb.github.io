@@ -150,7 +150,7 @@
                     <label for="regPassword">
                         Password
                         <small>
-                            (8+ characters)
+                            (10+ characters)
                         </small>
                     </label>
 
@@ -159,13 +159,17 @@
                         id="regPassword"
                         name="password"
                         autocomplete="new-password"
-                        minlength="8"
-                        maxlength="128"
+                        minlength="10"
+                        maxlength="72"
                         required
                     >
 
                 </div>
-
+                <ul class="password-rules" id="passwordRules">
+                    <li data-rule="length">At least 10 characters</li>
+                    <li data-rule="letter">A letter</li>
+                    <li data-rule="number">A number</li>
+                </ul>
 
                 <div class="auth-field">
 
@@ -178,11 +182,11 @@
                         id="regConfirm"
                         name="confirm"
                         autocomplete="new-password"
-                        minlength="8"
-                        maxlength="128"
+                        minlength="10"
+                        maxlength="72"
                         required
                     >
-
+                    <script src="password-rules.js"></script>
                 </div>
 
 

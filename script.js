@@ -626,6 +626,13 @@ if (checkoutForm && typeof Cart !== "undefined") {
             deliveryAddress: addressInput.value.trim(),
         };
 
+        // Optional map pin from delivery-map.js
+        const pin = (typeof KTDelivery !== "undefined") ? KTDelivery.getPin() : null;
+        if (pin) {
+            payload.deliveryLat = pin.lat;
+            payload.deliveryLng = pin.lng;
+        }
+
         checkoutBtn.disabled = true;
 
         try {
@@ -746,7 +753,11 @@ if (orderContent && typeof KTAuth !== "undefined") {
                 formatOrderDate(order.created_at);
 
             document.getElementById("orderDelivery").textContent =
-                [order.delivery_address, order.phone]
+                [
+                    order.delivery_address,
+                    order.delivery_lat != null ? "Map pin shared" : "",
+                    order.phone,
+                ]
                     .filter(Boolean)
                     .join(" · ");
 
