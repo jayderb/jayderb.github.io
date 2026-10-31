@@ -67,7 +67,7 @@ async function sendOrderNotification(order) {
 
     const rows = order.items.map((i) => `
         <tr>
-            <td style="padding:6px 12px 6px 0">${escapeHtml(i.name)}</td>
+            <td style="padding:6px 12px 6px 0">${escapeHtml(i.name)}<br><small>Size: ${escapeHtml(i.size || "—")} · Colour: ${escapeHtml(i.color || "—")}</small></td>
             <td style="padding:6px 12px">${i.qty} × ${formatZMW(i.unitPriceZmw)}</td>
             <td style="padding:6px 0;text-align:right">${formatZMW(i.lineTotalZmw)}</td>
         </tr>`).join('');
