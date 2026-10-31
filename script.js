@@ -179,7 +179,7 @@ if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
                             data-product-id="${product.id}"
                             aria-label="Add ${product.name} to cart"
                         >
-                            Add to Cart
+                            Choose Options
                         </button>
 
                     </div>
