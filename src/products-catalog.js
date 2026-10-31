@@ -12,14 +12,14 @@
    ============================================================ */
 
 const PRODUCTS = [
-    { id: "cotton-overshirt", name: "Cotton Overshirt", category: "shirts", priceZmw: 1250 },
-    { id: "straight-leg-trouser", name: "Straight Leg Trouser", category: "trousers", priceZmw: 980 },
-    { id: "classic-cotton-shirt", name: "Classic Cotton Shirt", category: "shirts", priceZmw: 1100 },
-    { id: "fine-knit-polo", name: "Fine Knit Polo", category: "knitwear", priceZmw: 850 },
-    { id: "structured-jacket", name: "Structured Jacket", category: "outerwear", priceZmw: 1850 },
-    { id: "everyday-polo", name: "Everyday Polo", category: "shirts", priceZmw: 650 },
-    { id: "leather-belt", name: "Leather Belt", category: "accessories", priceZmw: 480 },
-    { id: "relaxed-pleated-trouser", name: "Relaxed Pleated Trouser", category: "trousers", priceZmw: 1150 },
+    { id: "cotton-overshirt", name: "Cotton Overshirt", category: "shirts", priceZmw: 1250, sizes: ["S", "M", "L", "XL"], colors: ["Cream", "Green", "Black"] },
+    { id: "straight-leg-trouser", name: "Straight Leg Trouser", category: "trousers", priceZmw: 980, sizes: ["S", "M", "L", "XL"], colors: ["Black", "Brown", "Grey"] },
+    { id: "classic-cotton-shirt", name: "Classic Cotton Shirt", category: "shirts", priceZmw: 1100, sizes: ["S", "M", "L", "XL"], colors: ["Cream", "Black", "Green"] },
+    { id: "fine-knit-polo", name: "Fine Knit Polo", category: "knitwear", priceZmw: 850, sizes: ["S", "M", "L", "XL"], colors: ["Black", "Cream", "Brown"] },
+    { id: "structured-jacket", name: "Structured Jacket", category: "outerwear", priceZmw: 1850, sizes: ["S", "M", "L", "XL"], colors: ["Black", "Brown", "Grey"] },
+    { id: "everyday-polo", name: "Everyday Polo", category: "shirts", priceZmw: 650, sizes: ["S", "M", "L", "XL"], colors: ["Black", "Cream", "Green"] },
+    { id: "leather-belt", name: "Leather Belt", category: "accessories", priceZmw: 480, sizes: ["One Size"], colors: ["Black", "Brown"] },
+    { id: "relaxed-pleated-trouser", name: "Relaxed Pleated Trouser", category: "trousers", priceZmw: 1150, sizes: ["S", "M", "L", "XL"], colors: ["Black", "Grey", "Brown"] },
 ];
 
 function getProductById(id) {
