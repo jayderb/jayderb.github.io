@@ -1854,3 +1854,95 @@ footer {
     color: #3b2c20;
     border-color: #3b2c20;
 }
+
+/* Final storefront refinement — clearer contrast and consistent product imagery. */
+:root {
+    --kt-color-muted: #625d55;
+    --kt-color-accent: #875d38;
+    --kt-color-border: rgba(32, 32, 30, .16);
+}
+
+header nav a,
+.product-categories .filter-btn,
+.product-count,
+.product-sort,
+.variant-color-btn small {
+    color: #514b43;
+}
+
+.hero h2 {
+    color: #765f48;
+}
+
+.story-content p,
+.philosophy-text,
+.shop-hero-content p,
+.collections-overlay p,
+.intro-content p,
+.look-content p,
+.product-details p,
+.collection-product-info p {
+    color: #625d55;
+}
+
+.product-card .product-image,
+.collection-product-image,
+.home-product-image {
+    overflow: hidden;
+    background-color: #e8e2d8;
+}
+
+.product-card .product-image {
+    aspect-ratio: 4 / 5;
+}
+
+.product-card .product-image img,
+.home-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collection-product-image {
+    background-position: center;
+    background-size: cover;
+}
+
+.product-card .add-to-cart:focus-visible,
+.variant-size-btn:focus-visible,
+.variant-color-btn:focus-visible,
+.collection-product-actions a:focus-visible {
+    outline: 2px solid var(--kt-color-accent);
+    outline-offset: 4px;
+}
+
+.collection-product-actions .collection-shop-link {
+    width: 100%;
+    min-height: 42px;
+    justify-content: center;
+    padding: 12px 16px;
+    border: 1px solid var(--kt-color-ink);
+    color: var(--kt-color-ink);
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.collection-product-actions .collection-shop-link:hover {
+    background: var(--kt-color-ink);
+    color: #fff;
+}
+
+@media (max-width: 640px) {
+    .product-card .product-image {
+        aspect-ratio: 4 / 5;
+    }
+
+    .collection-product-actions .collection-shop-link {
+        width: 100%;
+    }
+}
