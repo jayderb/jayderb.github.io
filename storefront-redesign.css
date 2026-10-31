@@ -1696,3 +1696,115 @@ footer {
         transition-duration: .01ms !important;
     }
 }
+
+
+/* Collections page — keep all four editorial product cards uniform. */
+.collection-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(14px, 2vw, 26px);
+}
+
+.collection-product-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0;
+    background: transparent;
+}
+
+.collection-product-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 0;
+    background-color: #e9e4dc;
+    background-position: center;
+    background-size: cover;
+    transition: transform .6s ease;
+}
+
+.collection-product-card:hover .collection-product-image {
+    transform: scale(1.025);
+}
+
+.collection-product-info {
+    display: flex;
+    min-height: 76px;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 17px 0 12px;
+}
+
+.collection-product-info h3 {
+    margin: 0;
+    font-family: var(--kt-font-editorial);
+    font-size: clamp(1rem, 1.25vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.collection-product-info p {
+    margin: 0;
+    color: var(--kt-color-muted);
+    font-size: .78rem;
+}
+
+.collection-product-actions {
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.collection-product-actions .add-to-cart {
+    min-height: 40px;
+    padding: 10px 13px;
+    white-space: nowrap;
+}
+
+.collection-product-actions .text-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: .68rem;
+}
+
+@media (max-width: 1100px) {
+    .collection-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 34px;
+    }
+}
+
+@media (max-width: 640px) {
+    .collection-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 14px;
+        row-gap: 28px;
+    }
+
+    .collection-product-info {
+        min-height: 72px;
+        padding-top: 12px;
+    }
+
+    .collection-product-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .collection-product-actions .add-to-cart {
+        width: 100%;
+    }
+}
