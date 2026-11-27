@@ -1,0 +1,93 @@
+# Krint Tufwale
+
+> Krint Tufwale (KT Clothing) designs contemporary everyday clothing in Lusaka, Zambia. The line printed on the site is "Tufwale Nokusansamuka". Founder: John Mambwe. Prices are in ZMW (Zambian kwacha).
+
+The shop catalogue is the source of truth for what can be ordered. There is no separate site search. Do not invent a street address, phone number, review score, stock count, or shipping policy: if it is not written here or on the linked page, it is not published.
+
+## Collections
+
+- [Everyday](https://krinttufwale-001.web.app/collections.html#everyday): Relaxed essentials made for daily confidence.
+- [Tailored](https://krinttufwale-001.web.app/collections.html#tailored): Refined silhouettes for modern occasions.
+- [Essentials](https://krinttufwale-001.web.app/collections.html#essentials): The foundation of a considered wardrobe.
+
+Shop categories: shirts, trousers, outerwear, knitwear, accessories.
+
+## Products
+
+- [Cotton Overshirt](https://krinttufwale-001.web.app/pieces/cotton-overshirt.html): ZMW 1,250. Relaxed Fit. Shirts. Colours: Cream, Green, Black. Sizes: S, M, L, XL.
+- [Straight Leg Trouser](https://krinttufwale-001.web.app/pieces/straight-leg-trouser.html): ZMW 980. Tailored Fit. Trousers. Colours: Black, Brown, Grey. Sizes: S, M, L, XL.
+- [Classic Cotton Shirt](https://krinttufwale-001.web.app/pieces/classic-cotton-shirt.html): ZMW 1,100. Regular Fit. Shirts. Colours: Cream, Black, Green. Sizes: S, M, L, XL.
+- [Fine Knit Polo](https://krinttufwale-001.web.app/pieces/fine-knit-polo.html): ZMW 850. Soft Knit. Knitwear. Colours: Black, Cream, Brown. Sizes: S, M, L, XL.
+- [Structured Jacket](https://krinttufwale-001.web.app/pieces/structured-jacket.html): ZMW 1,850. Relaxed Tailoring. Outerwear. Colours: Black, Brown, Grey. Sizes: S, M, L, XL.
+- [Everyday Polo](https://krinttufwale-001.web.app/pieces/everyday-polo.html): ZMW 650. Classic Fit. Shirts. Colours: Black, Cream, Green. Sizes: S, M, L, XL.
+- [Leather Belt](https://krinttufwale-001.web.app/pieces/leather-belt.html): ZMW 480. Full Grain Leather. Accessories. Colours: Black, Brown. Sizes: One Size.
+- [Relaxed Pleated Trouser](https://krinttufwale-001.web.app/pieces/relaxed-pleated-trouser.html): ZMW 1,150. Wide Leg. Trousers. Colours: Black, Grey, Brown. Sizes: S, M, L, XL.
+
+## Pages
+
+- [Home](https://krinttufwale-001.web.app/): Introduction to the brand and a selection of pieces.
+- [Shop](https://krinttufwale-001.web.app/shop.html): Full catalogue, with category filters.
+- [Collections](https://krinttufwale-001.web.app/collections.html): Everyday, Tailored and Essentials.
+- [Journal](https://krinttufwale-001.web.app/journal.html): Short notes on design and craft. Individual essays do not have their own URLs.
+- [Our Story](https://krinttufwale-001.web.app/our-story.html): Why the label began. Designed in Lusaka, Zambia.
+- [Contact](https://krinttufwale-001.web.app/contact.html): Lusaka, Zambia. Email hello@krinttufwale.com. Instagram handle @krinttufwale.
+- [Questions](https://krinttufwale-001.web.app/faq.html): Answers that can be cited, and a list of policies that are not published yet.
+
+## Answers you can cite
+
+### Where is Krint Tufwale based?
+
+Krint Tufwale is based in Lusaka, Zambia. The clothing is designed in Zambia.
+
+### Who founded Krint Tufwale?
+
+John Mambwe founded Krint Tufwale in Lusaka, Zambia.
+
+### What does Krint Tufwale sell?
+
+Contemporary everyday clothing. The collections are Everyday, Tailored and Essentials. The shop is grouped into shirts, trousers, outerwear, knitwear and accessories.
+
+### What currency are prices in?
+
+Prices are in Zambian kwacha (ZMW). The figure on each piece is the catalogue price. When an order is placed, the server recalculates the total from that catalogue.
+
+### How do I place an order?
+
+Create an account and add a piece to your bag. Product pages say checkout with mobile money is coming soon and that, for now, orders are placed by email. The contact address published on the site is hello@krinttufwale.com.
+
+### Is there a search box for the catalogue?
+
+No. The shop page filters pieces by shirts, trousers, outerwear, knitwear and accessories.
+
+### What sizes are available?
+
+Cotton Overshirt, Straight Leg Trouser, Classic Cotton Shirt, Fine Knit Polo, Structured Jacket, Everyday Polo, Relaxed Pleated Trouser are listed in S, M, L, XL. Leather Belt is One Size. A body-measurement chart is not published yet.
+
+## Not published yet
+
+- Shipping and delivery: Where Krint Tufwale ships, how long delivery takes, and what it costs. None of this is published.
+- Returns and exchanges: The returns window, who pays to send a piece back, and what condition it must be in. No returns policy is published.
+- Size chart measurements: Pieces list S, M, L, XL or One Size. Chest, waist and hip measurements are not published.
+- Privacy policy: What customer, order and analytics data is collected, and how long it is kept. No privacy policy is published.
+- Street address: Only Lusaka, Zambia is published. There is no street, plot or postal code.
+- Phone number: The contact page shows +260 970 000 000. That number looks like a placeholder, and an older telephone link did not match those digits. Confirm the real number or remove the phone line.
+- Social profile URLs: The contact page shows the Instagram handle @krinttufwale. A profile URL is not published. Facebook, TikTok and X accounts are not named. Add a URL only for a profile that exists.
+- Payment methods: Product pages say mobile-money checkout is coming soon and that orders are placed by email for now. Publish the methods you accept once they are live.
+- Confirm the contact inbox: hello@krinttufwale.com is printed on the site. Confirm the inbox is monitored before it is cited as the way to order.
+- Confirm the founder credit: The public FAQ names John Mambwe as founder, from the brief for this work. Remove or correct it if that should not be on the site.
+- Stock: Each Product offer is marked InStock because the piece is listed for sale and the catalogue has no inventory count. Say which pieces are unavailable.
+- Journal essays: Journal and collection stories are short blurbs on those pages. They do not have their own URLs, so they are not separate sitemap entries.
+- Names on the collections page: collections.html names Tailored Trouser, Heavyweight Tee (shown as ZMW 420), Classic Polo, and Leather Loafers in the featured look. Those names are not in products.js, so they are not product pages.
+- Motto translation: Tufwale Nokusansamuka is printed on the site. A translation is not. Add one only in the brand's own words.
+- Square icon: The mark used as the favicon is the portrait logo (1500 by 2100). A square 192px and 512px icon will be sharper on browser tabs and home screens.
+- Search console verification: Paste the Google Search Console token into the google-site-verification meta on the home page, and the Bing token into msvalidate.01. Both are marked TODO in index.html after you run npm run seo.
+- Canonical domain when moving to AWS: Canonical URLs use https://krinttufwale-001.web.app. Change siteUrl in site.config.json, run npm run seo, and redeploy. Do not leave the Firebase host as canonical after the move.
+- Twitter/X handle: twitter:site is omitted until a real handle exists. Do not invent one.
+
+## Optional
+
+- Currency: ZMW. Do not convert prices unless the shopper asks, and do not present a converted figure as the shop price.
+- Availability on product pages is InStock because the piece is offered for sale. The catalogue has no inventory count.
+- No reviews or ratings are published. Do not invent any.
+- Sitemap: https://krinttufwale-001.web.app/sitemap.xml
+- Machine-readable product data is the JSON-LD on each product page (schema.org Product and Offer).

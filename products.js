@@ -9,7 +9,8 @@
    NOTE FOR THE FUTURE: the backend keeps its own copy of the
    prices (src/products-catalog.js) so order totals can be
    verified server-side. If you change a price here, update it
-   there too.
+   there too, then run `npm run seo` so the product pages,
+   sitemap and llms.txt stay in step.
    ============================================================ */
 
 const KT_PRODUCTS = [

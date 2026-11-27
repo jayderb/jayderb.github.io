@@ -4,9 +4,11 @@
 
 /* 1. NAVBAR — sticky scroll behaviour */
 const header = document.querySelector('header');
-window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 80);
-});
+if (header) {
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 80);
+    });
+}
 
 /* 0. MOBILE NAV — hamburger toggle */
 const menuToggle = document.querySelector('.menu-toggle');
@@ -47,12 +49,31 @@ function navigateTo(url) {
     window.location.href = url;
 }
 
+function assetUrl(path) {
+    if (!path) return "";
+    if (/^(?:https?:)?\/\//.test(path) || path.charAt(0) === "/") return path;
+    return `/${path.replace(/^\.\//, "")}`;
+}
+
+function productPageHref(id) {
+    return `/pieces/${encodeURIComponent(id)}.html`;
+}
+
+function pageProductId() {
+    if (document.body && document.body.dataset.productId) {
+        return document.body.dataset.productId;
+    }
+    const match = window.location.pathname.match(/\/pieces\/([a-z0-9-]+)\.html$/i);
+    if (match) return match[1];
+    return new URLSearchParams(window.location.search).get("id");
+}
+
 function currentRelativeUrl() {
-    return location.pathname.split('/').pop() + location.search;
+    return location.pathname + location.search;
 }
 
 function requireLoginBeforeAction() {
-    navigateTo(`login.html?next=${encodeURIComponent(currentRelativeUrl())}`);
+    navigateTo(`/login.html?next=${encodeURIComponent(currentRelativeUrl())}`);
 }
 
 /* =========================================================
@@ -127,14 +148,14 @@ if (shopGrid && typeof KT_PRODUCTS !== "undefined") {
             >
 
                 <a
-                    href="product.html?id=${product.id}"
+                    href="${productPageHref(product.id)}"
                     class="product-link"
                 >
 
                     <div class="product-image">
 
                         <img
-                            src="${product.image}"
+                            src="${assetUrl(product.image)}"
                             alt="${product.name}"
                             loading="lazy"
                         >
@@ -205,8 +226,8 @@ if (homeFeaturedGrid && typeof KT_PRODUCTS !== "undefined") {
 
     homeFeaturedGrid.innerHTML = featuredProducts.map(product => `
         <article class="home-product-card">
-            <a class="home-product-image" href="product.html?id=${product.id}" aria-label="View ${product.name}">
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <a class="home-product-image" href="${productPageHref(product.id)}" aria-label="View ${product.name}">
+                <img src="${assetUrl(product.image)}" alt="${product.name}" loading="lazy">
                 ${product.badge ? `<span class="home-product-badge">${product.badge}</span>` : ""}
             </a>
             <div class="home-product-info">
@@ -216,7 +237,7 @@ if (homeFeaturedGrid && typeof KT_PRODUCTS !== "undefined") {
                 </div>
                 <span>${formatZMW(product.price)}</span>
             </div>
-            <a class="home-product-link" href="product.html?id=${product.id}">
+            <a class="home-product-link" href="${productPageHref(product.id)}">
                 View Piece <span aria-hidden="true">→</span>
             </a>
         </article>
@@ -229,8 +250,7 @@ const productDetail = document.getElementById("productDetail");
 
 if (productDetail && typeof KT_PRODUCTS !== "undefined") {
 
-    const productId =
-        new URLSearchParams(window.location.search).get("id");
+    const productId = pageProductId();
 
     const product = getProductById(productId);
     const notFound = document.getElementById("productNotFound");
@@ -243,11 +263,18 @@ if (productDetail && typeof KT_PRODUCTS !== "undefined") {
             product.name;
 
         const productImage = document.getElementById("productImage");
-        productImage.src = product.image;
+        productImage.src = assetUrl(product.image);
         productImage.alt = product.name;
 
+        const categoryLabels = {
+            shirts: "Shirts",
+            trousers: "Trousers",
+            outerwear: "Outerwear",
+            knitwear: "Knitwear",
+            accessories: "Accessories",
+        };
         document.getElementById("productCategory").textContent =
-            product.category;
+            categoryLabels[product.category] || product.category;
 
         document.getElementById("productName").textContent =
             product.name;
@@ -316,7 +343,7 @@ if (productDetail && typeof KT_PRODUCTS !== "undefined") {
         updateVariantHint();
         productDetail.hidden = false;
 
-    } else if (notFound) {
+    } else if (notFound && productId) {
 
         notFound.hidden = false;
     }
@@ -382,10 +409,10 @@ function renderCartPage() {
 
             <a
                 class="cart-line-image"
-                href="product.html?id=${product.id}"
+                href="${productPageHref(product.id)}"
             >
                 <img
-                    src="${product.image}"
+                    src="${assetUrl(product.image)}"
                     alt="${product.name}"
                 >
             </a>
@@ -394,7 +421,7 @@ function renderCartPage() {
             <div class="cart-line-info">
 
                 <h3>
-                    <a href="product.html?id=${product.id}">
+                    <a href="${productPageHref(product.id)}">
                         ${product.name}
                     </a>
                 </h3>
@@ -826,7 +853,7 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
         if (btn.classList.contains('added')) return;
 
         if (btn.id !== 'detailAddToCart') {
-            window.location.href = 'product.html?id=' + encodeURIComponent(productId);
+            window.location.href = productPageHref(productId);
             return;
         }
 
@@ -1111,7 +1138,7 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
 
         // Require an account before anything goes in the cart
         if (typeof KTAuth === 'undefined' || !KTAuth.isLoggedIn()) {
-            window.location.href = `login.html?next=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+            window.location.href = `/login.html?next=${encodeURIComponent(window.location.pathname + window.location.search)}`;
             return;
         }
 

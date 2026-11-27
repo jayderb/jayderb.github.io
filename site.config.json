@@ -1,0 +1,162 @@
+{
+  "siteUrl": "https://krinttufwale-001.web.app",
+  "siteName": "Krint Tufwale",
+  "alternateName": "KT Clothing",
+  "locale": "en-ZM",
+  "ogLocale": "en_ZM",
+  "currency": "ZMW",
+  "founder": "John Mambwe",
+  "email": "hello@krinttufwale.com",
+  "instagramHandle": "@krinttufwale",
+  "addressLocality": "Lusaka",
+  "addressCountry": "ZM",
+  "motto": "Tufwale Nokusansamuka",
+  "description": "Contemporary essentials inspired by the pace, warmth and confidence of everyday life. Designed in Lusaka, Zambia.",
+  "themeColor": "#20201e",
+  "backgroundColor": "#f6f3ed",
+  "logo": "/images/logo.png",
+  "defaultOgImage": "/images/banner.jpg",
+  "defaultImageAlt": "Krint Tufwale — contemporary clothing designed in Lusaka, Zambia",
+  "faqs": [
+    {
+      "id": "based",
+      "question": "Where is Krint Tufwale based?",
+      "answer": "Krint Tufwale is based in Lusaka, Zambia. The clothing is designed in Zambia."
+    },
+    {
+      "id": "founder",
+      "question": "Who founded Krint Tufwale?",
+      "answer": "John Mambwe founded Krint Tufwale in Lusaka, Zambia."
+    },
+    {
+      "id": "range",
+      "question": "What does Krint Tufwale sell?",
+      "answer": "Contemporary everyday clothing. The collections are Everyday, Tailored and Essentials. The shop is grouped into shirts, trousers, outerwear, knitwear and accessories."
+    },
+    {
+      "id": "currency",
+      "question": "What currency are prices in?",
+      "answer": "Prices are in Zambian kwacha (ZMW). The figure on each piece is the catalogue price. When an order is placed, the server recalculates the total from that catalogue."
+    },
+    {
+      "id": "ordering",
+      "question": "How do I place an order?",
+      "answer": "Create an account and add a piece to your bag. Product pages say checkout with mobile money is coming soon and that, for now, orders are placed by email. The contact address published on the site is hello@krinttufwale.com."
+    },
+    {
+      "id": "search",
+      "question": "Is there a search box for the catalogue?",
+      "answer": "No. The shop page filters pieces by shirts, trousers, outerwear, knitwear and accessories."
+    }
+  ],
+  "placeholders": [
+    {
+      "id": "shipping",
+      "title": "Shipping and delivery",
+      "public": true,
+      "detail": "Where Krint Tufwale ships, how long delivery takes, and what it costs. None of this is published."
+    },
+    {
+      "id": "returns",
+      "title": "Returns and exchanges",
+      "public": true,
+      "detail": "The returns window, who pays to send a piece back, and what condition it must be in. No returns policy is published."
+    },
+    {
+      "id": "size-chart",
+      "title": "Size chart measurements",
+      "public": true,
+      "detail": "Pieces list S, M, L, XL or One Size. Chest, waist and hip measurements are not published."
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy policy",
+      "public": true,
+      "detail": "What customer, order and analytics data is collected, and how long it is kept. No privacy policy is published."
+    },
+    {
+      "id": "address",
+      "title": "Street address",
+      "public": true,
+      "detail": "Only Lusaka, Zambia is published. There is no street, plot or postal code."
+    },
+    {
+      "id": "phone",
+      "title": "Phone number",
+      "public": true,
+      "detail": "The contact page shows +260 970 000 000. That number looks like a placeholder, and an older telephone link did not match those digits. Confirm the real number or remove the phone line."
+    },
+    {
+      "id": "social",
+      "title": "Social profile URLs",
+      "public": true,
+      "detail": "The contact page shows the Instagram handle @krinttufwale. A profile URL is not published. Facebook, TikTok and X accounts are not named. Add a URL only for a profile that exists."
+    },
+    {
+      "id": "payments",
+      "title": "Payment methods",
+      "public": true,
+      "detail": "Product pages say mobile-money checkout is coming soon and that orders are placed by email for now. Publish the methods you accept once they are live."
+    },
+    {
+      "id": "email",
+      "title": "Confirm the contact inbox",
+      "public": false,
+      "detail": "hello@krinttufwale.com is printed on the site. Confirm the inbox is monitored before it is cited as the way to order."
+    },
+    {
+      "id": "founder",
+      "title": "Confirm the founder credit",
+      "public": false,
+      "detail": "The public FAQ names John Mambwe as founder, from the brief for this work. Remove or correct it if that should not be on the site."
+    },
+    {
+      "id": "stock",
+      "title": "Stock",
+      "public": false,
+      "detail": "Each Product offer is marked InStock because the piece is listed for sale and the catalogue has no inventory count. Say which pieces are unavailable."
+    },
+    {
+      "id": "journal",
+      "title": "Journal essays",
+      "public": false,
+      "detail": "Journal and collection stories are short blurbs on those pages. They do not have their own URLs, so they are not separate sitemap entries."
+    },
+    {
+      "id": "collections-mismatch",
+      "title": "Names on the collections page",
+      "public": false,
+      "detail": "collections.html names Tailored Trouser, Heavyweight Tee (shown as ZMW 420), Classic Polo, and Leather Loafers in the featured look. Those names are not in products.js, so they are not product pages."
+    },
+    {
+      "id": "motto",
+      "title": "Motto translation",
+      "public": false,
+      "detail": "Tufwale Nokusansamuka is printed on the site. A translation is not. Add one only in the brand's own words."
+    },
+    {
+      "id": "favicon",
+      "title": "Square icon",
+      "public": false,
+      "detail": "The mark used as the favicon is the portrait logo (1500 by 2100). A square 192px and 512px icon will be sharper on browser tabs and home screens."
+    },
+    {
+      "id": "verification",
+      "title": "Search console verification",
+      "public": false,
+      "detail": "Paste the Google Search Console token into the google-site-verification meta on the home page, and the Bing token into msvalidate.01. Both are marked TODO in index.html after you run npm run seo."
+    },
+    {
+      "id": "domain",
+      "title": "Canonical domain when moving to AWS",
+      "public": false,
+      "detail": "Canonical URLs use https://krinttufwale-001.web.app. Change siteUrl in site.config.json, run npm run seo, and redeploy. Do not leave the Firebase host as canonical after the move."
+    },
+    {
+      "id": "twitter",
+      "title": "Twitter/X handle",
+      "public": false,
+      "detail": "twitter:site is omitted until a real handle exists. Do not invent one."
+    }
+  ]
+}

@@ -15,7 +15,9 @@
       "package-lock.json",
       "skills-lock.json",
       "serve.dev.js",
-      "README.md"
+      "README.md",
+      "site.config.json",
+      "scripts/**"
     ],
     "headers": [
       {
@@ -24,6 +26,24 @@
           { "key": "X-Content-Type-Options", "value": "nosniff" },
           { "key": "X-Frame-Options", "value": "DENY" },
           { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        ]
+      },
+      {
+        "source": "/llms.txt",
+        "headers": [
+          { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+        ]
+      },
+      {
+        "source": "/sitemap.xml",
+        "headers": [
+          { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+        ]
+      },
+      {
+        "source": "/site.webmanifest",
+        "headers": [
+          { "key": "Content-Type", "value": "application/manifest+json" }
         ]
       }
     ]
