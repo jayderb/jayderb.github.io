@@ -5,7 +5,9 @@
   "locale": "en-ZM",
   "ogLocale": "en_ZM",
   "currency": "ZMW",
-  "founder": "John Mambwe",
+  "founder": "Krint Sibakwe",
+  "founderAlternateName": "Krint Tufwale",
+  "developer": "John Mambwe",
   "email": "hello@krinttufwale.com",
   "instagramHandle": "@krinttufwale",
   "addressLocality": "Lusaka",
@@ -26,7 +28,7 @@
     {
       "id": "founder",
       "question": "Who founded Krint Tufwale?",
-      "answer": "John Mambwe founded Krint Tufwale in Lusaka, Zambia."
+      "answer": "Krint Sibakwe (Krint Tufwale) founded the brand in Lusaka, Zambia."
     },
     {
       "id": "range",
@@ -103,12 +105,6 @@
       "title": "Confirm the contact inbox",
       "public": false,
       "detail": "hello@krinttufwale.com is printed on the site. Confirm the inbox is monitored before it is cited as the way to order."
-    },
-    {
-      "id": "founder",
-      "title": "Confirm the founder credit",
-      "public": false,
-      "detail": "The public FAQ names John Mambwe as founder, from the brief for this work. Remove or correct it if that should not be on the site."
     },
     {
       "id": "stock",

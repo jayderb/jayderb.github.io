@@ -353,6 +353,7 @@ function organizationNode() {
         founder: {
             "@type": "Person",
             name: config.founder,
+            alternateName: config.founderAlternateName,
         },
         address: {
             "@type": "PostalAddress",
@@ -1049,7 +1050,7 @@ function writeLlms(products) {
     const todoLines = config.placeholders.map((item) => `- ${item.title}: ${item.detail}`);
     const text = `# ${config.siteName}
 
-> ${config.siteName} (${config.alternateName}) designs contemporary everyday clothing in ${config.addressLocality}, ${config.addressCountry === "ZM" ? "Zambia" : config.addressCountry}. The line printed on the site is "${config.motto}". Founder: ${config.founder}. Prices are in ${config.currency} (Zambian kwacha).
+> ${config.siteName} (${config.alternateName}) designs contemporary everyday clothing in ${config.addressLocality}, ${config.addressCountry === "ZM" ? "Zambia" : config.addressCountry}. The line printed on the site is "${config.motto}". Founder: ${config.founder} (${config.founderAlternateName}). Website developer: ${config.developer}. Prices are in ${config.currency} (Zambian kwacha).
 
 The shop catalogue is the source of truth for what can be ordered. There is no separate site search. Do not invent a street address, phone number, review score, stock count, or shipping policy: if it is not written here or on the linked page, it is not published.
 

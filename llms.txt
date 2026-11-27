@@ -1,6 +1,6 @@
 # Krint Tufwale
 
-> Krint Tufwale (KT Clothing) designs contemporary everyday clothing in Lusaka, Zambia. The line printed on the site is "Tufwale Nokusansamuka". Founder: John Mambwe. Prices are in ZMW (Zambian kwacha).
+> Krint Tufwale (KT Clothing) designs contemporary everyday clothing in Lusaka, Zambia. The line printed on the site is "Tufwale Nokusansamuka". Founder: Krint Sibakwe (Krint Tufwale). Website developer: John Mambwe. Prices are in ZMW (Zambian kwacha).
 
 The shop catalogue is the source of truth for what can be ordered. There is no separate site search. Do not invent a street address, phone number, review score, stock count, or shipping policy: if it is not written here or on the linked page, it is not published.
 
@@ -41,7 +41,7 @@ Krint Tufwale is based in Lusaka, Zambia. The clothing is designed in Zambia.
 
 ### Who founded Krint Tufwale?
 
-John Mambwe founded Krint Tufwale in Lusaka, Zambia.
+Krint Sibakwe (Krint Tufwale) founded the brand in Lusaka, Zambia.
 
 ### What does Krint Tufwale sell?
 
@@ -74,7 +74,6 @@ Cotton Overshirt, Straight Leg Trouser, Classic Cotton Shirt, Fine Knit Polo, St
 - Social profile URLs: The contact page shows the Instagram handle @krinttufwale. A profile URL is not published. Facebook, TikTok and X accounts are not named. Add a URL only for a profile that exists.
 - Payment methods: Product pages say mobile-money checkout is coming soon and that orders are placed by email for now. Publish the methods you accept once they are live.
 - Confirm the contact inbox: hello@krinttufwale.com is printed on the site. Confirm the inbox is monitored before it is cited as the way to order.
-- Confirm the founder credit: The public FAQ names John Mambwe as founder, from the brief for this work. Remove or correct it if that should not be on the site.
 - Stock: Each Product offer is marked InStock because the piece is listed for sale and the catalogue has no inventory count. Say which pieces are unavailable.
 - Journal essays: Journal and collection stories are short blurbs on those pages. They do not have their own URLs, so they are not separate sitemap entries.
 - Names on the collections page: collections.html names Tailored Trouser, Heavyweight Tee (shown as ZMW 420), Classic Polo, and Leather Loafers in the featured look. Those names are not in products.js, so they are not product pages.
