@@ -2083,3 +2083,43 @@ header nav a,
     color: var(--kt-color-ink);
     border-color: var(--kt-color-border);
 }
+
+/* Crawlable product index on the old product.html shell, and the FAQ page. */
+.product-index,
+.faq-list {
+    width: min(760px, calc(100% - 2 * var(--kt-gutter)));
+    margin: 0 auto 4rem;
+}
+
+.product-index h2,
+.faq-list h2 {
+    font-family: var(--kt-font-editorial);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin: 0 0 1rem;
+}
+
+.product-index ul {
+    padding-left: 1.1rem;
+}
+
+.product-index li {
+    margin: 0.45rem 0;
+}
+
+.faq-list article {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--kt-color-border);
+}
+
+.faq-list article p {
+    margin: 0.4rem 0 0;
+    line-height: 1.7;
+}
+
+.seo-todo {
+    background: var(--kt-color-surface);
+    border: 1px dashed var(--kt-color-accent);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    margin-top: 1rem;
+}

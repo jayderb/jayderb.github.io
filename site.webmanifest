@@ -1,0 +1,19 @@
+{
+  "name": "Krint Tufwale",
+  "short_name": "Krint Tufwale",
+  "description": "Contemporary essentials inspired by the pace, warmth and confidence of everyday life. Designed in Lusaka, Zambia.",
+  "lang": "en-ZM",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ed",
+  "theme_color": "#20201e",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "1500x2100",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -187,7 +187,7 @@ const KTAuth = (() => {
         // Back to the plain signed-out icon (also re-runs cleanly)
         if (!isLoggedIn()) {
             link.innerHTML = '<i class="fa-solid fa-user" aria-hidden="true"></i>';
-            link.href = 'login.html';
+            link.href = '/login.html';
             link.setAttribute('aria-label', 'Account');
             link.classList.remove('account-active');
             const panel = document.getElementById('accountPanel');
@@ -255,23 +255,25 @@ const KTAuth = (() => {
 
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function currentRelativeUrl() {
-        return location.pathname.split('/').pop() + location.search;
-    }
-
-    /* Only ever hop back to a path on THIS site (open-redirect protection) */
+    /* Only ever hop back to an HTML page on THIS site (open-redirect protection).
+       Keeps /pieces/<id>.html intact so sign-in returns to the product. */
     function safeNextPath(rawNext) {
+        const fallback = '/shop.html';
         try {
-            const url = new URL(rawNext, location.href);
-            if (url.origin !== location.origin) return 'shop.html';
-            return url.pathname.split('/').pop() + url.search;
+            if (typeof rawNext !== 'string' || rawNext.includes('://') || rawNext.startsWith('//')) {
+                return fallback;
+            }
+            const url = new URL(rawNext, location.origin);
+            if (url.origin !== location.origin) return fallback;
+            if (url.pathname !== '/' && !url.pathname.endsWith('.html')) return fallback;
+            return url.pathname + url.search;
         } catch (err) {
-            return 'shop.html';
+            return fallback;
         }
     }
 
     function nextPageAfterAuth() {
-        return safeNextPath(new URLSearchParams(location.search).get('next') || 'shop.html');
+        return safeNextPath(new URLSearchParams(location.search).get('next') || '/shop.html');
     }
 
     function fieldStatus(input, hasError) {

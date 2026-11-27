@@ -505,7 +505,15 @@ nav a:hover::after {
     transition: transform 0.45s ease;
 }
 
-.collection-overlay span {
+.collection-card > a {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.collection-overlay span,
+.collection-overlay a {
     color: rgba(255, 255, 255, .9);
     margin-top: 10px;
     letter-spacing: .08em;
@@ -523,7 +531,8 @@ nav a:hover::after {
 }
 
 .collection-card:hover h3,
-.collection-card:hover span {
+.collection-card:hover span,
+.collection-card:hover a {
     transform: translateY(0);
 }
 
@@ -928,7 +937,8 @@ footer {
     gap: 16px;
 }
 
-.footer-socials a {
+.footer-socials a,
+.footer-socials span {
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     color: #aaa;
@@ -1786,7 +1796,7 @@ footer {
 
     position:relative;
 
-    background:url("images/victoria-strukovskaya-BjyPGQoYw7s-unsplash.jpg") center/cover no-repeat;
+    background:url("images/journal-hero.jpg") center/cover no-repeat;
 }
 
 .journal-hero::before{
@@ -2018,7 +2028,10 @@ footer {
     margin-top:50px;
 }
 
-.category-pills a{
+.category-pills a,
+.category-pills span{
+
+    display:inline-block;
 
     padding:14px 30px;
 
